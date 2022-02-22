@@ -31,7 +31,7 @@ import {MultiSelectModule} from "primeng/multiselect";
         CommonModule,
         RouterModule.forChild(
             [
-                {path: 'users', component: UsersComponent}
+                {path: '', component: UsersComponent}
             ]
         ),
         ToolbarModule,

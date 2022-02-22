@@ -20,6 +20,9 @@ import {AuthModule} from "./auth/auth.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {UsersModule} from "./users/users.module";
 import {UsersService} from "./users/users.service";
+import { HomeComponent } from './home/home.component';
+import {ReviewsModule} from "./reviews/reviews.module";
+import {ReviewsService} from "./reviews/reviews.service";
 
 @NgModule({
     imports: [
@@ -30,7 +33,7 @@ import {UsersService} from "./users/users.service";
         ConfirmDialogModule,
         RippleModule,
         BrowserAnimationsModule,
-        UsersModule
+        UsersModule, ReviewsModule
     ],
     declarations: [
         AppComponent,
@@ -39,7 +42,8 @@ import {UsersService} from "./users/users.service";
         FooterComponent,
         ConfigComponent,
         MenuComponent,
-        MenuItemComponent
+        MenuItemComponent,
+        HomeComponent,
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -47,7 +51,8 @@ import {UsersService} from "./users/users.service";
         MenuService,
         ConfirmationService,
         MessageService,
-        UsersService
+        UsersService,
+        ReviewsService
     ],
     bootstrap: [AppComponent]
 })
