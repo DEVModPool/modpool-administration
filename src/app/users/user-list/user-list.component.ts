@@ -9,13 +9,13 @@ import {Role} from "../role.model";
     templateUrl: './user-list.component.html'
 })
 export class UserListComponent implements OnInit {
-    productDialog: boolean;
-    deleteProductDialog: boolean = false;
-    deleteProductsDialog: boolean = false;
+    userDialog: boolean;
+    deleteUserDialog: boolean = false;
+    deleteUsersDialog: boolean = false;
     users: User[];
     user: User;
     availableRoles: Role[];
-    selectedProducts: User[];
+    selectedUsers: User[];
     submitted: boolean;
     statuses: any[];
     rowsPerPageOptions = [5, 10, 20];
@@ -31,39 +31,39 @@ export class UserListComponent implements OnInit {
     openNew() {
         this.user = {};
         this.submitted = false;
-        this.productDialog = true;
+        this.userDialog = true;
     }
 
-    deleteSelectedProducts() {
-        this.deleteProductsDialog = true;
+    deleteSelectedUsers() {
+        this.deleteUsersDialog = true;
     }
 
-    editProduct(user: User) {
+    editUser(user: User) {
         this.user = {...user};
-        this.productDialog = true;
+        this.userDialog = true;
     }
 
-    deleteProduct(user: User) {
-        this.deleteProductDialog = true;
+    deleteUser(user: User) {
+        this.deleteUserDialog = true;
         this.user = {...user};
     }
 
     confirmDeleteSelected(){
-        this.deleteProductsDialog = false;
-        this.users = this.users.filter(val => !this.selectedProducts.includes(val));
+        this.deleteUsersDialog = false;
+        this.users = this.users.filter(val => !this.selectedUsers.includes(val));
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Users Deleted', life: 3000});
-        this.selectedProducts = null;
+        this.selectedUsers = null;
     }
 
     confirmDelete(){
-        this.deleteProductDialog = false;
+        this.deleteUserDialog = false;
         this.users = this.users.filter(val => val.id !== this.user.id);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
         this.user = {};
     }
 
     hideDialog() {
-        this.productDialog = false;
+        this.userDialog = false;
         this.submitted = false;
     }
 
@@ -80,7 +80,7 @@ export class UserListComponent implements OnInit {
             }
 
             this.users = [...this.users];
-            this.productDialog = false;
+            this.userDialog = false;
             this.user = {};
         }
     }
