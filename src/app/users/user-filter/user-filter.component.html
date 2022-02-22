@@ -1,0 +1,33 @@
+<div class="card">
+    <h5 [ngStyle]="{color:'var(--primary-color)'}">Filter Users</h5>
+    <br>
+    <div class="p-fluid grid">
+        <div class="field col-12 md:col-3">
+        <span class="p-float-label">
+            <input type="text" id="firstName" pInputText>
+            <label for="firstName">First Name</label>
+        </span>
+        </div>
+        <div class="field col-12 md:col-3">
+        <span class="p-float-label">
+            <input type="text" id="lastName" pInputText>
+            <label for="lastName">Last Name</label>
+        </span>
+        </div>
+        <div class="field col-12 md:col-3">
+        <span class="p-float-label">
+            <input type="text" id="email" pInputText>
+            <label for="email">Email</label>
+        </span>
+        </div>
+        <div class="field col-12 md:col-3">
+        <span class="p-float-label">
+            <p-multiSelect id="roles" inputId="roles" [options]="roles" [(ngModel)]="selectedRoles" optionLabel="name" [filter]="false"></p-multiSelect>
+            <label for="roles">Roles</label>
+        </span>
+        </div>
+        <div class="field col-2">
+            <p-button label="Search" icon="pi pi-search" [loading]="isLoading"></p-button>
+        </div>
+    </div>
+</div>
