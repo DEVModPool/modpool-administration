@@ -1,28 +1,32 @@
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppRoutingModule} from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 
-import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
-import {TopbarComponent} from './topbar/topbar.component';
-import {FooterComponent} from './footer/footer.component';
-import {ConfigComponent} from './config/config.component';
-import {MenuItemComponent} from './menu/menu-item/menu-item.component';
+import { AppComponent } from './app.component';
+import { AppMainComponent } from './app.main.component';
+import { TopbarComponent } from './topbar/topbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { ConfigComponent } from './config/config.component';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
-import {ConfigService} from './config/config.service';
-import {MenuService} from "./menu/menu.service";
-import {RippleModule} from "primeng/ripple";
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {MenuComponent} from "./menu/menu.component";
-import {AuthModule} from "./auth/auth.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {UsersModule} from "./users/users.module";
-import {UsersService} from "./users/users.service";
+import { ConfigService } from './config/config.service';
+import { MenuService } from "./menu/menu.service";
+import { RippleModule } from "primeng/ripple";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { MenuComponent } from "./menu/menu.component";
+import { AuthModule } from "./auth/auth.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { UsersModule } from "./users/users.module";
+import { UsersService } from "./users/users.service";
 import { HomeComponent } from './home/home.component';
-import {ReviewsModule} from "./reviews/reviews.module";
-import {ReviewsService} from "./reviews/reviews.service";
+import { ReviewsModule } from "./reviews/reviews.module";
+import { ReviewsService } from "./reviews/reviews.service";
+import { ModuleListComponent } from './modules/module-list/module-list.component';
+import { ModulesService } from "./modules/modules.service";
+import { DepartmentService } from "./modules/department/department.service";
+import { ModuleDetailComponent } from './modules/module-detail/module-detail.component';
 
 @NgModule({
     imports: [
@@ -33,7 +37,8 @@ import {ReviewsService} from "./reviews/reviews.service";
         ConfirmDialogModule,
         RippleModule,
         BrowserAnimationsModule,
-        UsersModule, ReviewsModule
+        UsersModule,
+        ReviewsModule,
     ],
     declarations: [
         AppComponent,
@@ -43,7 +48,7 @@ import {ReviewsService} from "./reviews/reviews.service";
         ConfigComponent,
         MenuComponent,
         MenuItemComponent,
-        HomeComponent,
+        HomeComponent
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -52,7 +57,9 @@ import {ReviewsService} from "./reviews/reviews.service";
         ConfirmationService,
         MessageService,
         UsersService,
-        ReviewsService
+        ReviewsService,
+        ModulesService,
+        DepartmentService
     ],
     bootstrap: [AppComponent]
 })

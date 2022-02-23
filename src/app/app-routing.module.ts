@@ -1,7 +1,7 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
-import {AppMainComponent} from "./app.main.component";
-import {HomeComponent} from "./home/home.component";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { AppMainComponent } from "./app.main.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
     {
@@ -19,6 +19,10 @@ const routes: Routes = [
             {
                 path: 'reviews',
                 loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule)
+            },
+            {
+                path: 'modules',
+                loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule)
             }
         ]
     },

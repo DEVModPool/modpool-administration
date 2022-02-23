@@ -2,7 +2,7 @@
     <p-toast></p-toast>
     <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
-            <h4 style="margin-bottom: 0; font-weight: bold;">Reviews</h4>
+            <h4 style="margin-bottom: 0; font-weight: bold;">Modules</h4>
         </ng-template>
         <ng-template pTemplate="right">
             <div class="my-2">
@@ -11,38 +11,35 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="reviews" responsiveLayout="scroll" [rows]="10"
+    <p-table #dt [value]="modules" responsiveLayout="scroll" [rows]="10"
              [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
              selectionMode="multiple" [rowHover]="true" dataKey="id">
         <ng-template pTemplate="header">
             <tr>
-                <th>Author</th>
-                <th>Module</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Taught by</th>
                 <th>Last Updated</th>
-                <th style="text-align:center;">Status</th>
-                <th></th>
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-review>
+        <ng-template pTemplate="body" let-module>
             <tr>
-                <td style="width: 30%; min-width: 10rem;"><span class="p-column-title">Author</span>
-                    {{ review.author }}
+                <td style="width: 10%; min-width: 10rem;"><span class="p-column-title">Code</span>
+                    {{ module.code }}
+                </td>
+                <td style="width: 40%; min-width: 10rem;">
+                    <span class="p-column-title">Name</span>
+                    {{ module.name }}
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
-                    <span class="p-column-title">Module</span>
-                    {{ review.module.code }}
+                    <span class="p-column-title">Taught by</span>
+                    {{ module.lecturer }}
                 </td>
-                <td style="width: 15%; min-width: 10rem;">
+                <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Last Updated</span>
-                    {{ review.lastUpdated }}
-                </td>
-                <td style=" text-align:center; width: 20%; min-width: 10rem;">
-                    <p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag>
-                </td>
-                <td>
-                    <button pButton pRipple type="button" class="p-button-raised p-button-rounded">Review</button>
+                    {{ module.lastUpdated }}
                 </td>
                 <td>
                     <button pButton pRipple type="button" class="p-button-raised p-button-rounded p-button-help">
