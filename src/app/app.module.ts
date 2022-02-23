@@ -26,6 +26,7 @@ import { ReviewsService } from "./reviews/reviews.service";
 import { ModuleListComponent } from './modules/module-list/module-list.component';
 import { ModulesService } from "./modules/modules.service";
 import { DepartmentService } from "./modules/department/department.service";
+import { ModuleDetailComponent } from './modules/module-detail/module-detail.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,7 @@ import { DepartmentService } from "./modules/department/department.service";
         ConfigComponent,
         MenuComponent,
         MenuItemComponent,
-        HomeComponent,
+        HomeComponent
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},

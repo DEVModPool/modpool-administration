@@ -7,18 +7,20 @@ import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ModuleComponent } from "./module/module.component";
 import { ModuleListComponent } from "./module-list/module-list.component";
+import { ModuleDetailComponent } from "./module-detail/module-detail.component";
 
 @NgModule({
     declarations: [
-        ModuleListComponent
+        ModuleListComponent,
+        ModuleDetailComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(
             [
-                {path: '', component: ModuleListComponent}
+                {path: '', component: ModuleListComponent},
+                {path: '/details', component: ModuleDetailComponent}
             ]
         ),
         ToastModule,
