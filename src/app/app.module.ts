@@ -24,6 +24,8 @@ import { HomeComponent } from './home/home.component';
 import { ReviewsModule } from "./reviews/reviews.module";
 import { ReviewsService } from "./reviews/reviews.service";
 import { ModuleListComponent } from './modules/module-list/module-list.component';
+import { ModulesService } from "./modules/modules.service";
+import { DepartmentService } from "./modules/department/department.service";
 
 @NgModule({
     imports: [
@@ -54,7 +56,9 @@ import { ModuleListComponent } from './modules/module-list/module-list.component
         ConfirmationService,
         MessageService,
         UsersService,
-        ReviewsService
+        ReviewsService,
+        ModulesService,
+        DepartmentService
     ],
     bootstrap: [AppComponent]
 })
