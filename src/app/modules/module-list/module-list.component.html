@@ -21,7 +21,6 @@
                 <th>Name</th>
                 <th>Taught by</th>
                 <th>Last Updated</th>
-                <!--                <th></th>-->
                 <th></th>
             </tr>
         </ng-template>
@@ -34,20 +33,14 @@
                     <span class="p-column-title">Name</span>
                     {{ module.name }}
                 </td>
-                <td style="width: 15%; min-width: 10rem;">
+                <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Taught by</span>
                     {{ module.lecturer }}
                 </td>
-                <td style="width: 15%; min-width: 10rem;">
+                <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Last Updated</span>
                     {{ module.lastUpdated }}
                 </td>
-                <!--                <td style=" text-align:center; width: 20%; min-width: 10rem;">-->
-                <!--                    <p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag>-->
-                <!--                </td>-->
-                <!--                <td>-->
-                <!--                    <button pButton pRipple type="button" class="p-button-raised p-button-rounded">Review</button>-->
-                <!--                </td>-->
                 <td>
                     <button pButton pRipple type="button" class="p-button-raised p-button-rounded p-button-help">
                         Details
