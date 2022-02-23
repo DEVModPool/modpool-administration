@@ -6,7 +6,8 @@ export class Module {
         public code?: string,
         public name?: string,
         public lecturer?: string,
-        public department?: Department
+        public department?: Department,
+        public lastUpdated?: string
     ) {
     }
 }

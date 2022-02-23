@@ -12,21 +12,24 @@ export class ModulesService {
             'COMP 202',
             'Complexity of Algorithms',
             'Piotr Krysta',
-            this.departmentService.getDepartmentByName('Computer Science')),
+            this.departmentService.getDepartmentByName('Computer Science'),
+            '2020-08-08'),
 
         new Module(
             2,
             'COMP 208',
             'Group Software Project',
             'Michele Zito',
-            this.departmentService.getDepartmentByName('Computer Science')),
+            this.departmentService.getDepartmentByName('Computer Science'),
+            '2020-08-08'),
 
         new Module(
             3,
             'COMP 226',
             'Computer-Based Trading in Financial Markets',
             'Rahul Savani',
-            this.departmentService.getDepartmentByName('Computer Science')),
+            this.departmentService.getDepartmentByName('Computer Science'),
+            '2020-08-08'),
     ];
 
     constructor(private departmentService: DepartmentService) {
@@ -41,5 +44,9 @@ export class ModulesService {
         }
 
         return undefined;
+    }
+
+    getAll() {
+        return this.modules.slice();
     }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Review } from "../../reviews/review.model";
+import { Module } from "../module.model";
+import { ModulesService } from "../modules.service";
 
 @Component({
     selector: 'app-module-list',
@@ -8,12 +10,13 @@ import { Review } from "../../reviews/review.model";
 })
 export class ModuleListComponent implements OnInit {
 
-    reviews: Review[] = []
+    modules: Module[];
 
-    constructor() {
+    constructor(private modulesService: ModulesService) {
     }
 
     ngOnInit(): void {
+        this.modules = this.modulesService.getAll();
     }
 
 }
