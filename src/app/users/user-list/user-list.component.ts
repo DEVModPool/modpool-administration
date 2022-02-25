@@ -9,23 +9,28 @@ import {Role} from "../role.model";
     templateUrl: './user-list.component.html'
 })
 export class UserListComponent implements OnInit {
+    filtered = false;
     userDialog: boolean;
     deleteUserDialog: boolean = false;
     deleteUsersDialog: boolean = false;
-    users: User[];
+    users: User[] = [];
     user: User;
     availableRoles: Role[];
     selectedUsers: User[];
     submitted: boolean;
-    statuses: any[];
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private usersService: UsersService, private messageService: MessageService,
                 private confirmationService: ConfirmationService) {}
 
     ngOnInit() {
-        this.users = this.usersService.users;
-        this.availableRoles = this.usersService.roles;
+        this.usersService.users.subscribe({
+            next: value => {
+                this.users = value;
+                this.filtered = true;
+            }
+        });
+        this.availableRoles = this.usersService.getRoles();
     }
 
     openNew() {
@@ -69,7 +74,11 @@ export class UserListComponent implements OnInit {
 
     saveUser() {
         this.submitted = true;
-        if (this.user.lastName.trim() && this.user.firstName.trim() && this.user.email.trim()) {
+        if (
+            this.user.lastName.trim() &&
+            this.user.firstName.trim() &&
+            this.user.email.trim()
+        ) {
             if (this.user.id) {
                 this.users[this.findIndexById(this.user.id)] = this.user;
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000});
@@ -93,7 +102,6 @@ export class UserListComponent implements OnInit {
                 break;
             }
         }
-
         return index;
     }
 

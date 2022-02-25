@@ -9,12 +9,15 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {TableModule} from "primeng/table";
 import {TagModule} from "primeng/tag";
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
     declarations: [
         ReviewsComponent,
-        ReviewListComponent
+        ReviewListComponent,
+        ReviewDialogComponent
     ],
     imports: [
         CommonModule,
@@ -28,7 +31,8 @@ import {TagModule} from "primeng/tag";
         ButtonModule,
         RippleModule,
         TableModule,
-        TagModule
+        TagModule,
+        DialogModule
     ]
 })
 export class ReviewsModule {

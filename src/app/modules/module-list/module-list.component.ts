@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from "../../reviews/review.model";
 import { Module } from "../module.model";
 import { ModulesService } from "../modules.service";
 
 @Component({
     selector: 'app-module-list',
-    templateUrl: './module-list.component.html',
-    styleUrls: ['./module-list.component.scss']
+    templateUrl: './module-list.component.html'
 })
 export class ModuleListComponent implements OnInit {
-
     modules: Module[];
+    filtered = false;
 
     constructor(private modulesService: ModulesService) {
     }
 
     ngOnInit(): void {
-        this.modules = this.modulesService.getAll();
+        this.modulesService.modules.subscribe(modules => {
+            this.modules = modules;
+            this.filtered = true;
+            }
+        );
     }
-
 }

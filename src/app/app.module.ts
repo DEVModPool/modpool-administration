@@ -23,10 +23,11 @@ import { UsersService } from "./users/users.service";
 import { HomeComponent } from './home/home.component';
 import { ReviewsModule } from "./reviews/reviews.module";
 import { ReviewsService } from "./reviews/reviews.service";
-import { ModuleListComponent } from './modules/module-list/module-list.component';
 import { ModulesService } from "./modules/modules.service";
-import { DepartmentService } from "./modules/department/department.service";
-import { ModuleDetailComponent } from './modules/module-detail/module-detail.component';
+
+import { DepartmentsComponent } from './departments/departments.component';
+import {ModulesModule} from "./modules/modules.module";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import { ModuleDetailComponent } from './modules/module-detail/module-detail.com
         BrowserAnimationsModule,
         UsersModule,
         ReviewsModule,
+        ModulesModule
     ],
     declarations: [
         AppComponent,
@@ -48,7 +50,9 @@ import { ModuleDetailComponent } from './modules/module-detail/module-detail.com
         ConfigComponent,
         MenuComponent,
         MenuItemComponent,
-        HomeComponent
+        HomeComponent,
+        DepartmentsComponent,
+        PageNotFoundComponent
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -58,8 +62,7 @@ import { ModuleDetailComponent } from './modules/module-detail/module-detail.com
         MessageService,
         UsersService,
         ReviewsService,
-        ModulesService,
-        DepartmentService
+        ModulesService
     ],
     bootstrap: [AppComponent]
 })

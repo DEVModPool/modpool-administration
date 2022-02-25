@@ -10,22 +10,41 @@
                         (click)="openNew()"></button>
                 <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
                         (click)="deleteSelectedUsers()"
-                        [disabled]="!selectedUsers || !selectedUsers.length"></button>
+                        [disabled]="!selectedUsers || !selectedUsers.length" *ngIf="filtered"></button>
             </div>
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="users" responsiveLayout="scroll" [rows]="10"
-             [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
-             [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+    <div *ngIf="!filtered">
+        <p-messages severity="info">
+            <ng-template pTemplate>
+                <div class="ml-2">Please use the filter above to fetch the data!</div>
+            </ng-template>
+        </p-messages>
+    </div>
+
+    <p-table #dt [value]="users"
+             responsiveLayout="scroll"
+             [rows]="10"
+             [globalFilterFields]="['firstName','lastName','email','roles']"
+             [paginator]="true"
+             [rowsPerPageOptions]="[10,20,30]"
+             [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-             [(selection)]="selectedUsers" selectionMode="multiple" [rowHover]="true" dataKey="id">
+             [(selection)]="selectedUsers"
+             selectionMode="multiple"
+             [rowHover]="true"
+             dataKey="id"
+             *ngIf="filtered"
+    >
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th>First Name</th>
+                <th>
+                    First Name
+                </th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th style="text-align: center">Roles</th>
@@ -49,11 +68,11 @@
                     {{ user.email }}
                 </td>
                 <td style="text-align: center; width: 30%; min-width: 10rem;">
-                            <span *ngFor="let role of user.roles" style="padding: 1px">
-                                <p-tag>
-                                    {{ role.name }}
-                                </p-tag>
-                            </span>
+                    <span *ngFor="let role of user.roles" style="padding: 1px">
+                        <p-tag>
+                            {{ role.name }}
+                        </p-tag>
+                    </span>
                 </td>
                 <td>
                     <div class="flex">
@@ -68,6 +87,8 @@
         </ng-template>
     </p-table>
 </div>
+
+
 
 <p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="User details" [modal]="true"
           class="p-fluid">

@@ -12,20 +12,22 @@ import { InputTextModule } from "primeng/inputtext";
 import { RatingModule } from "primeng/rating";
 import { DialogModule } from "primeng/dialog";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { TagModule } from "primeng/tag";
 import { CheckboxModule } from "primeng/checkbox";
 import { UserListComponent } from './user-list/user-list.component';
 import { UserFilterComponent } from './user-filter/user-filter.component';
 import { MultiSelectModule } from "primeng/multiselect";
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 @NgModule({
     declarations: [
         UsersComponent,
         UserListComponent,
-        UserFilterComponent
+        UserFilterComponent,
+        UserDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -48,7 +50,8 @@ import { MultiSelectModule } from "primeng/multiselect";
         InputTextareaModule,
         TagModule,
         CheckboxModule,
-        MultiSelectModule
+        MultiSelectModule,
+        ReactiveFormsModule
     ]
 })
 export class UsersModule {

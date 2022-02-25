@@ -7,21 +7,24 @@ export class ReviewsService {
     reviews: Review[] = [
         new Review(
             "Tin Dizdarevic",
-            this.moduleService.getModuleByCode("COMP 202"),
+            "COMP 202",
             "Approved",
-            "2020-08-08"
+            "2020-08-08",
+            "This module was great, I learnt a lot!"
         ),
         new Review(
             "Juana Patankar",
-            this.moduleService.getModuleByCode("COMP 208"),
+            "COMP 208",
             "Flagged",
-            "2022-01-01"
+            "2022-01-01",
+            "This module was hard, but I liked it overall!"
         ),
         new Review(
             "Kristian Apostolov",
-            this.moduleService.getModuleByCode("COMP 202"),
+            "COMP 202",
             "Pending",
-            "2020-08-08"
+            "2020-08-08",
+            "Very hard module, and I didn't learn a lot! I still don't know how to sort a list!"
         ),
     ]
 

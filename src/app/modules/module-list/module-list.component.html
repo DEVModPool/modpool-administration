@@ -11,15 +11,23 @@
         </ng-template>
     </p-toolbar>
 
+    <div *ngIf="!filtered">
+        <p-messages severity="info">
+            <ng-template pTemplate>
+                <div class="ml-2">Please use the filter above to fetch the data!</div>
+            </ng-template>
+        </p-messages>
+    </div>
+
     <p-table #dt [value]="modules" responsiveLayout="scroll" [rows]="10"
              [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-             selectionMode="multiple" [rowHover]="true" dataKey="id">
+             selectionMode="multiple" [rowHover]="true" dataKey="id" *ngIf="filtered">
         <ng-template pTemplate="header">
             <tr>
                 <th>Code</th>
                 <th>Name</th>
-                <th>Taught by</th>
+                <th>Coordinator</th>
                 <th>Last Updated</th>
                 <th></th>
             </tr>
@@ -35,14 +43,14 @@
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Taught by</span>
-                    {{ module.lecturer }}
+                    {{ module.coordinator }}
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Last Updated</span>
                     {{ module.lastUpdated }}
                 </td>
                 <td>
-                    <button pButton pRipple type="button" class="p-button-raised p-button-rounded p-button-help">
+                    <button [routerLink]="[module.id]" pButton pRipple type="button" class="p-button-raised p-button-rounded p-button-help">
                         Details
                     </button>
                 </td>

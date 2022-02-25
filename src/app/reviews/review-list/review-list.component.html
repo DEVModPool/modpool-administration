@@ -42,7 +42,7 @@
                     <p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag>
                 </td>
                 <td>
-                    <button pButton pRipple type="button" class="p-button-raised p-button-rounded">Review</button>
+                    <app-review-dialog [review]="review"></app-review-dialog>
                 </td>
                 <td>
                     <button pButton pRipple type="button" class="p-button-raised p-button-rounded p-button-help">
