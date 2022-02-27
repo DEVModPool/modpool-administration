@@ -1,4 +1,4 @@
-import { Module } from "../modules/module.model";
+
 
 
 export class Review {
@@ -7,7 +7,7 @@ export class Review {
         public moduleName: string,
         public status: string,
         public lastUpdated: string,
-        public content: string
+        public reviewContent: string
     ) {
     }
 

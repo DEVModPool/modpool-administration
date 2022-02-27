@@ -11,13 +11,19 @@ import {TableModule} from "primeng/table";
 import {TagModule} from "primeng/tag";
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import {DialogModule} from "primeng/dialog";
+import {ReviewFilterComponent} from "./review-filter/review-filter.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {InputTextModule} from "primeng/inputtext";
+import {MultiSelectModule} from "primeng/multiselect";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 
 @NgModule({
     declarations: [
         ReviewsComponent,
         ReviewListComponent,
-        ReviewDialogComponent
+        ReviewDialogComponent,
+        ReviewFilterComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +38,11 @@ import {DialogModule} from "primeng/dialog";
         RippleModule,
         TableModule,
         TagModule,
-        DialogModule
+        DialogModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        MultiSelectModule,
+        ConfirmPopupModule
     ]
 })
 export class ReviewsModule {
