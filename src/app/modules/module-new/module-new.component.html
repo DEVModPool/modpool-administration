@@ -1,0 +1,94 @@
+<div class="card">
+    <h5>New Module</h5>
+    <br>
+    <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+            <label for="name">Name</label>
+            <input pInputText id="name" type="text"/>
+        </div>
+        <div class="field col-12 md:col-4">
+            <label for="code">Code</label>
+            <input pInputText id="code" type="text"/>
+        </div>
+        <div class="field col-12 md:col-2">
+            <label for="semester">Semester</label>
+            <p-dropdown id=semester [options]="" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="department">Department</label>
+            <p-dropdown id=department [options]="" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="department">Coordinator</label>
+            <p-dropdown id=coordinator [options]="" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="field col-12">
+            <label for="department">Description</label>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+        <div class="field col-12">
+            <label for="department">Syllabus</label>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+        <div class="field col-12">
+            <label for="department">Assessment</label>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+
+
+        <div class="col-12">
+            <h6 style="padding-bottom: 0;margin-bottom: 0;">Study Hours</h6>
+        </div>
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                <p-inputNumber id="lectures" inputId="lectures" ></p-inputNumber>
+                <label for="lectures">Lectures</label>
+            </span>
+        </div>
+
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                                    <p-inputNumber id="seminars" inputId="seminars"
+                                                   ></p-inputNumber>
+                                    <label for="seminars">Seminars</label>
+                                </span>
+        </div>
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                                    <p-inputNumber id="tutorials" inputId="tutorials"
+                                                  ></p-inputNumber>
+                                    <label for="tutorials">Tutorials</label>
+                                </span>
+        </div>
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                                    <p-inputNumber id="labPracticals" inputId="labPracticals"
+                                                   ></p-inputNumber>
+                                    <label for="labPracticals">Lab Practicals</label>
+                                </span>
+        </div>
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                                    <p-inputNumber id="fieldwork" inputId="fieldwork"
+                                                   ></p-inputNumber>
+                                    <label for="fieldwork">Fieldwork</label>
+                                </span>
+        </div>
+        <div class="col-12 md:col-2">
+            <br>
+            <span class="p-float-label">
+                                    <p-inputNumber id="other" inputId="other" ></p-inputNumber>
+                                    <label for="other">Other</label>
+                                </span>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Prereq, Coreq&ndash;&gt;-->

@@ -20,6 +20,7 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 import {DropdownModule} from "primeng/dropdown";
 import {InputNumberModule} from "primeng/inputnumber";
 import {MessagesModule} from "primeng/messages";
+import {ModuleNewComponent} from "./module-new/module-new.component";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {MessagesModule} from "primeng/messages";
         ModuleListComponent,
         ModuleDetailsComponent,
         ModuleFilterComponent,
+        ModuleNewComponent
     ],
     imports: [
         CommonModule,
