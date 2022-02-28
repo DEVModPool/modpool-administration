@@ -6,14 +6,15 @@
         </ng-template>
         <ng-template pTemplate="right">
             <div class="my-2">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"></button>
+                <button routerLink="new" pButton pRipple label="New" icon="pi pi-plus"
+                        class="p-button-success mr-2"></button>
             </div>
         </ng-template>
     </p-toolbar>
 
     <div *ngIf="!filtered">
         <p-messages severity="info">
-            <ng-template pTemplate>
+            <ng-template pTemplate="">
                 <div class="ml-2">Please use the filter above to fetch the data!</div>
             </ng-template>
         </p-messages>
