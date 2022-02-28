@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import {User} from "../user.model";
-import {UsersService} from "../users.service";
-import {Role} from "../role.model";
+import { User } from "../user.model";
+import { UsersService } from "../users.service";
+import { Role } from "../role.model";
 
 @Component({
     selector: 'app-user-list',
@@ -21,7 +21,8 @@ export class UserListComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private usersService: UsersService, private messageService: MessageService,
-                private confirmationService: ConfirmationService) {}
+                private confirmationService: ConfirmationService) {
+    }
 
     ngOnInit() {
         this.usersService.users.subscribe({
@@ -53,14 +54,14 @@ export class UserListComponent implements OnInit {
         this.user = {...user};
     }
 
-    confirmDeleteSelected(){
+    confirmDeleteSelected() {
         this.deleteUsersDialog = false;
         this.users = this.users.filter(val => !this.selectedUsers.includes(val));
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Users Deleted', life: 3000});
         this.selectedUsers = null;
     }
 
-    confirmDelete(){
+    confirmDelete() {
         this.deleteUserDialog = false;
         this.users = this.users.filter(val => val.id !== this.user.id);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
@@ -81,13 +82,22 @@ export class UserListComponent implements OnInit {
         ) {
             if (this.user.id) {
                 this.users[this.findIndexById(this.user.id)] = this.user;
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000});
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'User Updated',
+                    life: 3000
+                });
             } else {
                 this.user.id = this.createId();
                 this.users.push(this.user);
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000});
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'User Created',
+                    life: 3000
+                });
             }
-
             this.users = [...this.users];
             this.userDialog = false;
             this.user = {};

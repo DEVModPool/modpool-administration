@@ -1,16 +1,18 @@
 import { Injectable } from "@angular/core";
 import { Module } from "./module.model";
-import {ModulesListResponse} from "../interaction/modules/modules-list-response";
-import {Observable, of, Subject} from "rxjs";
-import {ModuleDetailResponse} from "../interaction/modules/module-detail-response";
-import {ModuleDetails} from "./module-detail/module-details.model";
-import {delay} from "rxjs/operators";
+import { ModulesListResponse } from "../interaction/modules/modules-list-response";
+import { Observable, of, Subject } from "rxjs";
+import { ModuleDetailResponse } from "../interaction/modules/module-detail-response";
+import { ModuleDetails } from "./module-detail/module-details.model";
+import { delay } from "rxjs/operators";
+import { ModuleNewViewmodelResponse } from "../interaction/modules/module-new-viewmodel-response";
 
 @Injectable()
 export class ModulesService {
     modules = new Subject<Module[]>();
 
-    constructor() {}
+    constructor() {
+    }
 
     // getModuleByCode(code: string) {
     //     for (let module of this.modules) {
@@ -39,6 +41,10 @@ export class ModulesService {
         return of(moduleResponse);
     }
 
+    getNewModuleViewmodel() {
+        const newModuleViewmodel = this.moduleNewViewmodelResponse;
+        return of(newModuleViewmodel);
+    }
 
     moduleDetailResponse: ModuleDetailResponse = {
         hasErrors: false,
@@ -60,7 +66,7 @@ export class ModulesService {
             [{id: "2", name: "Intro to AI", code: "COMP 111", nameAndCode: "COMP 111 Intro to Ai"}],
             "1. Math \n 2. Math \n 3. Math \n 4. Statistics",
             "Exams",
-            {lectures: 1, fieldwork:1, labPracticals:1, tutorials: 1, seminars:1, other:1 }
+            {lectures: 1, fieldwork: 1, labPracticals: 1, tutorials: 1, seminars: 1, other: 1}
         )
     }
 
@@ -91,6 +97,23 @@ export class ModulesService {
         ]
     }
 
+    moduleNewViewmodelResponse: ModuleNewViewmodelResponse = {
+        hasErrors: false,
+        errors: null,
+        result: {
+            departments: [
+                {id: '1', name: 'Computer Science'},
+                {id: '1', name: 'Electrical Engineering'}
+            ],
+            coordinators: [
+                {id: '1', name: 'Kristian Apostolov'},
+                {id: '2', name: 'Tin Dizdarevic'}
+            ]
+        }
+    };
+
 }
+
+
 
 

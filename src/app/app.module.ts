@@ -26,7 +26,7 @@ import { ReviewsService } from "./reviews/reviews.service";
 import { ModulesService } from "./modules/modules.service";
 
 import { DepartmentsComponent } from './departments/departments.component';
-import {ModulesModule} from "./modules/modules.module";
+import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
@@ -62,7 +62,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         MessageService,
         UsersService,
         ReviewsService,
-        ModulesService
+        ModulesService,
     ],
     bootstrap: [AppComponent]
 })

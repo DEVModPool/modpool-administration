@@ -1,6 +1,6 @@
-import {Module, ModuleCoordinator} from "../module.model";
+import { Module, ModuleCoordinator } from "../module.model";
 
-export class ModuleDetails extends Module{
+export class ModuleDetails extends Module {
     constructor(
         id: number,
         code: string,
@@ -28,12 +28,14 @@ interface Department {
     id: string,
     name: string
 }
+
 interface RequisiteModule {
     id: string;
     name: string;
     code: string;
     nameAndCode: string;
 }
+
 interface StudyHours {
     lectures: number;
     seminars: number;

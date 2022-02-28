@@ -1,6 +1,6 @@
-import {BaseResponse} from "../base-response";
-import {Module} from "../../modules/module.model";
+import { BaseResponse } from "../base-response";
+import { Module } from "../../modules/module.model";
 
-export class ModulesListResponse extends BaseResponse{
+export class ModulesListResponse extends BaseResponse {
     result: Module[];
 }

@@ -1,9 +1,10 @@
-import {RouterModule, Routes} from "@angular/router";
-import {ModulesComponent} from "./modules.component";
-import {ModuleDetailsComponent} from "./module-detail/module-details.component";
-import {NgModule} from "@angular/core";
-import {ModuleResolver} from "./module.resolver";
-import {ModuleNewComponent} from "./module-new/module-new.component";
+import { RouterModule, Routes } from "@angular/router";
+import { ModulesComponent } from "./modules.component";
+import { ModuleDetailsComponent } from "./module-detail/module-details.component";
+import { NgModule } from "@angular/core";
+import { ModuleResolver } from "./module.resolver";
+import { ModuleNewComponent } from "./module-new/module-new.component";
+import { ModuleNewResolver } from "./module-new/module-new.resolver";
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
         path: 'new',
         component: ModuleNewComponent,
         resolve: {
-            module: ModuleResolver
+            module: ModuleNewResolver
         }
     },
     {
@@ -34,4 +35,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ModulesRoutingModule {}
+export class ModulesRoutingModule {
+}

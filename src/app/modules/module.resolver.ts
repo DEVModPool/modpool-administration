@@ -14,12 +14,19 @@ export class ModuleResolver implements Resolve<ModuleDetails> {
     }
 
     resolve(route: ActivatedRouteSnapshot): Observable<ModuleDetails> {
-        return this.moduleService.getModule(route.params?.id).pipe(
-            map((data) => data?.result),
+        return this.moduleService.getModule(route.params.id).pipe(
+            map(data => data.result),
             catchError(() => {
-                this.router.navigate([""]);
+                this.router.navigate(['']);
                 return EMPTY;
             })
         );
+        // return this.moduleService.getModule(route.params?.id).pipe(
+        //     map((data) => data?.result),
+        //     catchError(() => {
+        //         this.router.navigate([""]);
+        //         return EMPTY;
+        //     })
+        // );
     }
 }

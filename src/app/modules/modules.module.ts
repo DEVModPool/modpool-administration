@@ -10,17 +10,17 @@ import { TagModule } from "primeng/tag";
 import { ModuleListComponent } from "./module-list/module-list.component";
 import { ModuleDetailsComponent } from "./module-detail/module-details.component";
 import { ModuleFilterComponent } from './module-filter/module-filter.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {InputTextModule} from "primeng/inputtext";
-import {MultiSelectModule} from "primeng/multiselect";
-import {ModulesComponent} from "./modules.component";
-import {ModulesRoutingModule} from "./modules-routing.module";
-import {ChipModule} from "primeng/chip";
-import {InputTextareaModule} from "primeng/inputtextarea";
-import {DropdownModule} from "primeng/dropdown";
-import {InputNumberModule} from "primeng/inputnumber";
-import {MessagesModule} from "primeng/messages";
-import {ModuleNewComponent} from "./module-new/module-new.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { InputTextModule } from "primeng/inputtext";
+import { MultiSelectModule } from "primeng/multiselect";
+import { ModulesComponent } from "./modules.component";
+import { ModulesRoutingModule } from "./modules-routing.module";
+import { ChipModule } from "primeng/chip";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { DropdownModule } from "primeng/dropdown";
+import { InputNumberModule } from "primeng/inputnumber";
+import { MessagesModule } from "primeng/messages";
+import { ModuleNewComponent } from "./module-new/module-new.component";
 
 @NgModule({
     declarations: [
