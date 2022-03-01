@@ -17,7 +17,7 @@ const routes: Routes = [
         path: 'new',
         component: ModuleNewComponent,
         resolve: {
-            module: ModuleNewResolver
+            viewmodel: ModuleNewResolver
         }
     },
     {

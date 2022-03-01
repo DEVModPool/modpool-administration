@@ -17,9 +17,8 @@ export class ModuleNewComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             data => {
-                // TODO: create fields data.departments and data.coordinators
-                this.departments = data.module.departments;
-                this.coordinators = data.module.coordinators;
+                this.departments = data.viewmodel.departments;
+                this.coordinators = data.viewmodel.coordinators;
             }
         );
     }
