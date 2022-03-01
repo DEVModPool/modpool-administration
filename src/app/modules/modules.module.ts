@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
