@@ -11,17 +11,23 @@ export class ModuleNewComponent implements OnInit {
 
     departments: { id: string, name: string }[];
     coordinators: { id: string, name: string }[];
+    modules: { id: string, code: string, name: string }[];
+    semesters: { id: string, semester: string }[];
 
     moduleForm: FormGroup;
 
     constructor(private modulesService: ModulesService, private activatedRoute: ActivatedRoute) {
     }
+    
+    // TODO: Either concatenate module code and module name or remove code from the viewmodel
 
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             data => {
                 this.departments = data.viewmodel.departments;
                 this.coordinators = data.viewmodel.coordinators;
+                this.modules = data.viewmodel.modules;
+                this.semesters = data.viewmodel.semesters;
                 this.moduleForm = this.formGroupInit();
             }
         );
@@ -32,7 +38,7 @@ export class ModuleNewComponent implements OnInit {
         return new FormGroup({
             'name': new FormControl(null),
             'code': new FormControl(null),
-            'semester': new FormControl(null),
+            'semester': new FormControl(this.semesters[0]),
             'department': new FormControl(this.departments[0]),
             'coordinator': new FormControl(this.coordinators[0]),
             'description': new FormControl(null),

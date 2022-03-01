@@ -24,8 +24,8 @@
                 <p-dropdown
                     formControlName="semester"
                     id=semester
-                    [options]=""
-                    optionLabel="name">
+                    [options]="semesters"
+                    optionLabel="semester">
                 </p-dropdown>
             </div>
             <div class="field col-12 md:col-6">
@@ -158,7 +158,7 @@
             <div class="col-12">
                 <p-multiSelect
                     formControlName="prerequisites"
-                    [options]=""
+                    [options]="modules"
                     defaultLabel="Select prerequisites..."
                     optionLabel="name"
                     display="chip">
@@ -168,7 +168,7 @@
             <div class="col-12">
                 <p-multiSelect
                     formControlName="corequisites"
-                    [options]=""
+                    [options]="modules"
                     defaultLabel="Select corequisites..."
                     optionLabel="name"
                     display="chip">

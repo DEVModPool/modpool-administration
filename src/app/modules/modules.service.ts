@@ -108,6 +108,17 @@ export class ModulesService {
             coordinators: [
                 {id: '1', name: 'Kristian Apostolov'},
                 {id: '2', name: 'Tin Dizdarevic'}
+            ],
+            modules: [
+                {id: '1', code: 'COMP226', name: 'Computer-based Trading and Financial Markets'},
+                {id: '2', code: 'COMP201', name: 'Software Development'},
+                {id: '3', code: 'COMP208', name: 'Database Development'},
+                {id: '4', code: 'COMP105', name: 'Programming Paradigms'},
+                {id: '5', code: 'COMP107', name: 'Digital Society or smth i dont remember'},
+            ],
+            semesters: [
+                {id: '1', semester: 'Semester 1'},
+                {id: '2', semester: 'Semester 2'},
             ]
         }
     };
