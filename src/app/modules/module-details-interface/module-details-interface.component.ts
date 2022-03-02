@@ -2,11 +2,11 @@ import { Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
-import { ModuleDetails } from "../module-detail/module-details.model";
+import { ModuleDetails } from "./module-details.model";
 
 
 @Injectable()
-export abstract class ModuleDetailInterfaceComponent implements OnInit {
+export abstract class ModuleDetailsInterfaceComponent implements OnInit {
 
     departments: { id: string, name: string }[];
     coordinators: { id: string, name: string }[];

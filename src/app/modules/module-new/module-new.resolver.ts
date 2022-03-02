@@ -3,7 +3,7 @@ import { EMPTY, map, Observable } from "rxjs";
 
 import { catchError } from "rxjs/operators";
 import { Injectable } from "@angular/core";
-import { ModuleData } from "../module-data";
+import { ModuleData } from "../../interaction/modules/module-data";
 import { ModulesService } from "../modules.service";
 
 @Injectable({

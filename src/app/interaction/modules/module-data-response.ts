@@ -1,8 +1,8 @@
 import { BaseResponse } from "../base-response";
-import { ModuleDetails } from "../../modules/module-detail/module-details.model";
+import { ModuleDetails } from "../../modules/module-details-interface/module-details.model";
 
 
-export class ModuleResponse extends BaseResponse {
+export class ModuleDataResponse extends BaseResponse {
     result: {
         viewmodel: {
             departments: { id: string, name: string }[],

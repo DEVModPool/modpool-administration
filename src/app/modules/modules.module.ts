@@ -7,7 +7,6 @@ import { RippleModule } from "primeng/ripple";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ModuleListComponent } from "./module-list/module-list.component";
-import { ModuleDetailsComponent } from "./module-detail/module-details.component";
 import { ModuleFilterComponent } from './module-filter/module-filter.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
@@ -20,18 +19,15 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputNumberModule } from "primeng/inputnumber";
 import { MessagesModule } from "primeng/messages";
 import { ModuleNewComponent } from "./module-new/module-new.component";
-import { ModuleDetailInterfaceComponent } from "./module-detail-interface/module-detail-interface.component";
-import { ModuleDetailComponent } from "./module-detail/module-detail.component";
+import { ModuleEditComponent } from "./module-detail/module-edit.component";
 
 @NgModule({
     declarations: [
         ModulesComponent,
         ModuleListComponent,
-        ModuleDetailsComponent,
         ModuleFilterComponent,
         ModuleNewComponent,
-        ModuleDetailComponent,
-        // ModuleDetailInterfaceComponent
+        ModuleEditComponent,
     ],
     imports: [
         CommonModule,

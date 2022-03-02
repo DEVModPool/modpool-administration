@@ -1,4 +1,4 @@
-import { ModuleDetails } from "./module-detail/module-details.model";
+import { ModuleDetails } from "../../modules/module-details-interface/module-details.model";
 
 export class ModuleData {
     viewmodel: {
