@@ -20,6 +20,8 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputNumberModule } from "primeng/inputnumber";
 import { MessagesModule } from "primeng/messages";
 import { ModuleNewComponent } from "./module-new/module-new.component";
+import { ModuleDetailInterfaceComponent } from "./module-detail-interface/module-detail-interface.component";
+import { ModuleDetailComponent } from "./module-detail/module-detail.component";
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { ModuleNewComponent } from "./module-new/module-new.component";
         ModuleListComponent,
         ModuleDetailsComponent,
         ModuleFilterComponent,
-        ModuleNewComponent
+        ModuleNewComponent,
+        ModuleDetailComponent,
+        ModuleDetailInterfaceComponent
     ],
     imports: [
         CommonModule,

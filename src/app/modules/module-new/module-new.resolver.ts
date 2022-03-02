@@ -1,23 +1,23 @@
-import { ActivatedRouteSnapshot, Resolve, Router } from "@angular/router";
-import { ModuleNewViewmodelResponse } from "../../interaction/modules/module-new-viewmodel-response";
+import { Resolve, Router } from "@angular/router";
 import { EMPTY, map, Observable } from "rxjs";
-import { ModuleNewViewmodel } from "./module-new-viewmodel";
-import { ModulesService } from "../modules.service";
+
 import { catchError } from "rxjs/operators";
 import { Injectable } from "@angular/core";
+import { ModuleData } from "../module-data";
+import { ModulesService } from "../modules.service";
 
 @Injectable({
     providedIn: "root",
 })
-export class ModuleNewResolver implements Resolve<ModuleNewViewmodel> {
+export class ModuleNewResolver implements Resolve<ModuleData> {
 
     constructor(private modulesService: ModulesService, private router: Router) {
     }
 
-    resolve(): Observable<ModuleNewViewmodel> {
-        return this.modulesService.getNewModuleViewmodel().pipe(
+    resolve(): Observable<ModuleData> {
+        return this.modulesService.getNewModuleTest().pipe(
             map(data => {
-                return data.result
+                return data.result;
             }),
             catchError(() => {
                 this.router.navigate(['']);

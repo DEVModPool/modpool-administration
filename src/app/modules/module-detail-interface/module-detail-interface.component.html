@@ -1,0 +1,188 @@
+<div class="card">
+    <h5>New Module</h5>
+    <br>
+    <form
+        [formGroup]="moduleForm"
+        (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="name">Name</label>
+                <input
+                    formControlName="name"
+                    pInputText id="name"
+                    type="text"/>
+            </div>
+            <div class="field col-12 md:col-4">
+                <label for="code">Code</label>
+                <input
+                    formControlName="code"
+                    pInputText id="code"
+                    type="text"/>
+            </div>
+            <div class="field col-12 md:col-2">
+                <label for="semester">Semester</label>
+                <p-dropdown
+                    formControlName="semester"
+                    id=semester
+                    [options]="semesters"
+                    optionLabel="semester">
+                </p-dropdown>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="department">Department</label>
+                <p-dropdown
+                    formControlName="department"
+                    id=department
+                    [options]="departments"
+                    optionLabel="name">
+                </p-dropdown>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="coordinator">Coordinator</label>
+                <p-dropdown
+                    formControlName="coordinator"
+                    id=coordinator
+                    [options]="coordinators"
+                    optionLabel="name">
+                </p-dropdown>
+            </div>
+            <div class="field col-12">
+                <label for="description">Description</label>
+                <textarea
+                    formControlName="description"
+                    id="description"
+                    rows="5"
+                    cols="30"
+                    pInputTextarea
+                    autoResize="autoResize">
+                </textarea>
+            </div>
+            <div class="field col-12">
+                <label for="syllabus">Syllabus</label>
+                <textarea
+                    formControlName="syllabus"
+                    id="syllabus"
+                    rows="5"
+                    cols="30"
+                    pInputTextarea
+                    autoResize="autoResize">
+            </textarea>
+            </div>
+            <div class="field col-12">
+                <label for="assessment">Assessment</label>
+                <textarea
+                    formControlName="assessment"
+                    id="assessment"
+                    rows="5"
+                    cols="30"
+                    pInputTextarea
+                    autoResize="autoResize">
+            </textarea>
+            </div>
+            <div formGroupName="studyHours">
+                <div class="col-12">
+                    <h6 style="padding-bottom: 0;margin-bottom: 0;">Study Hours</h6>
+                </div>
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="lectures"
+                        id="lectures"
+                        inputId="lectures">
+                    </p-inputNumber>
+                    <label for="lectures">Lectures</label>
+                </span>
+                </div>
+
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="seminars"
+                        id="seminars"
+                        inputId="seminars">
+                    </p-inputNumber>
+                    <label for="seminars">Seminars</label>
+                </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="tutorials"
+                        id="tutorials"
+                        inputId="tutorials"></p-inputNumber>
+                    <label for="tutorials">Tutorials</label>
+                </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="labPracticals"
+                        id="labPracticals"
+                        inputId="labPracticals">
+                    </p-inputNumber>
+                    <label for="labPracticals">Lab Practicals</label>
+                </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="fieldwork"
+                        id="fieldwork"
+                        inputId="fieldwork">
+                    </p-inputNumber>
+                    <label for="fieldwork">Fieldwork</label>
+                </span>
+                </div>
+
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                    <p-inputNumber
+                        formControlName="other"
+                        id="other"
+                        inputId="other">
+                    </p-inputNumber>
+                    <label for="other">Other</label>
+                </span>
+                </div>
+            </div>
+            <div class="col-12">
+                <br>
+                <h6 style="padding-bottom: 0;margin-bottom: 0;">Module requisites</h6>
+            </div>
+
+            <div class="col-12">
+                <p-multiSelect
+                    formControlName="prerequisites"
+                    [options]="modules"
+                    defaultLabel="Select prerequisites..."
+                    optionLabel="name"
+                    display="chip">
+                </p-multiSelect>
+            </div>
+
+            <div class="col-12">
+                <p-multiSelect
+                    formControlName="corequisites"
+                    [options]="modules"
+                    defaultLabel="Select corequisites..."
+                    optionLabel="name"
+                    display="chip">
+                </p-multiSelect>
+            </div>
+        </div>
+        <hr>
+        <button
+            pButton
+            pRipple
+            label="Add Module"
+            icon="pi pi-plus"
+            class="p-button-success mr-2">
+        </button>
+    </form>
+</div>

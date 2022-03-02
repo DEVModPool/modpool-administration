@@ -1,10 +1,12 @@
 import { RouterModule, Routes } from "@angular/router";
 import { ModulesComponent } from "./modules.component";
-import { ModuleDetailsComponent } from "./module-detail/module-details.component";
+// import { ModuleDetailsComponent } from "./module-detail/module-details.component";
 import { NgModule } from "@angular/core";
-import { ModuleResolver } from "./module.resolver";
+// import { ModuleEditResolver } from "./module-detail/module-edit.resolver";
 import { ModuleNewComponent } from "./module-new/module-new.component";
 import { ModuleNewResolver } from "./module-new/module-new.resolver";
+import { ModuleDetailComponent } from "./module-detail/module-detail.component";
+import { ModuleDetailResolver } from "./module-detail/module-detail.resolver";
 
 
 const routes: Routes = [
@@ -17,14 +19,14 @@ const routes: Routes = [
         path: 'new',
         component: ModuleNewComponent,
         resolve: {
-            viewmodel: ModuleNewResolver
+            moduleData: ModuleNewResolver
         }
     },
     {
         path: ':id',
-        component: ModuleDetailsComponent,
+        component: ModuleDetailComponent,
         resolve: {
-            module: ModuleResolver
+            moduleData: ModuleDetailResolver
         }
     }
 

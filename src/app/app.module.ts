@@ -28,6 +28,7 @@ import { ModulesService } from "./modules/modules.service";
 import { DepartmentsComponent } from './departments/departments.component';
 import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ModuleDetailInterfaceComponent } from './modules/module-detail-interface/module-detail-interface.component';
 
 @NgModule({
     imports: [
