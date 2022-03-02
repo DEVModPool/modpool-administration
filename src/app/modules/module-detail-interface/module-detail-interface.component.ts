@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
 import { ModuleDetails } from "../module-detail/module-details.model";
 
-@Component({
-    selector: 'app-module-detail-interface',
-    templateUrl: './module-detail-interface.component.html'
-})
-export class ModuleDetailInterfaceComponent implements OnInit {
+
+@Injectable()
+export abstract class ModuleDetailInterfaceComponent implements OnInit {
 
     departments: { id: string, name: string }[];
     coordinators: { id: string, name: string }[];
@@ -18,8 +16,7 @@ export class ModuleDetailInterfaceComponent implements OnInit {
     moduleDetails: ModuleDetails;
     moduleForm: FormGroup;
 
-    constructor(protected modulesService: ModulesService, protected activatedRoute: ActivatedRoute) {
-
+    protected constructor(protected modulesService: ModulesService, protected activatedRoute: ActivatedRoute) {
     }
 
     // TODO: Either concatenate module code and module name or remove code from the viewmodel
@@ -79,8 +76,7 @@ export class ModuleDetailInterfaceComponent implements OnInit {
         })
     }
 
-    onSubmit() {
-    }
+    abstract onSubmit();
 }
 
 

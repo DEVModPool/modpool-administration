@@ -31,7 +31,7 @@ import { ModuleDetailComponent } from "./module-detail/module-detail.component";
         ModuleFilterComponent,
         ModuleNewComponent,
         ModuleDetailComponent,
-        ModuleDetailInterfaceComponent
+        // ModuleDetailInterfaceComponent
     ],
     imports: [
         CommonModule,
