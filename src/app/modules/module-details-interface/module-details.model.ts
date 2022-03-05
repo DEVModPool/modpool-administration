@@ -1,4 +1,4 @@
-import { Module, ModuleCoordinator } from "../module.model";
+import { Module, ModuleCoordinator } from "../../interaction/modules/module.model";
 
 export class ModuleDetails extends Module {
     constructor(

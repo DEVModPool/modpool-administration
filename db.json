@@ -1,0 +1,126 @@
+{
+  "moduleList": {
+      "hasErrors": false,
+      "errors": null,
+      "result": [
+          {
+              "id" : 1,
+              "code": "COMP 202",
+              "name": "Complexity of Algorithms",
+              "coordinator" : {
+                  "name": "Piotr Krysta",
+                  "id": "12345"
+              },
+              "lastUpdated": "2020-08-08"
+          },
+          {
+              "id" : 2,
+              "code": "COMP 208",
+              "name": "Group Software Project",
+              "coordinator" : {
+                  "name": "Michele Zito",
+                  "id": "123456"
+              },
+              "lastUpdated": "2020-08-08"
+          },
+          {
+              "id" : 3,
+              "code": "COMP 226",
+              "name": "Computer-Based Trading in Financial Markets",
+              "coordinator" : {
+                  "name": "Rahul Savani",
+                  "id": "1234567"
+              },
+              "lastUpdated": "2020-08-08"
+          }
+      ]
+  },
+  "newModule" :  {
+      "hasErrors": false,
+      "errors": null,
+      "result": {
+          "viewmodel":{
+              "departments": [
+                  {"id": "1", "name": "Computer Science"},
+                  {"id": "2", "name": "Electrical Engineering"}
+              ],
+              "coordinators": [
+                  {"id": "1", "name": "Kristian Apostolov"},
+                  {"id": "2", "name": "Tin Dizdarevic"}
+              ],
+              "modules": [
+                  {"id": "1", "code": "COMP226", "name": "Computer-based Trading and Financial Markets"},
+                  {"id": "2", "code": "COMP201", "name": "Software Development"},
+                  {"id": "3", "code": "COMP208", "name": "Database Development"},
+                  {"id": "4", "code": "COMP105", "name": "Programming Paradigms"},
+                  {"id": "5", "code": "COMP107", "name": "Designing Systems for Digital Society"}
+              ],
+              "semesters": [
+                  {"id": "1", "semester": "Semester 1"},
+                  {"id": "2", "semester": "Semester 2"}
+              ]
+          }
+      }
+  },
+  "editModule" : {
+      "hasErrors": false,
+      "errors": null,
+      "result": {
+          "viewmodel":{
+              "departments": [
+                  {"id": "1", "name": "Computer Science"},
+                  {"id": "2", "name": "Electrical Engineering"}
+              ],
+              "coordinators": [
+                  {"id": "1", "name": "Kristian Apostolov"},
+                  {"id": "2", "name": "Tin Dizdarevic"}
+              ],
+              "modules": [
+                  {"id": "1", "code": "COMP226", "name": "Computer-based Trading and Financial Markets"},
+                  {"id": "2", "code": "COMP201", "name": "Software Development"},
+                  {"id": "3", "code": "COMP208", "name": "Database Development"},
+                  {"id": "4", "code": "COMP105", "name": "Programming Paradigms"},
+                  {"id": "5", "code": "COMP107", "name": "Digital Society"}
+              ],
+              "semesters": [
+                  {"id": "1", "semester": "Semester 1"},
+                  {"id": "2", "semester": "Semester 2"}
+              ]
+          },
+          "module" : {
+              "id" : 3,
+              "code": "COMP 226",
+              "name": "Computer-Based Trading in Financial Markets",
+              "coordinator" : {
+                  "name": "Rahul Savani",
+                  "id": "1234567"
+              },
+              "lastUpdated": "2020-08-08",
+              "selectedDepartment": {
+                  "id": "123",
+                  "name": "Computer Science"
+              },
+              "semester": 1,
+              "description": "Earning money fast.",
+              "selectedPrerequisites": [
+                  {"id": "1", "code": "COMP226", "name": "Computer-based Trading and Financial Markets"},
+                  {"id": "2", "code": "COMP201", "name": "Software Development"}
+              ],
+              "selectedCorequisites": [
+                  {"id": "4", "code": "COMP105", "name": "Programming Paradigms"},
+                  {"id": "5", "code": "COMP107", "name": "Digital Society"}
+              ],
+              "syllabus" : "1. Math\n2. Math \n3. Math \n4. Statistics",
+              "assessment":  "Exams, exams everywhere.",
+              "studyHours": {
+                  "lectures": 20,
+                  "fieldwork": 0,
+                  "labPracticals": 20,
+                  "tutorials": 20,
+                  "seminars": 20,
+                  "other": 20
+              }
+          }
+      }
+  }
+}

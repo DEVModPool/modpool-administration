@@ -13,6 +13,7 @@ export class ModuleNewComponent extends ModuleDetailsInterfaceComponent {
     }
 
     onSubmit(): void {
-        console.log("Im calling from new");
+        // Send a post request.
+        console.log("New module created.");
     }
 }

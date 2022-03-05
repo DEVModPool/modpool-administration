@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
 import { ModuleDetails } from "./module-details.model";
+import {Message} from "primeng/api";
 
 
 @Injectable()
@@ -16,12 +17,28 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
     moduleDetails: ModuleDetails;
     moduleForm: FormGroup;
 
+    get name() { return this.moduleForm.get('name'); }
+    get coordinator() { return this.moduleForm.get('coordinator'); }
+    get department() { return this.moduleForm.get('department'); }
+    get code() { return this.moduleForm.get('code'); }
+    get semester() { return this.moduleForm.get('semester'); }
+    get description() { return this.moduleForm.get('description'); }
+    get syllabus() { return this.moduleForm.get('syllabus'); }
+    get assessment() { return this.moduleForm.get('assessment'); }
+
+    msgs1: Message[];
+
+
+
     protected constructor(protected modulesService: ModulesService, protected activatedRoute: ActivatedRoute) {
     }
 
     // TODO: Either concatenate module code and module name or remove code from the viewmodel
 
     ngOnInit(): void {
+
+        this.msgs1 = [{severity:'success', summary:'Success', detail:'Message Content'}];
+
         this.activatedRoute.data.subscribe(
             response => {
                 let module = response.moduleData.module;

@@ -20,6 +20,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { MessagesModule } from "primeng/messages";
 import { ModuleNewComponent } from "./module-new/module-new.component";
 import { ModuleEditComponent } from "./module-detail/module-edit.component";
+import {MessageModule} from "primeng/message";
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { ModuleEditComponent } from "./module-detail/module-edit.component";
         FormsModule,
         DropdownModule,
         InputNumberModule,
-        MessagesModule
+        MessagesModule,
+        MessageModule
     ]
 })
 export class ModulesModule {

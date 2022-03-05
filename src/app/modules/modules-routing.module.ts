@@ -4,14 +4,12 @@ import { NgModule } from "@angular/core";
 import { ModuleNewComponent } from "./module-new/module-new.component";
 import { ModuleNewResolver } from "./module-new/module-new.resolver";
 import { ModuleEditComponent } from "./module-detail/module-edit.component";
-import { ModuleEditResolver } from "./module-detail/module-edit.resolver";
-
+import { ModuleEditResolver } from "./module-detail/module-edit.resolver";;
 
 const routes: Routes = [
     {
         path: '',
         component: ModulesComponent,
-        // canActivate: [AuthGuard],
     },
     {
         path: 'new',

@@ -13,6 +13,6 @@ export class ModuleEditComponent extends ModuleDetailsInterfaceComponent {
     }
 
     onSubmit() {
-        console.log('EDIT');
+        console.log('Module edited.');
     }
 }
