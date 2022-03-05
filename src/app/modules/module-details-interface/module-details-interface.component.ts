@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
 import { ModuleDetails } from "./module-details.model";
-import {Message} from "primeng/api";
+import { Location } from '@angular/common';
 
 
 @Injectable()
@@ -26,19 +26,18 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
     get syllabus() { return this.moduleForm.get('syllabus'); }
     get assessment() { return this.moduleForm.get('assessment'); }
 
-    msgs1: Message[];
 
 
 
-    protected constructor(protected modulesService: ModulesService, protected activatedRoute: ActivatedRoute) {
+    protected constructor(
+        protected modulesService: ModulesService,
+        protected activatedRoute: ActivatedRoute,
+        protected location: Location) {
     }
 
     // TODO: Either concatenate module code and module name or remove code from the viewmodel
 
     ngOnInit(): void {
-
-        this.msgs1 = [{severity:'success', summary:'Success', detail:'Message Content'}];
-
         this.activatedRoute.data.subscribe(
             response => {
                 let module = response.moduleData.module;
@@ -91,6 +90,10 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
             }),
             lastUpdated: new FormControl(null)
         })
+    }
+
+    onCancel() {
+        this.location.back();
     }
 
     abstract onSubmit();

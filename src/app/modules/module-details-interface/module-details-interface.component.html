@@ -198,6 +198,15 @@
             </ng-template>
         </p-messages>
         <button
+            pButton
+            pRipple
+            label="Cancel"
+            icon="pi pi-list"
+            class="p-button-secondary mr-2"
+            (click)="onCancel()"
+        >
+        </button>
+        <button
             [disabled]="moduleForm.invalid"
             pButton
             pRipple
@@ -205,6 +214,8 @@
             icon="pi pi-plus"
             class="p-button-success mr-2">
         </button>
+
+
 
 
     </form>

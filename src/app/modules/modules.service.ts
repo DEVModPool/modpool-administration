@@ -13,7 +13,6 @@ export class ModulesService {
     }
 
     getModules(moduleFilters: any) {
-        console.log("I am here 1.")
         return this.http
             .get<Response<Module[]>>('http://localhost:3000/moduleList')
             .subscribe(response => {
