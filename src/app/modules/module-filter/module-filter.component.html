@@ -1,23 +1,23 @@
 <div class="card">
     <h5 [ngStyle]="{color:'var(--primary-color)'}">Filter Modules</h5>
     <br>
-    <form [queryParamGroup]="paramGroup">
+    <form [formGroup]="moduleFilterForm" (ngSubmit)="onSearch()">
         <div class="p-fluid grid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="firstName" queryParamName="code">
+                    <input pInputText type="text" id="firstName" formControlName="code">
                     <label for="firstName">Code</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="lastName" queryParamName="name">
+                    <input pInputText type="text" id="lastName" formControlName="name">
                     <label for="lastName">Name</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="email" queryParamName="coordinator">
+                    <input pInputText type="text" id="email" formControlName="coordinator">
                     <label for="email">Coordinator</label>
                 </span>
             </div>

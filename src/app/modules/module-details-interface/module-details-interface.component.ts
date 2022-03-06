@@ -40,7 +40,7 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                let module = response.moduleData.module;
+                let module = response.moduleData.result.module;
                 if (module === undefined) {
                     module = {} as ModuleDetails;
                     module.selectedPrerequisites = [];
@@ -57,10 +57,10 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
 
                 this.moduleDetails = module;
 
-                this.departments = response.moduleData.viewmodel.departments;
-                this.coordinators = response.moduleData.viewmodel.coordinators;
-                this.modules = response.moduleData.viewmodel.modules;
-                this.semesters = response.moduleData.viewmodel.semesters;
+                this.departments = response.moduleData.result.viewmodel.departments;
+                this.coordinators = response.moduleData.result.viewmodel.coordinators;
+                this.modules = response.moduleData.result.viewmodel.modules;
+                this.semesters = response.moduleData.result.viewmodel.semesters;
                 this.moduleForm = this.formGroupInit();
             }
         );

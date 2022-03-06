@@ -2,9 +2,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { ModulesComponent } from "./modules.component";
 import { NgModule } from "@angular/core";
 import { ModuleNewComponent } from "./module-new/module-new.component";
-import { ModuleNewResolver } from "./module-new/module-new.resolver";
 import { ModuleEditComponent } from "./module-detail/module-edit.component";
-import { ModuleEditResolver } from "./module-detail/module-edit.resolver";;
+import { ModuleEditResolver } from "./module-detail/module-edit.resolver";
+import {BaseResolver} from "../interaction/base-resolver";
+import {ModuleData} from "../interaction/modules/module-data";
+
 
 const routes: Routes = [
     {
@@ -15,15 +17,17 @@ const routes: Routes = [
         path: 'new',
         component: ModuleNewComponent,
         resolve: {
-            moduleData: ModuleNewResolver
-        }
+            moduleData: BaseResolver,
+        },
+        data: { url: 'http://localhost:3000/newModule' }
     },
     {
         path: ':id',
         component: ModuleEditComponent,
         resolve: {
-            moduleData: ModuleEditResolver
-        }
+            moduleData: BaseResolver
+        },
+        data: { url: 'http://localhost:3000/editModule' }
     }
 
 

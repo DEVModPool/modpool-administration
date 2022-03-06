@@ -1,46 +1,70 @@
-import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {ModulesService} from "../modules.service";
-import {QueryParamBuilder, QueryParamGroup} from "@ngqp/core";
-import {Subject, switchMap, take, takeUntil} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
     selector: 'app-module-filter',
     templateUrl: './module-filter.component.html'
 })
-export class ModuleFilterComponent implements OnInit, OnDestroy {
+export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
     isLoading = false;
+    moduleFilters: {code: string, name: string, coordinator:string};
 
-
-    public paramGroup: QueryParamGroup;
-    private componentDestroyed$ = new Subject<void>();
+    moduleFilterForm = new FormGroup({
+        code: new FormControl(''),
+        name: new FormControl(''),
+        coordinator: new FormControl('')
+    })
 
     constructor(
         private moduleService: ModulesService,
-        private qpb: QueryParamBuilder
-    ) {
-        this.paramGroup = qpb.group({
-            code: qpb.stringParam('code'),
-            name: qpb.stringParam('name'),
-            coordinator: qpb.stringParam('coordinator')
-        })
-
-        this.paramGroup.valueChanges.pipe(
-            switchMap((params) => {
-                console.log(params)
-                return this.moduleService.getModules(params)
-            }),
-            takeUntil(this.componentDestroyed$)
-        ).subscribe(response => {
-            this.moduleService.modules.next(response.result);
-        });
-    }
+        private activatedRoute: ActivatedRoute,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
+        this.activatedRoute.queryParams.subscribe(
+            (params: {code: string, name: string, coordinator:string}) => {
+                this.moduleFilters = params;
+                this.moduleFilterForm.setValue(params);
+            }
+        );
+
+    }
+
+    ngAfterViewInit(): void{
+        console.log(this.moduleFilters);
+        if(true) {
+            this.getModules();
+        }
     }
 
     public ngOnDestroy(): void {
-        this.componentDestroyed$.next();
-        this.componentDestroyed$.complete();
+    }
+
+    onSearch() {
+        this.router.navigate(
+            ['./'],
+            {
+                relativeTo: this.activatedRoute,
+                queryParams: {
+                    code: this.moduleFilterForm.controls['code'].value,
+                    name: this.moduleFilterForm.controls['name'].value,
+                    coordinator: this.moduleFilterForm.controls['coordinator'].value
+                }
+            }
+        ).then(() => this.getModules());
+    }
+
+    getModules() {
+        this.moduleService.getModules(this.moduleFilters).subscribe(response => {
+                this.moduleService.modules.next(response.result);
+            }
+        );
+    }
+
+    getQueryParams() {
+        // TODO-TD: Return non empty query params based on the form.
     }
 }
