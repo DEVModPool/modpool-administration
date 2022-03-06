@@ -21,6 +21,7 @@ import { MessagesModule } from "primeng/messages";
 import { ModuleNewComponent } from "./module-new/module-new.component";
 import { ModuleEditComponent } from "./module-detail/module-edit.component";
 import {MessageModule} from "primeng/message";
+import {QueryParamModule} from "@ngqp/core";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {MessageModule} from "primeng/message";
         DropdownModule,
         InputNumberModule,
         MessagesModule,
-        MessageModule
+        MessageModule,
+        QueryParamModule
     ]
 })
 export class ModulesModule {
