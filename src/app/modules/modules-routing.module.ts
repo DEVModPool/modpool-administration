@@ -3,9 +3,7 @@ import { ModulesComponent } from "./modules.component";
 import { NgModule } from "@angular/core";
 import { ModuleNewComponent } from "./module-new/module-new.component";
 import { ModuleEditComponent } from "./module-detail/module-edit.component";
-import { ModuleEditResolver } from "./module-detail/module-edit.resolver";
 import {BaseResolver} from "../interaction/base-resolver";
-import {ModuleData} from "../interaction/modules/module-data";
 
 
 const routes: Routes = [
