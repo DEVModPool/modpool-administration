@@ -1,6 +1,6 @@
 import { Module, ModuleCoordinator } from "../../interaction/modules/module.model";
 
-export class ModuleDetails extends Module {
+export class ModuleEdit extends Module {
     constructor(
         id: number,
         code: string,

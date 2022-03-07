@@ -1,4 +1,5 @@
-import { ModuleDetails } from "../../modules/module-details-interface/module-details.model";
+import {ModuleEdit} from "./module-edit.model";
+
 
 export class ModuleData {
     viewmodel: {
@@ -7,5 +8,5 @@ export class ModuleData {
         modules: { id: string, code: string, name: string }[],
         semesters: { id: string, semester: string }[],
     }
-    module?: ModuleDetails
+    module?: ModuleEdit
 }

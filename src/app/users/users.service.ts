@@ -1,72 +1,19 @@
 import {Injectable} from "@angular/core";
-import {User} from "./user.model";
-import {UserListResponse} from "../interaction/users/users-list-response";
+import {User} from "../interaction/users/user.model";
+
 import {Subject} from "rxjs";
-import {RoleResponse} from "../interaction/users/role-response";
+import {Response} from "../interaction/response";
+import {HttpClient} from "@angular/common/http";
+
 
 @Injectable()
 export class UsersService {
-
+    constructor(private http: HttpClient) {
+    }
     users = new Subject<User[]>();
-
     getUsers(userFilters: any) {
-        const filteredUsers = this.userListResponse.result
-            .filter(user => {
-                return (
-                    user.firstName.includes(userFilters.firstName) &&
-                    user.lastName.includes(userFilters.lastName) &&
-                    user.email.includes(userFilters.email) &&
-                    userFilters.roles.every(role => user.roles.includes(role))
-                )
-            })
-        return this.users.next(filteredUsers);
+        return this.http.get<Response<User[]>>('http://localhost:3000/userList',{params: userFilters})
     }
-
-    getRoles() {
-        return this.roleResponse.result;
-    }
-
-
-    userListResponse: UserListResponse = {
-        hasErrors: false,
-        errors: null,
-        result: [
-            new User(
-                "1",
-                "Kristian",
-                "Apostolov",
-                "email@gmail.com",
-                [{id: '3', name:"Lecturer"}, {id: '4', name:"Moderator"}]
-            ),
-            new User(
-                "2",
-                "Tin",
-                "Dizdarevic",
-                "email@gmail.com",
-                [{id: '2', name:"Student"}]
-            ),
-            new User(
-                "3",
-                "Will",
-                "Dixon",
-                "email@gmail.com",
-                [{id: '1', name:"Admin"}]
-            )
-        ]
-    }
-
-    roleResponse: RoleResponse = {
-        hasErrors: false,
-        errors: null,
-        result: [
-            {id: '1', name:"Admin"},
-            {id: '2', name:"Student"},
-            {id: '3', name:"Lecturer"},
-            {id: '4', name:"Moderator"}
-        ]
-    }
-
-
 }
 
 

@@ -1,0 +1,73 @@
+<div class="card">
+    <h5>{{ userDetails.firstName ? userDetails.firstName : "New Module" }}</h5>
+    <br>
+    <form
+        [formGroup]="editUserForm"
+        (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12 md:col-4">
+                <label for="firstName">First Name</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <input
+                    formControlName="firstName"
+                    pInputText id="firstName"
+                    type="text"/>
+                <small *ngIf="firstName.dirty && firstName.errors?.['required']" class="p-error">First name is required.</small>
+            </div>
+            <div class="field col-12 md:col-4">
+                <label for="lastName">Last Name</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <input
+                    formControlName="lastName"
+                    pInputText id="lastName"
+                    type="text"/>
+                <small *ngIf="lastName.dirty && lastName.errors?.['required']" class="p-error">Last name is required.</small>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label for="email">Email</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <input
+                    formControlName="email"
+                    pInputText id="email"
+                    type="text"/>
+                <small *ngIf="email.dirty && email.errors?.['required']" class="p-error">Email is required.</small>
+            </div>
+            <div class="field col-12 md:col-1" style="text-align:center ">
+                <h5>Active</h5>
+                <p-inputSwitch ></p-inputSwitch>
+            </div>
+            <div class="field col-12 md:col-12">
+                <h5>Roles</h5>
+                <div class="formgrid grid">
+                    <div *ngFor="let availableRole of availableRoles" class="field-checkbox col-12">
+                        <p-checkbox name="roles" [value]="availableRole" formControlName="roles"
+                                    [inputId]="availableRole.id"></p-checkbox>
+                        <label [for]="availableRole.id">{{availableRole.name}}</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <p-messages severity="warn" *ngIf="editUserForm.invalid">
+            <ng-template pTemplate>
+                <i class="pi pi-exclamation-triangle"  style="font-size: 2rem"></i>
+                <div class="ml-2">Please fill in all the required fields.</div>
+            </ng-template>
+        </p-messages>
+        <button
+            pButton
+            pRipple
+            label="Cancel"
+            icon="pi pi-list"
+            class="p-button-secondary mr-2"
+            (click)="onCancel()"
+        >
+        </button>
+        <button
+            [disabled]="editUserForm.invalid"
+            pButton
+            pRipple
+            label="Save"
+            icon="pi pi-plus"
+            class="p-button-success mr-2">
+        </button>
+    </form>
+</div>

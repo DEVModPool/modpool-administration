@@ -27,15 +27,19 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
         this.activatedRoute.queryParams.subscribe(
             (params: {code: string, name: string, coordinator:string}) => {
                 this.moduleFilters = params;
-                this.moduleFilterForm.setValue(params);
+                this.moduleFilterForm.patchValue(params);
             }
         );
 
     }
 
     ngAfterViewInit(): void{
-        console.log(this.moduleFilters);
-        if(true) {
+        let qp = this.getQueryParams();
+        if(
+            qp.code != undefined ||
+            qp.name != undefined ||
+            qp.coordinator != undefined
+        ) {
             this.getModules();
         }
     }
@@ -48,23 +52,35 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
             ['./'],
             {
                 relativeTo: this.activatedRoute,
-                queryParams: {
-                    code: this.moduleFilterForm.controls['code'].value,
-                    name: this.moduleFilterForm.controls['name'].value,
-                    coordinator: this.moduleFilterForm.controls['coordinator'].value
-                }
+                queryParams: this.getQueryParams()
             }
         ).then(() => this.getModules());
     }
 
     getModules() {
+        console.log(this.moduleFilterForm.controls['code'].value)
         this.moduleService.getModules(this.moduleFilters).subscribe(response => {
                 this.moduleService.modules.next(response.result);
             }
         );
     }
 
-    getQueryParams() {
-        // TODO-TD: Return non empty query params based on the form.
+    getQueryParams(): any {
+        let qp: qp = {};
+        if(this.moduleFilterForm.controls['code'].value) {
+            qp.code = this.moduleFilterForm.controls['code'].value;
+        }
+        if(this.moduleFilterForm.controls['name'].value) {
+            qp.name = this.moduleFilterForm.controls['name'].value;
+        }
+        if(this.moduleFilterForm.controls['coordinator'].value) {
+            qp.coordinator = this.moduleFilterForm.controls['coordinator'].value;
+        }
+        return qp;
     }
+}
+interface qp {
+    code?: string,
+    name?: string,
+    coordinator?: string
 }

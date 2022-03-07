@@ -1,20 +1,23 @@
-import { Injectable, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
-import { ModuleDetails } from "./module-details.model";
 import { Location } from '@angular/common';
+import {ModuleEdit} from "../../interaction/modules/module-edit.model";
 
 
-@Injectable()
-export abstract class ModuleDetailsInterfaceComponent implements OnInit {
+@Component({
+    selector: 'app-module-edit',
+    templateUrl: './module-edit.component.html'
+})
+export class ModuleEditComponent implements OnInit {
 
     departments: { id: string, name: string }[];
     coordinators: { id: string, name: string }[];
     modules: { id: string, code: string, name: string }[];
     semesters: { id: string, semester: string }[];
 
-    moduleDetails: ModuleDetails;
+    moduleDetails: ModuleEdit;
     moduleForm: FormGroup;
 
     get name() { return this.moduleForm.get('name'); }
@@ -26,23 +29,18 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
     get syllabus() { return this.moduleForm.get('syllabus'); }
     get assessment() { return this.moduleForm.get('assessment'); }
 
-
-
-
-    protected constructor(
+    constructor(
         protected modulesService: ModulesService,
         protected activatedRoute: ActivatedRoute,
         protected location: Location) {
     }
 
-    // TODO: Either concatenate module code and module name or remove code from the viewmodel
-
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                let module = response.moduleData.result.module;
+                let module = response.moduleData.module;
                 if (module === undefined) {
-                    module = {} as ModuleDetails;
+                    module = {} as ModuleEdit;
                     module.selectedPrerequisites = [];
                     module.selectedCorequisites = [];
                     module.studyHours = {
@@ -54,13 +52,11 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
                         other: undefined,
                     }
                 }
-
                 this.moduleDetails = module;
-
-                this.departments = response.moduleData.result.viewmodel.departments;
-                this.coordinators = response.moduleData.result.viewmodel.coordinators;
-                this.modules = response.moduleData.result.viewmodel.modules;
-                this.semesters = response.moduleData.result.viewmodel.semesters;
+                this.departments = response.moduleData.viewmodel.departments;
+                this.coordinators = response.moduleData.viewmodel.coordinators;
+                this.modules = response.moduleData.viewmodel.modules;
+                this.semesters = response.moduleData.viewmodel.semesters;
                 this.moduleForm = this.formGroupInit();
             }
         );
@@ -96,7 +92,9 @@ export abstract class ModuleDetailsInterfaceComponent implements OnInit {
         this.location.back();
     }
 
-    abstract onSubmit();
+    onSubmit() {
+        return;
+    };
 }
 
 

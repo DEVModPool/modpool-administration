@@ -1,9 +1,8 @@
 import { RouterModule, Routes } from "@angular/router";
 import { ModulesComponent } from "./modules.component";
 import { NgModule } from "@angular/core";
-import { ModuleNewComponent } from "./module-new/module-new.component";
-import { ModuleEditComponent } from "./module-detail/module-edit.component";
 import {BaseResolver} from "../interaction/base-resolver";
+import {ModuleEditComponent} from "./module-edit/module-edit.component";
 
 
 const routes: Routes = [
@@ -13,7 +12,7 @@ const routes: Routes = [
     },
     {
         path: 'new',
-        component: ModuleNewComponent,
+        component: ModuleEditComponent,
         resolve: {
             moduleData: BaseResolver,
         },
