@@ -1,10 +1,10 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
-import {UserEdit} from "../../interaction/users/user-edit.model";
-import {Role} from "../../interaction/users/user.model";
+import { UserEdit } from "../../interaction/users/user-edit.model";
+import { Role } from "../../interaction/users/user.model";
 
 
 @Component({
@@ -16,10 +16,21 @@ export class UserEditComponent implements OnInit {
     editUserForm: FormGroup;
     availableRoles: Role[];
 
-    get firstName() { return this.editUserForm.get('firstName'); }
-    get lastName() { return this.editUserForm.get('lastName'); }
-    get email() { return this.editUserForm.get('email'); }
-    get isActive() { return this.editUserForm.get('isActive'); }
+    get firstName() {
+        return this.editUserForm.get('firstName');
+    }
+
+    get lastName() {
+        return this.editUserForm.get('lastName');
+    }
+
+    get email() {
+        return this.editUserForm.get('email');
+    }
+
+    get isActive() {
+        return this.editUserForm.get('isActive');
+    }
 
     constructor(
         protected activatedRoute: ActivatedRoute,
@@ -32,7 +43,7 @@ export class UserEditComponent implements OnInit {
             response => {
                 console.log(response)
                 let user = response.userData.user;
-                if (user === undefined) {
+                if (user === undefined || user === null) {
                     user = {} as UserEdit;
                 }
                 this.userDetails = user;

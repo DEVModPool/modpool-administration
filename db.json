@@ -270,5 +270,27 @@
                 ]
             }
         }
+    },
+    "editUser": {
+        "hasErrors": false,
+        "errors": null,
+        "result": {
+            "viewmodel": {
+                "roles": [
+                    {
+                        "id": "1",
+                        "name": "Student"
+                    },
+                    {
+                        "id": "2",
+                        "name": "Admin"
+                    },
+                    {
+                        "id": "3",
+                        "name": "Moderator"
+                    }
+                ]
+            }
+        }
     }
 }

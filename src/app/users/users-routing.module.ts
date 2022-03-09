@@ -1,9 +1,9 @@
 import { RouterModule, Routes } from "@angular/router";
 
 import { NgModule } from "@angular/core";
-import {BaseResolver} from "../interaction/base-resolver";
-import {UsersComponent} from "./users.component";
-import {UserEditComponent} from "./user-edit/user-edit.component";
+import { BaseResolver } from "../interaction/base-resolver";
+import { UsersComponent } from "./users.component";
+import { UserEditComponent } from "./user-edit/user-edit.component";
 
 const routes: Routes = [
     {
@@ -16,15 +16,15 @@ const routes: Routes = [
         resolve: {
             userData: BaseResolver,
         },
-        data: { url: 'http://localhost:3000/newUser' }
+        data: {url: 'http://localhost:3000/newUser'}
     },
     {
         path: ':id',
         component: UserEditComponent,
-        // resolve: {
-        //     moduleData: BaseResolver
-        // },
-        // data: { url: 'http://localhost:3000/editUser' }
+        resolve: {
+            userData: BaseResolver
+        },
+        data: {url: 'http://localhost:3000/editUser'}
     }
 
 
