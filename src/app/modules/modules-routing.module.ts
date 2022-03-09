@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from "@angular/router";
 import { ModulesComponent } from "./modules.component";
 import { NgModule } from "@angular/core";
-import {BaseResolver} from "../interaction/base-resolver";
-import {ModuleEditComponent} from "./module-edit/module-edit.component";
+import { BaseResolver } from "../interaction/base-resolver";
+import { ModuleEditComponent } from "./module-edit/module-edit.component";
 
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
         resolve: {
             moduleData: BaseResolver,
         },
-        data: { url: 'http://localhost:3000/newModule' }
+        data: {url: 'http://localhost:3000/newModule'}
     },
     {
         path: ':id',
@@ -24,7 +24,7 @@ const routes: Routes = [
         resolve: {
             moduleData: BaseResolver
         },
-        data: { url: 'http://localhost:3000/editModule' }
+        data: {url: 'http://localhost:3000/editModule'}
     }
 
 

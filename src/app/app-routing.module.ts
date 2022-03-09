@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppMainComponent } from "./app.main.component";
 import { HomeComponent } from "./home/home.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
     {
@@ -24,14 +24,18 @@ const routes: Routes = [
             {
                 path: 'modules',
                 loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule)
-            }
+            },
+            {
+                path: 'departments',
+                loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule)
+            },
         ]
     },
     {
         path: 'login',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     },
-    { path: '**', component: PageNotFoundComponent },
+    {path: '**', component: PageNotFoundComponent},
 
 ];
 

@@ -32,7 +32,13 @@ export class MenuComponent implements OnInit {
                     {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/']},
                     {label: 'Users', icon: 'pi pi-fw pi-users', routerLink: ['/users'], preventExact: true},
                     {label: 'Modules', icon: 'pi pi-fw pi-book', routerLink: ['/modules'], preventExact: true},
-                    {label: 'Reviews', icon: 'pi pi-fw pi-thumbs-up', routerLink: ['/reviews'], preventExact: true}
+                    {label: 'Reviews', icon: 'pi pi-fw pi-thumbs-up', routerLink: ['/reviews'], preventExact: true},
+                    {
+                        label: 'Departments',
+                        icon: 'pi pi-fw pi-sitemap',
+                        routerLink: ['/departments'],
+                        preventExact: true
+                    }
                 ]
             }
         ];

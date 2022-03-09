@@ -305,5 +305,23 @@
                 ]
             }
         }
+    },
+    "departmentList": {
+        "hasErrors": false,
+        "errors": null,
+        "result": [
+            {
+                "id": "1",
+                "name": "Engineering"
+            },
+            {
+                "id": "2",
+                "name": "Chemistry"
+            },
+            {
+                "id": "3",
+                "name": "Philosophy"
+            }
+        ]
     }
 }

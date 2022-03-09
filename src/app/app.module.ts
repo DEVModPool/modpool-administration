@@ -25,9 +25,11 @@ import { ReviewsModule } from "./reviews/reviews.module";
 import { ReviewsService } from "./reviews/reviews.service";
 import { ModulesService } from "./modules/modules.service";
 
-import { DepartmentsComponent } from './departments/departments.component';
 import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DepartmentFilterComponent } from './departments/department-filter/department-filter.component';
+import { DepartmentsModule } from "./departments/departments.module";
+import { DepartmentListComponent } from './departments/department-list/department-list.component';
 
 @NgModule({
     imports: [
@@ -40,7 +42,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         BrowserAnimationsModule,
         UsersModule,
         ReviewsModule,
-        ModulesModule
+        ModulesModule,
+        DepartmentsModule
     ],
     declarations: [
         AppComponent,
@@ -51,7 +54,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         MenuComponent,
         MenuItemComponent,
         HomeComponent,
-        DepartmentsComponent,
         PageNotFoundComponent
     ],
     providers: [
