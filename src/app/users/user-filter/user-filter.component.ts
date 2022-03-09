@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
-import {UsersService} from "../users.service";
-import {Role} from "../../interaction/users/user.model";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormControl, FormGroup } from "@angular/forms";
+import { UsersService } from "../users.service";
+import { Role } from "../../interaction/users/user.model";
 
 @Component({
     selector: 'app-user-filter',
@@ -12,14 +12,15 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     isLoading = false;
     roles: Role[];
     userFilters: {
-        firstName: string, lastName: string, email: string, roles: string[]
+        firstName: string, lastName: string, email: string, roles: string[], isActive: boolean
     };
 
     userFilterForm = new FormGroup({
         firstName: new FormControl(''),
         lastName: new FormControl(''),
         email: new FormControl(''),
-        roles: new FormControl(null)
+        roles: new FormControl(null),
+        isActive: new FormControl(null),
     })
 
     constructor(
@@ -31,8 +32,9 @@ export class UserFilterComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(
-            (params: { firstName: string, lastName: string, email: string, roles: string[] }) => {
+            (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: boolean }) => {
                 this.userFilters = params;
+                // TODO: Fix inputSwitch not being set to default value in the html
                 this.userFilterForm.patchValue(params);
             }
         );
@@ -40,8 +42,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
 
     ngAfterViewInit(): void {
         let qp = this.getQueryParams();
-        console.log(qp);
-        if(
+        if (
             qp.firstName != undefined ||
             qp.lastName != undefined ||
             qp.email != undefined ||
@@ -71,25 +72,30 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     }
 
     getQueryParams(): any {
-        let qp: qp = {};
-        if(this.userFilterForm.controls['firstName'].value) {
+        let qp: qp = {} as qp;
+        if (this.userFilterForm.controls['firstName'].value) {
             qp.firstName = this.userFilterForm.controls['firstName'].value;
         }
-        if(this.userFilterForm.controls['lastName'].value) {
+        if (this.userFilterForm.controls['lastName'].value) {
             qp.lastName = this.userFilterForm.controls['lastName'].value;
         }
-        if(this.userFilterForm.controls['email'].value) {
+        if (this.userFilterForm.controls['email'].value) {
             qp.email = this.userFilterForm.controls['email'].value;
         }
-        if(this.userFilterForm.controls['roles'].value) {
+        if (this.userFilterForm.controls['roles'].value) {
             qp.roles = this.userFilterForm.controls['roles'].value;
+        }
+        if (this.userFilterForm.controls['isActive'].value) {
+            qp.isActive = this.userFilterForm.controls['isActive'].value;
         }
         return qp;
     }
 }
+
 interface qp {
-    firstName?: string,
-    lastName?: string,
-    email?: string
-    roles?: string[]
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    roles?: string[];
+    isActive?: boolean
 }

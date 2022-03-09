@@ -3,25 +3,25 @@
     <br>
     <form [formGroup]="userFilterForm" (ngSubmit)="onSearch()">
         <div class="p-fluid grid">
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 md:col-6">
                 <span class="p-float-label">
                     <input pInputText type="text" id="firstName" formControlName="firstName">
                     <label for="firstName">First Name</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 md:col-6">
                 <span class="p-float-label">
                     <input pInputText type="text" id="lastName" formControlName="lastName">
                     <label for="lastName">Last Name</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 md:col-6">
                 <span class="p-float-label">
                     <input pInputText type="text" id="email" formControlName="email">
                     <label for="email">Email</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <p-multiSelect
                         id="roles"
@@ -35,9 +35,22 @@
                     <label for="roles">Roles</label>
                 </span>
             </div>
+            <div class="field col-12 md:col-2" style="text-align:center">
+
+                <span class="p-float-label">
+                    <p>Active</p>
+                    <p-inputSwitch
+                        id="isActive"
+                        formControlName="isActive"
+                    ></p-inputSwitch>
+                </span>
+            </div>
+            <br>
+
             <div class="field col-2">
                 <p-button label="Search" type="submit" icon="pi pi-search" [loading]="isLoading"></p-button>
             </div>
+
         </div>
     </form>
 </div>

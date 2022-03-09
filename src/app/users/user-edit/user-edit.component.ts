@@ -42,7 +42,7 @@ export class UserEditComponent implements OnInit {
         this.activatedRoute.data.subscribe(
             response => {
                 console.log(response)
-                let user = response.userData.user;
+                let user = response.userData.userDetails;
                 if (user === undefined || user === null) {
                     user = {} as UserEdit;
                 }
@@ -60,8 +60,9 @@ export class UserEditComponent implements OnInit {
             firstName: new FormControl(this.userDetails.firstName, Validators.required),
             lastName: new FormControl(this.userDetails.lastName, Validators.required),
             email: new FormControl(this.userDetails.email, Validators.required),
+            // TODO: Fix active inputSwitch not turning on
             isActive: new FormControl(this.userDetails.isActive),
-            roles: new FormControl(null)
+            roles: new FormControl(this.userDetails.roles)
         })
     }
 

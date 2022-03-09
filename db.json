@@ -275,6 +275,19 @@
         "hasErrors": false,
         "errors": null,
         "result": {
+            "userDetails": {
+                "id": "123",
+                "firstName": "Tin",
+                "lastName": "Dizdarevic",
+                "email": "student1@uol.com",
+                "roles": [
+                    {
+                        "id": "1",
+                        "name": "Student"
+                    }
+                ],
+                "isActive": true
+            },
             "viewmodel": {
                 "roles": [
                     {
