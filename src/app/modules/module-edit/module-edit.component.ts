@@ -81,6 +81,7 @@ export class ModuleEditComponent implements OnInit {
                 this.modules = response.moduleData.viewmodel.modules;
                 this.semesters = response.moduleData.viewmodel.semesters;
                 this.moduleForm = this.formGroupInit();
+                console.log(this.moduleForm);
             }
         );
 
@@ -91,9 +92,9 @@ export class ModuleEditComponent implements OnInit {
             id: new FormControl(this.moduleDetails.id),
             code: new FormControl(this.moduleDetails.code, Validators.required),
             name: new FormControl(this.moduleDetails.name, Validators.required),
-            coordinator: new FormControl(this.moduleDetails.coordinator, Validators.required),
-            department: new FormControl(this.moduleDetails.selectedDepartment, Validators.required),
-            semester: new FormControl(this.moduleDetails.semester, Validators.required),
+            coordinator: new FormControl(this.moduleDetails.coordinator),
+            department: new FormControl(this.moduleDetails.selectedDepartment),
+            semester: new FormControl(this.moduleDetails.semester),
             description: new FormControl(this.moduleDetails.description, Validators.required),
             prerequisites: new FormControl(this.moduleDetails.selectedPrerequisites),
             corequisites: new FormControl(this.moduleDetails.selectedCorequisites),
