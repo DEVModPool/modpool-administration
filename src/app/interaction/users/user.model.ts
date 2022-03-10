@@ -1,5 +1,3 @@
-import {Role} from "./role.model";
-
 export class User {
     constructor(
         public id?: string,
@@ -10,4 +8,10 @@ export class User {
     ) {
     }
 }
-
+export class Role {
+    constructor(
+        public id?: string,
+        public name?: string
+    ) {
+    }
+}

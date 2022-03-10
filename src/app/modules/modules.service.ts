@@ -1,52 +1,31 @@
 import { Injectable } from "@angular/core";
-import { Module } from "./module.model";
-import { DepartmentService } from "./department/department.service";
+import { Module } from "../interaction/modules/module.model";
+import {Subject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Response} from "../interaction/response";
+import {ModuleData} from "../interaction/modules/module-data";
 
 @Injectable()
 export class ModulesService {
+    modules = new Subject<Module[]>();
 
-
-    modules: Module[] = [
-        new Module(
-            1,
-            'COMP 202',
-            'Complexity of Algorithms',
-            'Piotr Krysta',
-            this.departmentService.getDepartmentByName('Computer Science'),
-            '2020-08-08'),
-
-        new Module(
-            2,
-            'COMP 208',
-            'Group Software Project',
-            'Michele Zito',
-            this.departmentService.getDepartmentByName('Computer Science'),
-            '2020-08-08'),
-
-        new Module(
-            3,
-            'COMP 226',
-            'Computer-Based Trading in Financial Markets',
-            'Rahul Savani',
-            this.departmentService.getDepartmentByName('Computer Science'),
-            '2020-08-08'),
-    ];
-
-    constructor(private departmentService: DepartmentService) {
+    constructor(private http: HttpClient) {
     }
 
-    getModuleByCode(code: string) {
-        for (let module of this.modules) {
-            if (module.code === code) {
-                console.log(`Found ${module.code}`);
-                return module;
-            }
-        }
-
-        return undefined;
+    getModules(moduleFilters: any) {
+        console.log(moduleFilters);
+        return this.http.get<Response<Module[]>>('http://localhost:3000/moduleList',{params: moduleFilters})
     }
 
-    getAll() {
-        return this.modules.slice();
+    getNewModuleTest() {
+        return this.http.get<Response<ModuleData>>('http://localhost:3000/newModule')
+    }
+
+    getEditModuleTest() {
+        return this.http.get<Response<ModuleData>>('http://localhost:3000/editModule')
     }
 }
+
+
+
+

@@ -12,28 +12,31 @@ import { InputTextModule } from "primeng/inputtext";
 import { RatingModule } from "primeng/rating";
 import { DialogModule } from "primeng/dialog";
 import { RadioButtonModule } from "primeng/radiobutton";
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { TagModule } from "primeng/tag";
 import { CheckboxModule } from "primeng/checkbox";
 import { UserListComponent } from './user-list/user-list.component';
-import { UserFilterComponent } from './user-filter/user-filter.component';
+
 import { MultiSelectModule } from "primeng/multiselect";
+import {UserFilterComponent} from "./user-filter/user-filter.component";
+import {UsersRoutingModule} from "./users-routing.module";
+import {UserEditComponent} from "./user-edit/user-edit.component";
+import {DropdownModule} from "primeng/dropdown";
+import {InputNumberModule} from "primeng/inputnumber";
+import {InputSwitchModule} from "primeng/inputswitch";
 
 
 @NgModule({
     declarations: [
         UsersComponent,
         UserListComponent,
-        UserFilterComponent
+        UserFilterComponent,
+        UserEditComponent
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(
-            [
-                {path: '', component: UsersComponent}
-            ]
-        ),
+        UsersRoutingModule,
         ToolbarModule,
         ToastModule,
         ButtonModule,
@@ -48,7 +51,11 @@ import { MultiSelectModule } from "primeng/multiselect";
         InputTextareaModule,
         TagModule,
         CheckboxModule,
-        MultiSelectModule
+        MultiSelectModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        InputNumberModule,
+        InputSwitchModule
     ]
 })
 export class UsersModule {

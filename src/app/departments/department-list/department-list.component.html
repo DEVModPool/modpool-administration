@@ -1,0 +1,72 @@
+<div class="card">
+    <p-toast></p-toast>
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <h4 style="margin-bottom: 0; font-weight: bold;">Departments</h4>
+        </ng-template>
+        <ng-template pTemplate="right">
+            <div class="my-2">
+                <button routerLink="new" pButton pRipple label="New" icon="pi pi-plus"
+                        class="p-button-success mr-2"></button>
+            </div>
+        </ng-template>
+    </p-toolbar>
+
+    <div *ngIf="!filtered">
+        <p-messages severity="info">
+            <ng-template pTemplate="">
+                <div class="ml-2">Please use the filter above to fetch the data!</div>
+            </ng-template>
+        </p-messages>
+    </div>
+
+    <div *ngIf="filtered">
+        <p-messages severity="info">
+            <ng-template pTemplate="">
+                <div class="ml-2">Click on a department to edit its name!</div>
+            </ng-template>
+        </p-messages>
+    </div>
+
+    <p-table #dt [value]="departments" responsiveLayout="scroll" [rows]="10"
+             [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             selectionMode="multiple" [rowHover]="true" dataKey="id" *ngIf="filtered">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-department>
+            <tr [pEditableRow]="department">
+
+                <td style="width: 90%; min-width: 10rem;" [pEditableColumn]="department.name"><span
+                    class="p-column-title">Name</span>
+                    Department of
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="department.name" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ department.name }}
+                        </ng-template>
+                    </p-cellEditor>
+
+                </td>
+
+                <td>
+                    <button [routerLink]="[department.id]" pButton pRipple type="button"
+                            class="p-button-raised p-button-rounded p-button-help">
+                        Details
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+
