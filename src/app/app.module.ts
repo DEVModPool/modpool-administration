@@ -30,6 +30,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DepartmentFilterComponent } from './departments/department-filter/department-filter.component';
 import { DepartmentsModule } from "./departments/departments.module";
 import { DepartmentListComponent } from './departments/department-list/department-list.component';
+import { DepartmentEditComponent } from './departments/department-edit/department-edit.component';
 
 @NgModule({
     imports: [

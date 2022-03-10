@@ -323,5 +323,24 @@
                 "name": "Philosophy"
             }
         ]
+    },
+    "editDepartment": {
+        "hasErrors": false,
+        "errors": null,
+        "result": {
+            "departmentDetails": {
+                "id": "1",
+                "name": "Engineering"
+            },
+            "viewmodel": {}
+        }
+    },
+    "newDepartment": {
+        "hasErrors": false,
+        "errors": null,
+        "result": {
+            "departmentDetails": {},
+            "viewmodel": {}
+        }
     }
 }

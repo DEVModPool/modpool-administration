@@ -67,7 +67,12 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     getQueryParams(): any {
-        let qp: qp = {};
+        let qp: qp = {
+            code: null,
+            name: null,
+            coordinator: null
+        } as qp;
+        console.log(Object.keys(qp));
         if (this.moduleFilterForm.controls['code'].value) {
             qp.code = this.moduleFilterForm.controls['code'].value;
         }

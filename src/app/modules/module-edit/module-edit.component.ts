@@ -1,9 +1,9 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
-import {ModuleEdit} from "../../interaction/modules/module-edit.model";
+import { ModuleEdit } from "../../interaction/modules/module-edit.model";
 
 
 @Component({
@@ -20,14 +20,37 @@ export class ModuleEditComponent implements OnInit {
     moduleDetails: ModuleEdit;
     moduleForm: FormGroup;
 
-    get name() { return this.moduleForm.get('name'); }
-    get coordinator() { return this.moduleForm.get('coordinator'); }
-    get department() { return this.moduleForm.get('department'); }
-    get code() { return this.moduleForm.get('code'); }
-    get semester() { return this.moduleForm.get('semester'); }
-    get description() { return this.moduleForm.get('description'); }
-    get syllabus() { return this.moduleForm.get('syllabus'); }
-    get assessment() { return this.moduleForm.get('assessment'); }
+    get name() {
+        return this.moduleForm.get('name');
+    }
+
+    get coordinator() {
+        return this.moduleForm.get('coordinator');
+    }
+
+    get department() {
+        return this.moduleForm.get('department');
+    }
+
+    get code() {
+        return this.moduleForm.get('code');
+    }
+
+    get semester() {
+        return this.moduleForm.get('semester');
+    }
+
+    get description() {
+        return this.moduleForm.get('description');
+    }
+
+    get syllabus() {
+        return this.moduleForm.get('syllabus');
+    }
+
+    get assessment() {
+        return this.moduleForm.get('assessment');
+    }
 
     constructor(
         protected modulesService: ModulesService,
@@ -65,7 +88,7 @@ export class ModuleEditComponent implements OnInit {
 
     formGroupInit() {
         return new FormGroup({
-            id: new FormControl(this.moduleDetails.id, Validators.required),
+            id: new FormControl(this.moduleDetails.id),
             code: new FormControl(this.moduleDetails.code, Validators.required),
             name: new FormControl(this.moduleDetails.name, Validators.required),
             coordinator: new FormControl(this.moduleDetails.coordinator, Validators.required),

@@ -1,28 +1,33 @@
 <div class="card">
-    <h5>{{ userDetails.firstName ? userDetails.firstName : "New Module" }}</h5>
+    <h5>{{ userDetails.firstName ? userDetails.firstName : "New User" }}</h5>
     <br>
     <form
         [formGroup]="editUserForm"
         (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid grid">
             <div class="field col-12 md:col-4">
-                <label for="firstName">First Name</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="firstName">First Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                  [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
                     formControlName="firstName"
                     pInputText id="firstName"
                     type="text"/>
-                <small *ngIf="firstName.dirty && firstName.errors?.['required']" class="p-error">First name is required.</small>
+                <small *ngIf="firstName.dirty && firstName.errors?.['required']" class="p-error">First name is
+                    required.</small>
             </div>
             <div class="field col-12 md:col-4">
-                <label for="lastName">Last Name</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="lastName">Last Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
                     formControlName="lastName"
                     pInputText id="lastName"
                     type="text"/>
-                <small *ngIf="lastName.dirty && lastName.errors?.['required']" class="p-error">Last name is required.</small>
+                <small *ngIf="lastName.dirty && lastName.errors?.['required']" class="p-error">Last name is
+                    required.</small>
             </div>
             <div class="field col-12 md:col-3">
-                <label for="email">Email</label>&nbsp;<i class="fa-solid fa-star-of-life" [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="email">Email</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                         [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
                     formControlName="email"
                     pInputText id="email"
@@ -31,7 +36,7 @@
             </div>
             <div class="field col-12 md:col-1" style="text-align:center ">
                 <h5>Active</h5>
-                <p-inputSwitch ></p-inputSwitch>
+                <p-inputSwitch></p-inputSwitch>
             </div>
             <div class="field col-12 md:col-12">
                 <h5>Roles</h5>
@@ -48,7 +53,7 @@
         <hr>
         <p-messages severity="warn" *ngIf="editUserForm.invalid">
             <ng-template pTemplate>
-                <i class="pi pi-exclamation-triangle"  style="font-size: 2rem"></i>
+                <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>
                 <div class="ml-2">Please fill in all the required fields.</div>
             </ng-template>
         </p-messages>

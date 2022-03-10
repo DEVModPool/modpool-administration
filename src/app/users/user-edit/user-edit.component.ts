@@ -56,7 +56,7 @@ export class UserEditComponent implements OnInit {
 
     formGroupInit() {
         return new FormGroup({
-            id: new FormControl(this.userDetails.id, Validators.required),
+            id: new FormControl(this.userDetails.id),
             firstName: new FormControl(this.userDetails.firstName, Validators.required),
             lastName: new FormControl(this.userDetails.lastName, Validators.required),
             email: new FormControl(this.userDetails.email, Validators.required),

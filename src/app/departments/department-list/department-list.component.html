@@ -6,7 +6,7 @@
         </ng-template>
         <ng-template pTemplate="right">
             <div class="my-2">
-                <button (click)="onNewDepartment()" pButton pRipple label="New" icon="pi pi-plus"
+                <button routerLink="new" pButton pRipple label="New" icon="pi pi-plus"
                         class="p-button-success mr-2"></button>
             </div>
         </ng-template>
@@ -56,9 +56,9 @@
                 </td>
 
                 <td>
-                    <button (click)="onDelete(department.id)" pButton pRipple type="button"
-                            class="p-button-raised p-button-rounded p-button-danger">
-                        Delete
+                    <button [routerLink]="[department.id]" pButton pRipple type="button"
+                            class="p-button-raised p-button-rounded p-button-help">
+                        Details
                     </button>
                 </td>
             </tr>

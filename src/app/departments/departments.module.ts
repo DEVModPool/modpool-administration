@@ -14,13 +14,15 @@ import { TableModule } from "primeng/table";
 import { MessagesModule } from "primeng/messages";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
+import { DepartmentEditComponent } from "./department-edit/department-edit.component";
 
 
 @NgModule({
     declarations: [
         DepartmentsComponent,
         DepartmentFilterComponent,
-        DepartmentListComponent
+        DepartmentListComponent,
+        DepartmentEditComponent
     ],
     imports: [
         DepartmentsRoutingModule,

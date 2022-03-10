@@ -22,16 +22,4 @@ export class DepartmentListComponent implements OnInit {
             }
         );
     }
-
-    onNewDepartment() {
-        this.departments.unshift(new Department());
-
-        // Send post request to the backend
-    }
-
-    onDelete(id) {
-        this.departments = this.departments.filter(department => department.id != id);
-
-        // Send delete request to the backend
-    }
 }
