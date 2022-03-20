@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {User} from "../interaction/users/user.model";
 
-import {Subject} from "rxjs";
+import {Subject, tap} from "rxjs";
 import {Response} from "../interaction/response";
 import {HttpClient} from "@angular/common/http";
 
@@ -12,7 +12,11 @@ export class UsersService {
     }
     users = new Subject<User[]>();
     getUsers(userFilters: any) {
-        return this.http.get<Response<User[]>>('http://localhost:3000/userList',{params: userFilters})
+        return this.http
+            .get<Response<User[]>>('http://localhost:3000/userList',{params: userFilters})
+            .pipe(tap(response => {
+                this.users.next(response.result);
+            }))
     }
 }
 

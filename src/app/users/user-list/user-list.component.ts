@@ -11,7 +11,7 @@ export class UserListComponent implements OnInit {
     users: User[];
     filtered = false;
 
-    constructor(private usersService: UsersService, private activatedRoute: ActivatedRoute) {
+    constructor(private usersService: UsersService) {
     }
 
     ngOnInit(): void {

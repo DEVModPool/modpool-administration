@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Module } from "../../interaction/modules/module.model";
-import { ModulesService } from "../modules.service";
+import {Component, OnInit} from '@angular/core';
+import {Module} from "../../interaction/modules/module.model";
+import {ModulesService} from "../modules.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

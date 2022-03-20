@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Module } from "../interaction/modules/module.model";
-import {Subject} from "rxjs";
+import {Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Response} from "../interaction/response";
 import {ModuleData} from "../interaction/modules/module-data";
@@ -13,8 +13,11 @@ export class ModulesService {
     }
 
     getModules(moduleFilters: any) {
-        console.log(moduleFilters);
-        return this.http.get<Response<Module[]>>('http://localhost:3000/moduleList',{params: moduleFilters})
+        return this.http
+            .get<Response<Module[]>>('http://localhost:3000/moduleList',{params: moduleFilters})
+            .pipe(tap(response => {
+                this.modules.next(response.result);
+            }))
     }
 
     getNewModuleTest() {

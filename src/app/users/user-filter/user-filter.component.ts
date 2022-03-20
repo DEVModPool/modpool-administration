@@ -36,7 +36,6 @@ export class UserFilterComponent implements OnInit, OnDestroy {
         this.activatedRoute.queryParams.subscribe(
             (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: boolean }) => {
                 this.userFilters = params;
-                // TODO: Fix inputSwitch not being set to default value in the html
                 this.userFilterForm.patchValue(params);
             }
         );
@@ -68,9 +67,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     }
 
     getUsers() {
-        this.userService.getUsers(this.userFilters).subscribe(response => {
-            this.userService.users.next(response.result);
-        });
+        this.userService.getUsers(this.userFilters).subscribe();
     }
 
     getQueryParams(): any {

@@ -59,11 +59,7 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     getModules() {
-        console.log(this.moduleFilterForm.controls['code'].value)
-        this.moduleService.getModules(this.moduleFilters).subscribe(response => {
-                this.moduleService.modules.next(response.result);
-            }
-        );
+        this.moduleService.getModules(this.moduleFilters).subscribe();
     }
 
     getQueryParams(): any {
