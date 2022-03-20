@@ -11,6 +11,8 @@ import { Role } from "../../interaction/users/user.model";
 export class UserFilterComponent implements OnInit, OnDestroy {
     isLoading = false;
     roles: Role[];
+    active: string[];
+
     userFilters: {
         firstName: string, lastName: string, email: string, roles: string[], isActive: boolean
     };

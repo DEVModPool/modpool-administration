@@ -26,8 +26,6 @@ const routes: Routes = [
         },
         data: {url: 'http://localhost:3000/editUser'}
     }
-
-
 ];
 
 @NgModule({

@@ -84,7 +84,6 @@ export class ModuleEditComponent implements OnInit {
                 console.log(this.moduleForm);
             }
         );
-
     }
 
     formGroupInit() {

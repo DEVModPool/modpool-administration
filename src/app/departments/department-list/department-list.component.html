@@ -6,8 +6,7 @@
         </ng-template>
         <ng-template pTemplate="right">
             <div class="my-2">
-                <button routerLink="new" pButton pRipple label="New" icon="pi pi-plus"
-                        class="p-button-success mr-2"></button>
+                <button routerLink="new" pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"></button>
             </div>
         </ng-template>
     </p-toolbar>
@@ -16,14 +15,6 @@
         <p-messages severity="info">
             <ng-template pTemplate="">
                 <div class="ml-2">Please use the filter above to fetch the data!</div>
-            </ng-template>
-        </p-messages>
-    </div>
-
-    <div *ngIf="filtered">
-        <p-messages severity="info">
-            <ng-template pTemplate="">
-                <div class="ml-2">Click on a department to edit its name!</div>
             </ng-template>
         </p-messages>
     </div>
@@ -41,20 +32,7 @@
         <ng-template pTemplate="body" let-department>
             <tr [pEditableRow]="department">
 
-                <td style="width: 90%; min-width: 10rem;" [pEditableColumn]="department.name"><span
-                    class="p-column-title">Name</span>
-                    Department of
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="department.name" required>
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ department.name }}
-                        </ng-template>
-                    </p-cellEditor>
-
-                </td>
-
+                <td style="width: 90%; min-width: 10rem;" [pEditableColumn]="department.name"><span class="p-column-title">Name</span>{{ department.name }}</td>
                 <td>
                     <button [routerLink]="[department.id]" pButton pRipple type="button"
                             class="p-button-raised p-button-rounded p-button-help">

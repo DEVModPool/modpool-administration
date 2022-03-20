@@ -13,14 +13,6 @@
     </a>
 
     <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':appMain.topMenuActive}">
-        <a href="#" class="p-link layout-topbar-button">
-            <i class="pi pi-user"></i>
-            <span>Profile</span>
-        </a>
-        <a href="#" class="p-link layout-topbar-button" routerLink="/login">
-            <i class="pi pi-sign-in" ></i>
-            <span>Log In</span>
-        </a>
         <p-confirmDialog [style]="{width: '30vw'}" icon="pi pi-question-circle" rejectButtonStyleClass="p-button-outlined" [baseZIndex]="10000">
             <ng-template pTemplate="header">
                 <h3>Sign Out</h3>

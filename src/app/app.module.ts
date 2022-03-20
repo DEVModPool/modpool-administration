@@ -16,7 +16,6 @@ import { RippleModule } from "primeng/ripple";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { MenuComponent } from "./menu/menu.component";
-import { AuthModule } from "./auth/auth.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UsersModule } from "./users/users.module";
 import { UsersService } from "./users/users.service";
@@ -27,24 +26,34 @@ import { ModulesService } from "./modules/modules.service";
 
 import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DepartmentFilterComponent } from './departments/department-filter/department-filter.component';
 import { DepartmentsModule } from "./departments/departments.module";
-import { DepartmentListComponent } from './departments/department-list/department-list.component';
-import { DepartmentEditComponent } from './departments/department-edit/department-edit.component';
 
+import {JwtModule} from "@auth0/angular-jwt";
+import {AuthModule} from "./auth/auth.module";
+
+export function tokenGetter() {
+    return localStorage.getItem("jwt");
+}
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
-        AuthModule,
         AppRoutingModule,
+        AuthModule,
         ConfirmDialogModule,
         RippleModule,
         BrowserAnimationsModule,
         UsersModule,
         ReviewsModule,
         ModulesModule,
-        DepartmentsModule
+        DepartmentsModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: ["localhost:5001"],
+                disallowedRoutes: []
+            }
+        })
     ],
     declarations: [
         AppComponent,

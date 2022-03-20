@@ -312,15 +312,15 @@
         "result": [
             {
                 "id": "1",
-                "name": "Engineering"
+                "name": "Department of Engineering"
             },
             {
                 "id": "2",
-                "name": "Chemistry"
+                "name": "Department of Chemistry"
             },
             {
                 "id": "3",
-                "name": "Philosophy"
+                "name": "Department of Philosophy"
             }
         ]
     },

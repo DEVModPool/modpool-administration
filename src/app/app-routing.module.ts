@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { AppMainComponent } from "./app.main.component";
 import { HomeComponent } from "./home/home.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import {AuthGuard} from "./auth/auth.guard";
+import {LoginGuard} from "./auth/login.guard";
 
 const routes: Routes = [
     {
         path: '',
         component: AppMainComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -33,6 +36,7 @@ const routes: Routes = [
     },
     {
         path: 'login',
+        canActivate: [LoginGuard],
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     },
     {path: '**', component: PageNotFoundComponent},

@@ -5,10 +5,13 @@ import {CommonModule} from "@angular/common";
 import {AuthRoutingModule} from "./auth-routing.module";
 import {PasswordModule} from "primeng/password";
 import {CheckboxModule} from "primeng/checkbox";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from "primeng/inputtext";
+import {MessagesModule} from "primeng/messages";
+
+
 
 @NgModule({
     declarations: [
@@ -23,7 +26,9 @@ import {InputTextModule} from "primeng/inputtext";
         FormsModule,
         ButtonModule,
         RippleModule,
-        InputTextModule
+        InputTextModule,
+        ReactiveFormsModule,
+        MessagesModule,
     ]
 })
 export class AuthModule {

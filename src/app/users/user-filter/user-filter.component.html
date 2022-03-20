@@ -35,14 +35,19 @@
                     <label for="roles">Roles</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-2" style="text-align:center">
 
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <p>Active</p>
-                    <p-inputSwitch
-                        id="isActive"
-                        formControlName="isActive"
-                    ></p-inputSwitch>
+                    <p-multiSelect
+                        id="active"
+                        inputId="active"
+                        [options]="active"
+                        optionLabel="name"
+                        [filter]="false"
+                        formControlName="roles"
+                    >
+                    </p-multiSelect>
+                    <label for="active">Active</label>
                 </span>
             </div>
             <br>
