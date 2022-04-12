@@ -15,6 +15,7 @@ import { MessagesModule } from "primeng/messages";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { DepartmentEditComponent } from "./department-edit/department-edit.component";
+import { MultiSelectModule } from "primeng/multiselect";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DepartmentEditComponent } from "./department-edit/department-edit.compo
         MessagesModule,
         ToastModule,
         ToolbarModule,
-        FormsModule
+        FormsModule,
+        MultiSelectModule
     ],
     providers: [
         DepartmentsService

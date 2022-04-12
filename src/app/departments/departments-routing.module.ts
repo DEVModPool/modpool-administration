@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { DepartmentsComponent } from "./departments.component";
 import { BaseResolver } from "../interaction/base-resolver";
 import { DepartmentEditComponent } from "./department-edit/department-edit.component";
+import { environment } from "../../environments/environment";
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
         resolve: {
             departmentData: BaseResolver,
         },
-        data: {url: 'http://localhost:3000/newDepartment'}
+        data: {url: environment.baseUrl + environment.departmentsNewUrl + environment.resolverUrl}
     },
     {
         path: ':id',

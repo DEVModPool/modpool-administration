@@ -5,7 +5,7 @@
         [formGroup]="editDepartmentForm"
         (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid grid">
-            <div class="field col-12">
+            <div class="field col-6">
                 <label for="name">Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
                                                        [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
@@ -15,8 +15,26 @@
                 <small *ngIf="name.dirty && name.errors?.['required']" class="p-error">Name is
                     required.</small>
             </div>
+
+            <div class="field col-6">
+                <label for="coordinators">Coordinator</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                      [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <span class="p-float-label">
+                    <p-multiSelect
+                        id="coordinators"
+                        inputId="coordinators"
+                        [options]="coordinators"
+                        optionLabel="name"
+                        [filter]="true"
+                        formControlName="coordinators"
+                    >
+                    </p-multiSelect>
+                    <!--                                        <label for="coordinators">Coordinator</label>-->
+                </span>
+            </div>
         </div>
         <hr>
+
         <p-messages severity="warn" *ngIf="editDepartmentForm.invalid">
             <ng-template pTemplate>
                 <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>

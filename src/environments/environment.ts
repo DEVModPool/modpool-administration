@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    baseUrl: 'http://administration-dev.modpool.uk/api/',
+    departmentsUrl: 'departments/',
+    departmentsNewUrl: 'departments/new/',
+    resolverUrl: 'resolve-route'
 };
 
 /*

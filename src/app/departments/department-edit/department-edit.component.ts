@@ -14,6 +14,8 @@ export class DepartmentEditComponent implements OnInit {
     departmentDetails: Department;
     editDepartmentForm: FormGroup;
 
+    coordinators = [{id: 1, name: "Me"}];
+
     get name() {
         return this.editDepartmentForm.get('name');
     }
@@ -41,7 +43,8 @@ export class DepartmentEditComponent implements OnInit {
     formGroupInit() {
         return new FormGroup({
             id: new FormControl(this.departmentDetails.id),
-            name: new FormControl(this.departmentDetails.name, Validators.required)
+            name: new FormControl(this.departmentDetails.name, Validators.required),
+            coordinators: new FormControl('')
         });
     }
 

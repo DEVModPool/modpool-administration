@@ -13,6 +13,7 @@ export class DepartmentFilterComponent implements OnInit, OnDestroy, AfterViewIn
 
     departmentFilterForm = new FormGroup({
         name: new FormControl(''),
+        roles: new FormControl('')
     })
 
     constructor(
