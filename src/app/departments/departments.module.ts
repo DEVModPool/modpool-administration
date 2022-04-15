@@ -16,6 +16,8 @@ import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { DepartmentEditComponent } from "./department-edit/department-edit.component";
 import { MultiSelectModule } from "primeng/multiselect";
+import { DropdownModule } from "primeng/dropdown";
+import { DepartmentNewComponent } from "./department-edit/department-new.component";
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { MultiSelectModule } from "primeng/multiselect";
         DepartmentsComponent,
         DepartmentFilterComponent,
         DepartmentListComponent,
-        DepartmentEditComponent
+        DepartmentEditComponent,
+        DepartmentNewComponent
     ],
     imports: [
         DepartmentsRoutingModule,
@@ -38,7 +41,8 @@ import { MultiSelectModule } from "primeng/multiselect";
         ToastModule,
         ToolbarModule,
         FormsModule,
-        MultiSelectModule
+        MultiSelectModule,
+        DropdownModule
     ],
     providers: [
         DepartmentsService

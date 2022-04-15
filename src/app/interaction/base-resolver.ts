@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { EMPTY, map, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Response } from "./response"
+import { environment } from "../../environments/environment";
 
 
 @Injectable({
@@ -21,15 +22,13 @@ export class BaseResolver<T> implements Resolve<T> {
         let url = route.data['url'];
         const id = route.params['id'];
 
-        console.log(url)
+        if (id) {
+            url += `${id}/`
+        }
 
-        // TODO-TD: Add id's when backend is added. Refactor logic.
-        // if (id) {
-        //     url += id;
-        // }
+        url += environment.resolverUrl;
 
         return this.http.get<Response<T>>(url).pipe(
-            // TODO-TD: Make it more generic so it returns just result.
             map(response => response.result),
             catchError(() => {
                 this.router.navigate(['']);

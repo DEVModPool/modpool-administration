@@ -28,12 +28,14 @@ import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DepartmentsModule } from "./departments/departments.module";
 
-import {JwtModule} from "@auth0/angular-jwt";
-import {AuthModule} from "./auth/auth.module";
+import { JwtModule } from "@auth0/angular-jwt";
+import { AuthModule } from "./auth/auth.module";
+import { environment } from "../environments/environment";
 
 export function tokenGetter() {
     return localStorage.getItem("jwt");
 }
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -50,7 +52,7 @@ export function tokenGetter() {
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,
-                allowedDomains: ["localhost:5001"],
+                allowedDomains: [environment.jwtAllowedDomain],
                 disallowedRoutes: []
             }
         })

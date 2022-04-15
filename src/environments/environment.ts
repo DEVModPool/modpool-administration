@@ -4,9 +4,12 @@
 
 export const environment = {
     production: false,
+    jwtAllowedDomain: 'administration-dev.modpool.uk',
     baseUrl: 'http://administration-dev.modpool.uk/api/',
+
     departmentsUrl: 'departments/',
     departmentsNewUrl: 'departments/new/',
+    departmentsEditUrl: 'departments/:id/',
     resolverUrl: 'resolve-route'
 };
 

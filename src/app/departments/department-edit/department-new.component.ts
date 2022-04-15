@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-import { DepartmentFormBaseComponent } from "./department-form-base.component";
+import { DepartmentEditComponent } from "./department-edit.component";
 import { DepartmentsService } from "../departments.service";
+import { DepartmentFormBaseComponent } from "./department-form-base.component";
 
 @Component({
-    selector: 'app-department-edit',
+    selector: 'app-department-new',
     templateUrl: './department-form-base.component.html'
 })
-export class DepartmentEditComponent extends DepartmentFormBaseComponent {
+export class DepartmentNewComponent extends DepartmentFormBaseComponent {
 
     constructor(
         activatedRoute: ActivatedRoute,
@@ -19,22 +20,19 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
     }
 
     onSubmit() {
-        console.log(this.departmentDetails);
-        let id = this.departmentDetails.id;
-
         let body = {
-            id,
             name: this.departmentForm.value.name,
             coordinatorId: this.departmentForm.value.coordinator.id
         }
-
-        this.departmentsService.editDepartment(id, body).subscribe(
+        this.departmentsService.addDepartment(body).subscribe(
             response => {
-                console.log(response);
+                // TODO: Display success notification
                 this.location.back();
             },
-            error => console.log(error)
+            error => {
+                // TODO: Display error notification
+                console.log(error);
+            }
         );
-        return;
     }
 }

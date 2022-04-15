@@ -1,9 +1,11 @@
-import {Injectable, OnInit} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Subject, tap} from "rxjs";
-import {Router} from "@angular/router";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {Message} from "primeng/api";
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { tap } from "rxjs";
+import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Message } from "primeng/api";
+import { environment } from "src/environments/environment";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
     providedIn: 'root'
@@ -16,15 +18,17 @@ export class AuthService implements OnInit {
         private http: HttpClient,
         private router: Router,
         private jwtHelper: JwtHelperService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
     }
 
     login(user: LoginRequest) {
-        return this.http.post<any>('https://localhost:5001/api/login', user).pipe(
+        return this.http.post<any>(environment.baseUrl + 'login', user).pipe(
             tap(response => {
-                localStorage.setItem("user", response.email)
+                console.log(this.decodeJwtToken(response.token));
+                localStorage.setItem("user", response.emailAddress)
                 this.setAutoLogout(response.token);
             })
         )
@@ -33,8 +37,16 @@ export class AuthService implements OnInit {
     logout() {
         this.removeJwtToken();
         this.router.navigate(['/login']);
-        if(this.autoLogoutTimer) {
+        if (this.autoLogoutTimer) {
             clearTimeout(this.autoLogoutTimer);
+        }
+    }
+
+    decodeJwtToken(token: string): any {
+        try {
+            return jwt_decode(token);
+        } catch (Error) {
+            return null;
         }
     }
 
@@ -60,12 +72,11 @@ export class AuthService implements OnInit {
     timeUntilJwtExpiration(token: string) {
         const tokenExpirationTimestamp = this.jwtHelper.getTokenExpirationDate(token).getTime();
         const currentTimeTimestamp = new Date().getTime();
-        console.log(tokenExpirationTimestamp - currentTimeTimestamp);
         return tokenExpirationTimestamp - currentTimeTimestamp;
     }
 }
 
 export interface LoginRequest {
-    email: string;
+    emailAddress: string;
     password: string;
 }

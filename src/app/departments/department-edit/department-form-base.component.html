@@ -2,7 +2,7 @@
     <h5>{{ departmentDetails.name ? departmentDetails.name : "New Department" }}</h5>
     <br>
     <form
-        [formGroup]="editDepartmentForm"
+        [formGroup]="departmentForm"
         (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid grid">
             <div class="field col-6">
@@ -17,31 +17,32 @@
             </div>
 
             <div class="field col-6">
-                <label for="coordinators">Coordinator</label>&nbsp;<i class="fa-solid fa-star-of-life"
-                                                                      [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="coordinator">Coordinator</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                     [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <span class="p-float-label">
-                    <p-multiSelect
-                        id="coordinators"
-                        inputId="coordinators"
+                    <p-dropdown
+                        id="coordinator"
+                        inputId="coordinator"
                         [options]="coordinators"
-                        optionLabel="name"
+                        optionLabel="fullName"
                         [filter]="true"
-                        formControlName="coordinators"
+                        formControlName="coordinator"
                     >
-                    </p-multiSelect>
+                    </p-dropdown>
                     <!--                                        <label for="coordinators">Coordinator</label>-->
                 </span>
             </div>
         </div>
         <hr>
 
-        <p-messages severity="warn" *ngIf="editDepartmentForm.invalid">
+        <p-messages severity="warn" *ngIf="departmentForm.invalid">
             <ng-template pTemplate>
                 <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>
                 <div class="ml-2">Please fill in all the required fields.</div>
             </ng-template>
         </p-messages>
         <button
+            type="button"
             pButton
             pRipple
             label="Cancel"
@@ -51,7 +52,7 @@
         >
         </button>
         <button
-            [disabled]="editDepartmentForm.invalid"
+            [disabled]="departmentForm.invalid"
             pButton
             pRipple
             label="Save"
