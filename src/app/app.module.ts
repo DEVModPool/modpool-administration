@@ -33,7 +33,7 @@ import { AuthModule } from "./auth/auth.module";
 import { environment } from "../environments/environment";
 
 export function tokenGetter() {
-    return localStorage.getItem("jwt");
+    return localStorage.getItem(environment["jwt-key"]);
 }
 
 @NgModule({

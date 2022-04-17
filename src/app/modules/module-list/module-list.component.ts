@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Module} from "../../interaction/modules/module.model";
-import {ModulesService} from "../modules.service";
-import {ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Module } from "../../interaction/modules/module.model";
+import { ModulesService } from "../modules.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-module-list',
@@ -17,6 +17,7 @@ export class ModuleListComponent implements OnInit {
     ngOnInit(): void {
         this.modulesService.modules.subscribe(modules => {
                 this.modules = modules;
+                console.log(this.modules);
                 this.filtered = true;
             }
         );

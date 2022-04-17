@@ -25,11 +25,11 @@ export class AuthService implements OnInit {
     }
 
     login(user: LoginRequest) {
-        return this.http.post<any>(environment.baseUrl + 'login', user).pipe(
+        return this.http.post<any>(environment.baseUrl + environment.loginUrl, user).pipe(
             tap(response => {
-                console.log(this.decodeJwtToken(response.token));
-                localStorage.setItem("user", response.emailAddress)
-                this.setAutoLogout(response.token);
+                console.log(this.decodeJwtToken(response.result.token));
+                localStorage.setItem("user", response.result.user.emailAddress)
+                this.setAutoLogout(response.result.token);
             })
         )
     }
@@ -51,11 +51,11 @@ export class AuthService implements OnInit {
     }
 
     removeJwtToken() {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem(environment['jwt-key']);
     }
 
     setJwtToken(token) {
-        localStorage.setItem("jwt", token);
+        localStorage.setItem(environment['jwt-key'], token);
     }
 
     setAutoLogout(token: string) {

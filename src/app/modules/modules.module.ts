@@ -18,16 +18,18 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { DropdownModule } from "primeng/dropdown";
 import { InputNumberModule } from "primeng/inputnumber";
 import { MessagesModule } from "primeng/messages";
-import {MessageModule} from "primeng/message";
-import {QueryParamModule} from "@ngqp/core";
-import {ModuleEditComponent} from "./module-edit/module-edit.component";
+import { MessageModule } from "primeng/message";
+import { QueryParamModule } from "@ngqp/core";
+import { ModuleEditComponent } from "./module-edit/module-edit.component";
+import { ModuleNewComponent } from "./module-edit/module-new.component";
 
 @NgModule({
     declarations: [
         ModulesComponent,
         ModuleListComponent,
         ModuleFilterComponent,
-        ModuleEditComponent
+        ModuleEditComponent,
+        ModuleNewComponent
     ],
     imports: [
         CommonModule,

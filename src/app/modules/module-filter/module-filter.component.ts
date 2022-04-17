@@ -68,7 +68,7 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
             name: null,
             coordinator: null
         } as qp;
-        console.log(Object.keys(qp));
+
         if (this.moduleFilterForm.controls['code'].value) {
             qp.code = this.moduleFilterForm.controls['code'].value;
         }

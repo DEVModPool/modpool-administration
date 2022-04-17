@@ -24,13 +24,11 @@ export class DepartmentsService {
     }
 
     addDepartment(departmentDetails) {
-        console.log(departmentDetails);
         return this.http
             .post(environment.baseUrl + environment.departmentsUrl, departmentDetails);
     }
 
     editDepartment(departmentId, departmentDetails) {
-        departmentId = 'd82142cc-1d8e-4e26-9711-a34c88c1e652'
         return this.http
             .put(environment.baseUrl + environment.departmentsUrl + departmentId, departmentDetails);
     }

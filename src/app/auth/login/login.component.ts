@@ -39,7 +39,7 @@ export class LoginComponent {
 
         this.authService.login(user).subscribe({
             next: value => {
-                const token = (<any>value).token;
+                const token = (<any>value).result.token;
                 this.authService.setJwtToken(token);
                 this.router.navigate(["/"]);
             },

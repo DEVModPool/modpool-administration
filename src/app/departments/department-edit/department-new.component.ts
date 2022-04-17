@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
-import { DepartmentEditComponent } from "./department-edit.component";
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { DepartmentsService } from "../departments.service";
 import { DepartmentFormBaseComponent } from "./department-form-base.component";
+import { environment } from "../../../environments/environment";
 
 @Component({
     selector: 'app-department-new',
@@ -13,10 +12,10 @@ export class DepartmentNewComponent extends DepartmentFormBaseComponent {
 
     constructor(
         activatedRoute: ActivatedRoute,
-        location: Location,
+        private _router: Router,
         private departmentsService: DepartmentsService
     ) {
-        super(activatedRoute, location);
+        super(activatedRoute, _router);
     }
 
     onSubmit() {
@@ -27,7 +26,7 @@ export class DepartmentNewComponent extends DepartmentFormBaseComponent {
         this.departmentsService.addDepartment(body).subscribe(
             response => {
                 // TODO: Display success notification
-                this.location.back();
+                this._router.navigate([environment.departmentsUrl])
             },
             error => {
                 // TODO: Display error notification

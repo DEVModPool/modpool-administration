@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { DepartmentFormBaseComponent } from "./department-form-base.component";
 import { DepartmentsService } from "../departments.service";
+import { environment } from "../../../environments/environment";
 
 @Component({
     selector: 'app-department-edit',
@@ -12,14 +13,13 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
 
     constructor(
         activatedRoute: ActivatedRoute,
-        location: Location,
+        private _router: Router,
         private departmentsService: DepartmentsService
     ) {
-        super(activatedRoute, location);
+        super(activatedRoute, _router);
     }
 
     onSubmit() {
-        console.log(this.departmentDetails);
         let id = this.departmentDetails.id;
 
         let body = {
@@ -30,8 +30,7 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
 
         this.departmentsService.editDepartment(id, body).subscribe(
             response => {
-                console.log(response);
-                this.location.back();
+                this._router.navigate([environment.departmentsUrl])
             },
             error => console.log(error)
         );

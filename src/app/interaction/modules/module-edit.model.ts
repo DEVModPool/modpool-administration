@@ -7,12 +7,14 @@ export class ModuleEdit extends Module {
         name: string,
         coordinator: ModuleCoordinator,
         lastUpdated: string,
+        public credits: string,
+        public academicYear: string,
         public selectedDepartment: Department,
         public semester: number,
         public description: string,
-        public selectedPrerequisites: RequisiteModule[],
-        public selectedCorequisites: RequisiteModule[],
+        public selectedRequisites: RequisiteModule[],
         public syllabus: string,
+        public learningOutcomes: string,
         public assessment: string,
         public studyHours: StudyHours
     ) {
@@ -37,5 +39,6 @@ interface StudyHours {
     tutorials: number;
     labPracticals: number;
     fieldwork: number;
+    privateStudy: number;
     other: number;
 }

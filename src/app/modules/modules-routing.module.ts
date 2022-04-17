@@ -3,6 +3,8 @@ import { ModulesComponent } from "./modules.component";
 import { NgModule } from "@angular/core";
 import { BaseResolver } from "../interaction/base-resolver";
 import { ModuleEditComponent } from "./module-edit/module-edit.component";
+import { environment } from "../../environments/environment";
+import { ModuleNewComponent } from "./module-edit/module-new.component";
 
 
 const routes: Routes = [
@@ -12,11 +14,11 @@ const routes: Routes = [
     },
     {
         path: 'new',
-        component: ModuleEditComponent,
+        component: ModuleNewComponent,
         resolve: {
             moduleData: BaseResolver,
         },
-        data: {url: 'http://localhost:3000/newModule'}
+        data: {url: environment.baseUrl + environment.modulesNewUrl}
     },
     {
         path: ':id',
@@ -24,10 +26,8 @@ const routes: Routes = [
         resolve: {
             moduleData: BaseResolver
         },
-        data: {url: 'http://localhost:3000/editModule'}
+        data: {url: environment.baseUrl + environment.modulesUrl}
     }
-
-
 ];
 
 @NgModule({

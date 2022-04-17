@@ -3,14 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+    "jwt-key": 'jwt-admin',
     production: false,
     jwtAllowedDomain: 'administration-dev.modpool.uk',
     baseUrl: 'http://administration-dev.modpool.uk/api/',
 
+    loginUrl: 'account/login',
+
     departmentsUrl: 'departments/',
     departmentsNewUrl: 'departments/new/',
-    departmentsEditUrl: 'departments/:id/',
-    resolverUrl: 'resolve-route'
+
+    modulesUrl: 'modules/',
+    modulesNewUrl: 'modules/new/',
+
+    resolverUrl: 'resolve-route/'
 };
 
 /*
