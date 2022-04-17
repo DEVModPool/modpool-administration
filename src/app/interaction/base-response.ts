@@ -1,6 +1,7 @@
 export class BaseResponse {
     hasErrors: boolean;
-    errors: Error[]
+    errors: Error[];
+    result: any;
 }
 
 export class Error {

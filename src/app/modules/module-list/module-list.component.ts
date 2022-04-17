@@ -15,7 +15,7 @@ export class ModuleListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.modulesService.modules.subscribe(modules => {
+        this.modulesService.getObservable.subscribe(modules => {
                 this.modules = modules;
                 console.log(this.modules);
                 this.filtered = true;

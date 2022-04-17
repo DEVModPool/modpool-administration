@@ -59,7 +59,7 @@ export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     getModules() {
-        this.moduleService.getModules(this.moduleFilters).subscribe();
+        this.moduleService.getAll(this.moduleFilters).subscribe();
     }
 
     getQueryParams(): any {

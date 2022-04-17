@@ -44,11 +44,10 @@ export class ModuleNewComponent extends ModuleFormBaseComponent {
     onSubmit() {
         console.log(this.formatFormValue());
 
-        this.modulesService.addModule(this.formatFormValue())
+        this.modulesService.addNew(this.formatFormValue())
             .subscribe(
                 response => {
                     console.log(response);
-
                 }
             );
         return;
