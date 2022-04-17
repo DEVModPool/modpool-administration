@@ -27,7 +27,8 @@ export abstract class BaseService<T> {
         return this.http
             .post<Response<any>>(environment.baseUrl + this.initialUrl(), object).pipe(tap(
                 response => {
-                    this.router.navigate([this.initialUrl() + response.result.id])
+                    console.log(this.initialUrl() + response.result.id);
+                    this.router.navigate(['/' + this.initialUrl() + response.result.id])
                 },
                 err => {
                     console.error(err);
@@ -38,8 +39,8 @@ export abstract class BaseService<T> {
     edit(id, data) {
         return this.http
             .put<Response<any>>(environment.baseUrl + this.initialUrl() + id, data).pipe(tap(
-                _ => {
-                    this.router.navigate([this.initialUrl() + id]);
+                response => {
+                    location.reload();
                 },
                 err => {
                     console.error(err);

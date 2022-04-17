@@ -54,7 +54,7 @@ export class DepartmentFilterComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     getDepartments() {
-        this.departmentService.getDepartments(this.departmentFilters).subscribe();
+        this.departmentService.getAll(this.departmentFilters).subscribe();
     }
 
     getQueryParams(): any {

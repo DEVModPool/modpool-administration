@@ -28,12 +28,18 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
             coordinatorId: this.departmentForm.value.coordinator.id
         }
 
-        this.departmentsService.editDepartment(id, body).subscribe(
+        this.departmentsService.edit(id, body).subscribe(
             response => {
-                this._router.navigate([environment.departmentsUrl])
-            },
-            error => console.log(error)
+                // console.log('Hello?');
+            }
         );
+        //
+        // this.departmentsService.edit(id, body).subscribe(
+        //     response => {
+        //         this._router.navigate([environment.departmentsUrl])
+        //     },
+        //     error => console.log(error)
+        // );
         return;
     }
 }

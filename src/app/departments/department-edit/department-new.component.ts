@@ -23,10 +23,9 @@ export class DepartmentNewComponent extends DepartmentFormBaseComponent {
             name: this.departmentForm.value.name,
             coordinatorId: this.departmentForm.value.coordinator.id
         }
-        this.departmentsService.addDepartment(body).subscribe(
+        this.departmentsService.addNew(body).subscribe(
             response => {
-                // TODO: Display success notification
-                this._router.navigate([environment.departmentsUrl])
+
             },
             error => {
                 // TODO: Display error notification
