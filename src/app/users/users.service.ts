@@ -5,7 +5,9 @@ import { BaseService } from "../interaction/base-service";
 import { environment } from "../../environments/environment";
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class UsersService extends BaseService<User> {
 
     initialUrl(): string {

@@ -73,10 +73,7 @@ export function tokenGetter() {
         ConfigService,
         MenuService,
         ConfirmationService,
-        MessageService,
-        UsersService,
-        ReviewsService,
-        ModulesService,
+        MessageService
     ],
     bootstrap: [AppComponent]
 })

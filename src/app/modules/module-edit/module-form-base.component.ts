@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
-import { ModuleEdit } from "../../interaction/modules/module-edit.model";
+import { ModuleEdit, StudyHours } from "../../interaction/modules/module-edit.model";
 import { environment } from "../../../environments/environment";
 
 
@@ -94,13 +94,15 @@ export abstract class ModuleFormBaseComponent implements OnInit {
                     module = {} as ModuleEdit;
 
                     module.selectedRequisites = [];
+                    module.studyHours = {} as StudyHours;
                     module.studyHours = {
-                        lectures: undefined,
-                        seminars: undefined,
-                        tutorials: undefined,
-                        labPracticals: undefined,
-                        fieldwork: undefined,
-                        other: undefined,
+                        lectures: 0,
+                        seminars: 0,
+                        tutorials: 0,
+                        labPracticals: 0,
+                        fieldworkPlacement: 0,
+                        other: 0,
+                        privateStudy: 0
                     }
 
                     module.coordinator = this.coordinators[0];
@@ -111,7 +113,9 @@ export abstract class ModuleFormBaseComponent implements OnInit {
                 module.academicYear = this.academicYears[1];
                 module.semester = 2;
 
+
                 this.moduleDetails = module;
+
                 this.moduleForm = this.formGroupInit();
             }
         );
@@ -138,7 +142,7 @@ export abstract class ModuleFormBaseComponent implements OnInit {
                 seminars: new FormControl(this.moduleDetails.studyHours.seminars),
                 tutorials: new FormControl(this.moduleDetails.studyHours.tutorials),
                 labPracticals: new FormControl(this.moduleDetails.studyHours.labPracticals),
-                fieldwork: new FormControl(this.moduleDetails.studyHours.fieldwork),
+                fieldworkPlacement: new FormControl(this.moduleDetails.studyHours.fieldworkPlacement),
                 privateStudy: new FormControl(this.moduleDetails.studyHours.privateStudy),
                 other: new FormControl(this.moduleDetails.studyHours.other),
             }),

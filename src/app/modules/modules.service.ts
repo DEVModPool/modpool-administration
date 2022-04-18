@@ -5,7 +5,9 @@ import { environment } from "../../environments/environment";
 import { BaseService } from "../interaction/base-service";
 import { Router } from "@angular/router";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ModulesService extends BaseService<Module> {
 
     initialUrl() {

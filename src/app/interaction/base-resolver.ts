@@ -30,6 +30,7 @@ export class BaseResolver<T> implements Resolve<T> {
 
         return this.http.get<Response<T>>(url).pipe(
             map(response => {
+                console.log(response);
                 return response.result;
             }),
             catchError(() => {

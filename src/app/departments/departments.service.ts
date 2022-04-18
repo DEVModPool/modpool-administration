@@ -5,7 +5,9 @@ import { Router } from "@angular/router";
 import { BaseService } from "../interaction/base-service";
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DepartmentsService extends BaseService<Department> {
 
     initialUrl(): string {

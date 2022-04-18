@@ -33,12 +33,14 @@ interface RequisiteModule {
     code: string;
 }
 
-interface StudyHours {
+export interface StudyHours {
     lectures: number;
     seminars: number;
     tutorials: number;
     labPracticals: number;
-    fieldwork: number;
+    fieldworkPlacement: number;
     privateStudy: number;
     other: number;
+    total: number;
+    totalTeaching: number;
 }

@@ -21,9 +21,12 @@ export class ModuleEditComponent extends ModuleFormBaseComponent {
 
     onSubmit() {
 
-        console.log(this.formatForm());
+        let body = this.formatForm();
+        body['id'] = this.moduleDetails.id;
 
-        this.modulesService.edit(this.moduleDetails.id, this.formatForm())
+        console.log(body);
+
+        this.modulesService.edit(this.moduleDetails.id, body)
             .subscribe(
                 response => {
                     console.log(response);
