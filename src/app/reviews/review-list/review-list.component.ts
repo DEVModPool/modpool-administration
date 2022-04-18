@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from "../review.model";
+import { Review } from "../../interaction/reviews/review.model";
 import { ReviewsService } from "../reviews.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -10,13 +10,21 @@ import { ActivatedRoute } from "@angular/router";
 export class ReviewListComponent implements OnInit {
     reviews: Review[] = [
         {
+            id: '13123-1231231-23-123123',
             author: 'Kristian',
             moduleName: 'module',
             status: 'Flagged',
             lastUpdated: null,
             reviewContent: 'Helloooo'
         },
-
+        {
+            id: '13123-1231231-23-123123',
+            author: 'Kristian',
+            moduleName: 'module',
+            status: 'Approved',
+            lastUpdated: null,
+            reviewContent: 'Helloooo'
+        },
     ];
 
     constructor(

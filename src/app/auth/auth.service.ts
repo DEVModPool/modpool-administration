@@ -24,11 +24,24 @@ export class AuthService implements OnInit {
     ngOnInit() {
     }
 
+    getUserId(decodedObj): string {
+        const regex = /\/name$/;
+        for (let key of Object.keys(decodedObj)) {
+            if (regex.test(key)) {
+                return decodedObj[key];
+            }
+        }
+        return null;
+    }
+
     login(user: LoginRequest) {
         return this.http.post<any>(environment.baseUrl + environment.loginUrl, user).pipe(
             tap(response => {
-                console.log(this.decodeJwtToken(response.result.token));
-                localStorage.setItem("user", response.result.user.emailAddress)
+                console.log(this.jwtHelper.decodeToken(response.result.token))
+                const decoded = this.jwtHelper.decodeToken(response.result.token);
+                const userId = this.getUserId(decoded);
+                localStorage.setItem("userId", userId);
+                localStorage.setItem("user", response.result.user.emailAddress);
                 this.setAutoLogout(response.result.token);
             })
         )

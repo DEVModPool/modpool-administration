@@ -1,4 +1,6 @@
-<button pButton pRipple type="button" class="p-button-raised p-button-rounded" (click)="showMaximizableDialog()">Review</button>
+<button pButton pRipple type="button" class="p-button-raised p-button-rounded" (click)="showMaximizableDialog()">
+    Review
+</button>
 <p-dialog
     [(visible)]="displayMaximizable"
     [modal]="true" [style]="{width: '50vw'}"
@@ -11,7 +13,8 @@
             <h4 class="col-12" style="font-weight: bold">{{ review.moduleName }}</h4>
         </div>
     </ng-template>
-    <h5 [ngStyle]="{color:'var(--blue-600)'}">Current status: <span><p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag></span></h5>
+    <h5 [ngStyle]="{color:'var(--blue-600)'}">Current status: <span><p-tag [severity]="getTagStatus(review)"
+                                                                           [value]="review.status"></p-tag></span></h5>
     <br>
     <p>{{ review.reviewContent }}</p>
 
@@ -25,7 +28,7 @@
                 label="Pending"
                 icon="pi pi pi-question-circle"
                 class="p-button p-button-warning"
-                (click)=onPending()>
+                (click)=setStatus(2)>
             </button>
             <button
                 style="width: 130px"
@@ -34,7 +37,7 @@
                 label="Flag"
                 icon="pi pi pi-flag"
                 class="p-button p-button-danger"
-                (click)=onFlag()>
+                (click)=setStatus(3)>
             </button>
             <button
                 style="width: 130px"
@@ -43,7 +46,7 @@
                 label="Approve"
                 icon="pi pi pi-heart"
                 class="p-button p-button-success"
-                (click)=onApprove()>
+                (click)=setStatus(1)>
             </button>
         </div>
     </ng-template>

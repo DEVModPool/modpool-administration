@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { FilterInterface } from "../../interaction/filter-interface";
-import { Review } from "../review.model";
+import { Review } from "../../interaction/reviews/review.model";
 import { ReviewsService } from "../reviews.service";
 import { ActivatedRoute, Router } from "@angular/router";
 
