@@ -19,6 +19,7 @@ export abstract class BaseService<T> {
     abstract initialUrl(): string;
 
     getAll(filters: any) {
+
         return this.http
             .get<Response<any>>(environment.baseUrl + this.initialUrl(), {params: filters})
             .pipe(tap(response => {

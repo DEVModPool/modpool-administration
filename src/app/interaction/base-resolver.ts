@@ -27,7 +27,7 @@ export class BaseResolver<T> implements Resolve<T> {
         }
 
         url += environment.resolverUrl;
-        console.log(url);
+        
         return this.http.get<Response<T>>(url).pipe(
             map(response => {
                 console.log(response);

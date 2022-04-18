@@ -1,7 +1,7 @@
 <div class="card">
     <h5 [ngStyle]="{color:'var(--primary-color)'}">Filter Reviews</h5>
     <br>
-    <form [formGroup]="reviewFilterForm" (ngSubmit)="onSearch()">
+    <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
         <div class="p-fluid grid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
