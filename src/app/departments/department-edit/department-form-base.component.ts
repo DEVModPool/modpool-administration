@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
@@ -6,7 +6,7 @@ import { Department } from "../department.model";
 import { environment } from "../../../environments/environment";
 
 @Injectable()
-export abstract class DepartmentFormBaseComponent implements OnInit {
+export abstract class DepartmentFormBaseComponent implements OnInit, OnChanges {
     departmentDetails: Department;
     departmentForm: FormGroup;
 
@@ -30,22 +30,28 @@ export abstract class DepartmentFormBaseComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                console.log(response);
+
                 let department = response.departmentData.department;
                 if (department === undefined || department === null) {
                     department = {} as Department;
                 } else {
-                    this.selectedCoordinator.id = response.departmentData.department.headOfDepartmentId;
-                    this.selectedCoordinator.fullName = response.departmentData.department.headOfDepartmentFullName;
+                    this.selectedCoordinator = {
+                        id: `${department.headOfDepartmentId}`,
+                        fullName: `${department.headOfDepartmentFullName}`
+                    };
                 }
                 this.departmentDetails = department;
                 this.coordinators = response.departmentData.viewModel.coordinators;
 
-                this.departmentForm = this.formGroupInit();
+                console.log(this.departmentDetails);
 
+                this.departmentForm = this.formGroupInit();
             }
         );
+    }
 
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
     }
 
     formGroupInit() {
@@ -53,6 +59,13 @@ export abstract class DepartmentFormBaseComponent implements OnInit {
             name: new FormControl(this.departmentDetails.name, Validators.required),
             coordinator: new FormControl(this.selectedCoordinator, Validators.required)
         });
+    }
+
+    formatForm() {
+        return {
+            name: this.departmentForm.value.name,
+            coordinatorId: this.departmentForm.value.coordinator.id
+        }
     }
 
     onCancel() {

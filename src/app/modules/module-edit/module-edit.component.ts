@@ -14,13 +14,21 @@ import { ModuleFormBaseComponent } from "./module-form-base.component";
 export class ModuleEditComponent extends ModuleFormBaseComponent {
 
     constructor(activatedRoute: ActivatedRoute,
-                router: Router) {
+                router: Router,
+                private modulesService: ModulesService) {
         super(activatedRoute, router);
     }
 
     onSubmit() {
-        console.log('Edit!!');
-        return;
+
+        console.log(this.formatForm());
+
+        this.modulesService.edit(this.moduleDetails.id, this.formatForm())
+            .subscribe(
+                response => {
+                    console.log(response);
+                }
+            );
     };
 }
 

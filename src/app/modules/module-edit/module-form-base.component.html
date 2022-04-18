@@ -30,7 +30,8 @@
                     formControlName="semester"
                     id=semester
                     [options]="semesters"
-                    optionLabel="semester">
+                    optionLabel="semester"
+                    optionValue="value">
                 </p-dropdown>
                 <small *ngIf="semester.dirty && semester.errors?.['required']" class="p-error">Semester is
                     required.</small>

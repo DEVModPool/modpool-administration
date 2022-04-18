@@ -43,9 +43,6 @@ import { DepartmentNewComponent } from "./department-edit/department-new.compone
         FormsModule,
         MultiSelectModule,
         DropdownModule
-    ],
-    providers: [
-        DepartmentsService
     ]
 })
 export class DepartmentsModule {

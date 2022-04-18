@@ -19,11 +19,7 @@ export class DepartmentNewComponent extends DepartmentFormBaseComponent {
     }
 
     onSubmit() {
-        let body = {
-            name: this.departmentForm.value.name,
-            coordinatorId: this.departmentForm.value.coordinator.id
-        }
-        this.departmentsService.addNew(body).subscribe(
+        this.departmentsService.addNew(this.formatForm()).subscribe(
             response => {
 
             },

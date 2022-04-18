@@ -18,7 +18,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     ]
 
     userFilters: {
-        firstName?: string, lastName?: string, email?: string, roles?: string[], isActive?: boolean
+        firstName?: string, lastName?: string, email?: string, roles?: string[]
     };
 
     userFilterForm = new FormGroup({
@@ -38,14 +38,10 @@ export class UserFilterComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(
-            (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: string }) => {
+            (params: { firstName: string, lastName: string, email: string, roles: string[] }) => {
 
                 let parsed = {}
                 for (let key of Object.keys(params)) {
-                    if (key == 'isActive') {
-                        parsed[key] = params[key] == 'true'
-                        continue
-                    }
                     parsed[key] = params[key];
                 }
 
@@ -67,8 +63,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
             qp.firstName != undefined ||
             qp.lastName != undefined ||
             qp.email != undefined ||
-            qp.roles != null ||
-            qp.isActive != null
+            qp.roles != null
         ) {
             this.getUsers();
         }
@@ -88,6 +83,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     }
 
     getUsers() {
+        console.log(this.userFilters);
         this.userService.getAll(this.userFilters).subscribe();
     }
 

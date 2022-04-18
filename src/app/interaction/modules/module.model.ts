@@ -10,7 +10,7 @@ export class Module {
 }
 
 export interface ModuleCoordinator {
-    name: string,
+    fullName: string,
     id: string
 }
 

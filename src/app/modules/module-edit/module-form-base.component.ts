@@ -81,14 +81,15 @@ export abstract class ModuleFormBaseComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                console.log(response);
+                // console.log(response);
 
                 this.departments = response.moduleData.viewModel.departments;
                 this.coordinators = response.moduleData.viewModel.coordinators;
                 this.requisites = response.moduleData.viewModel.requisites;
 
-
                 let module = response.moduleData.module;
+
+                // console.log(module);
                 if (module === undefined) {
                     module = {} as ModuleEdit;
 
@@ -101,11 +102,14 @@ export abstract class ModuleFormBaseComponent implements OnInit {
                         fieldwork: undefined,
                         other: undefined,
                     }
-                    module.academicYear = this.academicYears[0];
+
                     module.coordinator = this.coordinators[0];
-                    module.semester = this.semesters[0];
-                    module.selectedDepartment = this.departments[0];
+                    module.department = this.departments[0];
                 }
+
+                module['selectedRequisites'] = [this.requisites[0]];
+                module.academicYear = this.academicYears[1];
+                module.semester = 2;
 
                 this.moduleDetails = module;
                 this.moduleForm = this.formGroupInit();
@@ -119,7 +123,7 @@ export abstract class ModuleFormBaseComponent implements OnInit {
             code: new FormControl(this.moduleDetails.code, Validators.required),
             name: new FormControl(this.moduleDetails.name, Validators.required),
             coordinator: new FormControl(this.moduleDetails.coordinator),
-            department: new FormControl(this.moduleDetails.selectedDepartment),
+            department: new FormControl(this.moduleDetails.department),
             semester: new FormControl(this.moduleDetails.semester),
             academicYear: new FormControl(this.moduleDetails.academicYear, Validators.required),
             level: new FormControl(100, Validators.required),
@@ -140,6 +144,27 @@ export abstract class ModuleFormBaseComponent implements OnInit {
             }),
             lastUpdated: new FormControl(null)
         })
+    }
+
+    formatForm() {
+        const formValue = this.moduleForm.value;
+
+        return {
+            name: formValue.name,
+            academicYear: formValue.academicYear,
+            semester: formValue.semester,
+            credits: formValue.credits,
+            level: formValue.level,
+            code: formValue.code,
+            description: formValue.description,
+            learningOutcomes: formValue.learningOutcomes,
+            syllabus: formValue.syllabus,
+            coordinatorId: formValue.coordinator.id,
+            departmentId: formValue.department.id,
+            studyHours: formValue.studyHours,
+            assessments: formValue.assessments,
+            prerequisiteModules: formValue.requisites.map(item => item.id)
+        }
     }
 
     getAcademicYears() {

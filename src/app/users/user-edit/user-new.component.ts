@@ -23,8 +23,18 @@ export class UserNewComponent extends UserFormBaseComponent implements OnInit {
         super(activatedRoute, router);
     }
 
-    override ngOnInit() {
+    ngOnInit() {
         this.editUserForm = this.formGroupInit();
+    }
+
+    formGroupInit() {
+        return new FormGroup({
+            firstName: new FormControl('', Validators.required),
+            lastName: new FormControl('', Validators.required),
+            emailAddress: new FormControl('', Validators.required),
+            password: new FormControl('', Validators.required),
+            active: new FormControl(false)
+        })
     }
 
     onSubmit() {

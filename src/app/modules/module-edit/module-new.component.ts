@@ -20,31 +20,10 @@ export class ModuleNewComponent extends ModuleFormBaseComponent {
         super(activatedRoute, router);
     }
 
-    formatFormValue() {
-        const formValue = this.moduleForm.value;
-
-        return {
-            name: formValue.name,
-            academicYear: formValue.academicYear,
-            semester: formValue.semester.value,
-            credits: formValue.credits,
-            level: formValue.level,
-            code: formValue.code,
-            description: formValue.description,
-            learningOutcomes: formValue.learningOutcomes,
-            syllabus: formValue.syllabus,
-            coordinatorId: formValue.coordinator.id,
-            departmentId: formValue.department.id,
-            studyHours: formValue.studyHours,
-            assessments: formValue.assessments,
-            prerequisiteModules: formValue.requisites.map(item => item.id)
-        }
-    }
-
     onSubmit() {
-        console.log(this.formatFormValue());
+        console.log(this.formatForm());
 
-        this.modulesService.addNew(this.formatFormValue())
+        this.modulesService.addNew(this.formatForm())
             .subscribe(
                 response => {
                     console.log(response);

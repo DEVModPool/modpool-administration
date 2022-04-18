@@ -13,33 +13,19 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
 
     constructor(
         activatedRoute: ActivatedRoute,
-        private _router: Router,
+        router: Router,
         private departmentsService: DepartmentsService
     ) {
-        super(activatedRoute, _router);
+        super(activatedRoute, router);
     }
 
     onSubmit() {
-        let id = this.departmentDetails.id;
 
-        let body = {
-            id,
-            name: this.departmentForm.value.name,
-            coordinatorId: this.departmentForm.value.coordinator.id
-        }
-
-        this.departmentsService.edit(id, body).subscribe(
+        this.departmentsService.edit(this.departmentDetails.id, this.formatForm()).subscribe(
             response => {
                 // console.log('Hello?');
             }
         );
-        //
-        // this.departmentsService.edit(id, body).subscribe(
-        //     response => {
-        //         this._router.navigate([environment.departmentsUrl])
-        //     },
-        //     error => console.log(error)
-        // );
         return;
     }
 }

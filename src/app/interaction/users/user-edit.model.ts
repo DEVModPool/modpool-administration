@@ -8,7 +8,7 @@ export class UserEdit extends User {
         emailAddress?: string,
         roles?: Role[],
         public active?: boolean,
-        lastLoggedOn?: Date
+        public lastLoggedOn?: Date
     ) {
         super(id, firstName, lastName, emailAddress, roles);
 

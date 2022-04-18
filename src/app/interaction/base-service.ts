@@ -3,7 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { Response } from "./response"
 import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+    providedIn: 'root'
+})
 export abstract class BaseService<T> {
     getObservable = new Subject<T[]>();
 
@@ -24,27 +28,45 @@ export abstract class BaseService<T> {
     }
 
     addNew(object) {
+
+        this.http
+            .post<Response<any>>(environment.baseUrl + this.initialUrl(), object).subscribe(
+            response => {
+                this.router.navigate(['/' + this.initialUrl() + response.result.id])
+            },
+            error => {
+                console.error(error);
+            }
+        );
+
         return this.http
-            .post<Response<any>>(environment.baseUrl + this.initialUrl(), object).pipe(tap(
+            .post<Response<any>>(environment.baseUrl + this.initialUrl(), object)
+            .pipe(tap(
                 response => {
-                    console.log(this.initialUrl() + response.result.id);
                     this.router.navigate(['/' + this.initialUrl() + response.result.id])
                 },
                 err => {
                     console.error(err);
                 }
             ));
+
+
     }
 
     edit(id, data) {
         return this.http
-            .put<Response<any>>(environment.baseUrl + this.initialUrl() + id, data).pipe(tap(
+            .put<Response<any>>(environment.baseUrl + this.initialUrl() + id, data)
+            .pipe(tap(
                 response => {
-                    location.reload();
+
+                    console.log(response);
+
+                    this.router.navigateByUrl('/', {skipLocationChange: true})
+                        .then(() => {
+                            return this.router.navigate(['/' + this.initialUrl() + response.result.id]);
+                        })
                 },
-                err => {
-                    console.error(err);
-                }
+                error => console.log(error.errors)
             ));
     }
 }

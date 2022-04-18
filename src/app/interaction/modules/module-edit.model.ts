@@ -9,7 +9,7 @@ export class ModuleEdit extends Module {
         lastUpdated: string,
         public credits: string,
         public academicYear: string,
-        public selectedDepartment: Department,
+        public department: Department,
         public semester: number,
         public description: string,
         public selectedRequisites: RequisiteModule[],
