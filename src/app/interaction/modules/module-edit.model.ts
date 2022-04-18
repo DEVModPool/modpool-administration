@@ -1,25 +1,16 @@
-import { Module, ModuleCoordinator } from "./module.model";
+import { Module } from "./module.model";
 
-export class ModuleEdit extends Module {
-    constructor(
-        id: number,
-        code: string,
-        name: string,
-        coordinator: ModuleCoordinator,
-        lastUpdated: string,
-        public credits: string,
-        public academicYear: string,
-        public department: Department,
-        public semester: number,
-        public description: string,
-        public selectedRequisites: RequisiteModule[],
-        public syllabus: string,
-        public learningOutcomes: string,
-        public assessment: string,
-        public studyHours: StudyHours
-    ) {
-        super(id, code, name, coordinator, lastUpdated);
-    }
+export interface ModuleEdit extends Module {
+    credits: string;
+    academicYear: string;
+    department: Department;
+    semester: number;
+    description: string;
+    selectedRequisites: RequisiteModule[];
+    syllabus: string;
+    learningOutcomes: string;
+    assessment: string;
+    studyHours: StudyHours;
 }
 
 interface Department {

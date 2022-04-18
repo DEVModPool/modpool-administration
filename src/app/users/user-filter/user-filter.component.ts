@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
 import { UsersService } from "../users.service";
-import { User } from "../../interaction/users/user.model";
+import { Role, User } from "../../interaction/users/user.model";
 import { FilterInterface } from "../../interaction/filter-interface";
 
 @Component({
@@ -11,7 +11,7 @@ import { FilterInterface } from "../../interaction/filter-interface";
 })
 export class UserFilterComponent extends FilterInterface<User, qp> implements OnInit {
     isLoading = false;
-    roles: { roleType: string, name: string }[];
+    roles: Role[];
     active: { name: string, value: boolean }[] = [
         {name: 'Active', value: true},
         {name: 'Inactive', value: false}
@@ -29,9 +29,9 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
         return new FormGroup({
             firstName: new FormControl(''),
             lastName: new FormControl(''),
-            email: new FormControl(''),
-            roles: new FormControl(null),
-            isActive: new FormControl({name: 'All', value: null}),
+            emailAddress: new FormControl(''),
+            roleTypes: new FormControl(null),
+            activityStatus: new FormControl(true),
         });
     }
 
@@ -44,7 +44,6 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
             }
         )
     }
-
 }
 
 interface qp {
@@ -52,5 +51,5 @@ interface qp {
     lastName?: string;
     email?: string;
     roles?: string[];
-    isActive?: boolean[];
+    isActive?: boolean;
 }

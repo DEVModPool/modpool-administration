@@ -17,7 +17,7 @@
             </div>
             <div class="field col-12 md:col-5">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="email" formControlName="email">
+                    <input pInputText type="text" id="email" formControlName="emailAddress">
                     <label for="email">Email</label>
                 </span>
             </div>
@@ -30,8 +30,7 @@
                         optionLabel="name"
                         optionValue="roleType"
                         [filter]="false"
-                        formControlName="roles"
-                    >
+                        formControlName="roleTypes">
                     </p-multiSelect>
                     <label for="roles">Roles</label>
                 </span>
@@ -47,10 +46,9 @@
                         optionValue="value"
 
                         [filter]="false"
-                        formControlName="isActive"
+                        formControlName="activityStatus"
                     >
                     </p-dropdown>
-                    <label for="active">Active</label>
                 </span>
             </div>
             <br>

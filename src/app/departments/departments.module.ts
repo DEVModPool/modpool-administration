@@ -18,6 +18,8 @@ import { DepartmentEditComponent } from "./department-edit/department-edit.compo
 import { MultiSelectModule } from "primeng/multiselect";
 import { DropdownModule } from "primeng/dropdown";
 import { DepartmentNewComponent } from "./department-edit/department-new.component";
+import { PaginatorModule } from "primeng/paginator";
+import { PaginationModule } from "../pagination/pagination.module";
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { DepartmentNewComponent } from "./department-edit/department-new.compone
         ToolbarModule,
         FormsModule,
         MultiSelectModule,
-        DropdownModule
+        DropdownModule,
+        PaginatorModule,
+        PaginationModule
     ]
 })
 export class DepartmentsModule {

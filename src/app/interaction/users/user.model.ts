@@ -1,18 +1,12 @@
-export class User {
-    constructor(
-        public id?: string,
-        public firstName?: string,
-        public lastName?: string,
-        public emailAddress?: string,
-        public roles?: Role[],
-    ) {
-    }
+export interface User {
+    id?: string;
+    firstName?: string;
+    lastName?: string;
+    emailAddress?: string;
+    roles?: Role[];
 }
 
-export class Role {
-    constructor(
-        public id?: string,
-        public name?: string
-    ) {
-    }
+export interface Role {
+    id?: string;
+    name?: string;
 }

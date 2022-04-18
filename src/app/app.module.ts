@@ -31,6 +31,8 @@ import { DepartmentsModule } from "./departments/departments.module";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthModule } from "./auth/auth.module";
 import { environment } from "../environments/environment";
+import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationModule } from "./pagination/pagination.module";
 
 export function tokenGetter() {
     return localStorage.getItem(environment["jwt-key"]);
@@ -49,6 +51,7 @@ export function tokenGetter() {
         ReviewsModule,
         ModulesModule,
         DepartmentsModule,
+        PaginationModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

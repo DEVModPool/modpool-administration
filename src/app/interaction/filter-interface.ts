@@ -9,11 +9,6 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
     searchFilters: QueryParamsT;
     filterForm: FormGroup;
     private fields: string[];
-    // moduleFilterForm = new FormGroup({
-    //     code: new FormControl(''),
-    //     name: new FormControl(''),
-    //     coordinator: new FormControl('')
-    // })
 
     abstract getFilterForm(): FormGroup;
 
@@ -39,28 +34,21 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
         );
     }
 
-    ngAfterViewInit(): void {
-        let qp = this.getQueryParams();
-        if (qp.name != undefined) {
-            this.getItems();
-        }
-    }
-
     getItems() {
-        // TODO: REMOVE SUBSCRIBE?
+        console.log(this.searchFilters);
         this.itemService.getAll(this.searchFilters).subscribe();
     }
 
-    // ngAfterViewInit(): void {
-    //     let qp = this.getQueryParams();
-    //
-    //     for (let field of this.fields) {
-    //         if (qp[field] != undefined) {
-    //             this.itemService.getAll(this.searchFilters);
-    //             return;
-    //         }
-    //     }
-    // }
+    ngAfterViewInit(): void {
+        let qp = this.getQueryParams();
+
+        for (let field of this.fields) {
+            if (qp[field] != undefined) {
+                this.getItems();
+                return;
+            }
+        }
+    }
 
     ngOnDestroy(): void {
     }
@@ -74,17 +62,8 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
             }
         ).then(() => {
             this.getItems();
-            // this.itemService.getAll(this.searchFilters)
         });
     }
-
-    // //
-    // getServiceData() {
-    //     //console.log(this.moduleFilterForm.controls['code'].value)
-    //     this.getService.getResponse(this.url(), this.searchFilters).subscribe(response => {
-    //         this.getService.dataSubject.next(response.result);
-    //     });
-    // }
 
     getQueryParams(): any {
         let qp: QueryParamsT = {} as QueryParamsT;

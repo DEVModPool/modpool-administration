@@ -23,7 +23,7 @@ export class ModuleFilterComponent extends FilterInterface<Module, qp> {
         return new FormGroup({
             code: new FormControl(''),
             name: new FormControl(''),
-            coordinator: new FormControl('')
+            coordinatorName: new FormControl('')
         });
     }
 
@@ -33,5 +33,5 @@ export class ModuleFilterComponent extends FilterInterface<Module, qp> {
 interface qp {
     code?: string,
     name?: string,
-    coordinator?: string
+    coordinatorName?: string
 }
