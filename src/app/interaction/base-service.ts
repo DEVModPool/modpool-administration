@@ -22,6 +22,7 @@ export abstract class BaseService<T> {
         return this.http
             .get<Response<any>>(environment.baseUrl + this.initialUrl(), {params: filters})
             .pipe(tap(response => {
+                console.log(response)
                 this.getObservable.next(response.result.items);
             }))
     }

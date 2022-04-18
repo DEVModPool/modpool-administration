@@ -30,7 +30,6 @@ export class DepartmentFilterComponent implements OnInit, OnDestroy, AfterViewIn
                 this.departmentFilterForm.patchValue(params);
             }
         );
-
     }
 
     ngAfterViewInit(): void {

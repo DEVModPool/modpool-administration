@@ -16,7 +16,6 @@ export class DepartmentListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         this.departmentsService.getObservable.subscribe(departments => {
                 this.departments = departments;
                 this.filtered = true;

@@ -1,22 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { Review } from "../review.model";
 import { ReviewsService } from "../reviews.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-review-list',
     templateUrl: './review-list.component.html'
 })
 export class ReviewListComponent implements OnInit {
-    reviews: Review[];
+    reviews: Review[] = [
+        {
+            author: 'Kristian',
+            moduleName: 'module',
+            status: 'Flagged',
+            lastUpdated: null,
+            reviewContent: 'Helloooo'
+        },
+
+    ];
 
     constructor(
-        private reviewService: ReviewsService
+        private reviewService: ReviewsService,
+        private activatedRoute: ActivatedRoute
     ) {
     }
 
     ngOnInit(): void {
-        this.reviews = this.reviewService.reviews;
-        console.log(this.reviews);
+        this.reviewService.getObservable.subscribe(
+            reviews => {
+                this.reviews = reviews;
+            }
+        );
+
+        this.activatedRoute.data.subscribe(
+            response => {
+                // this.reviews = response.reviews;
+            }
+        );
+
+        // this.reviewService.getAll([]).subscribe();
     }
 
     getTagStatus(review: Review) {
