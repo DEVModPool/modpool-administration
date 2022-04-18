@@ -1,77 +1,30 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component } from '@angular/core';
 
-import { ActivatedRoute } from "@angular/router";
-import { Location } from '@angular/common';
-import { UserEdit } from "../../interaction/users/user-edit.model";
-import { Role } from "../../interaction/users/user.model";
-
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserFormBaseComponent } from "./user-form-base.component";
+import { UsersService } from "../users.service";
 
 @Component({
-    selector: 'app-module-edit',
-    templateUrl: './user-edit.component.html'
+    selector: 'app-user-edit',
+    templateUrl: './user-form-base.component.html'
 })
-export class UserEditComponent implements OnInit {
-    userDetails: UserEdit;
-    editUserForm: FormGroup;
-    availableRoles: Role[];
-
-    get firstName() {
-        return this.editUserForm.get('firstName');
-    }
-
-    get lastName() {
-        return this.editUserForm.get('lastName');
-    }
-
-    get email() {
-        return this.editUserForm.get('email');
-    }
-
-    get isActive() {
-        return this.editUserForm.get('isActive');
-    }
+export class UserEditComponent extends UserFormBaseComponent {
 
     constructor(
-        protected activatedRoute: ActivatedRoute,
-        protected location: Location
+        activatedRoute: ActivatedRoute,
+        router: Router,
+        private usersService: UsersService
     ) {
-    }
-
-    ngOnInit(): void {
-        this.activatedRoute.data.subscribe(
-            response => {
-                console.log(response)
-                let user = response.userData.userDetails;
-                if (user === undefined || user === null) {
-                    user = {} as UserEdit;
-                }
-                this.userDetails = user;
-                this.availableRoles = response.userData.viewmodel.roles;
-                this.editUserForm = this.formGroupInit();
-            }
-        );
-
-    }
-
-    formGroupInit() {
-        return new FormGroup({
-            id: new FormControl(this.userDetails.id),
-            firstName: new FormControl(this.userDetails.firstName, Validators.required),
-            lastName: new FormControl(this.userDetails.lastName, Validators.required),
-            email: new FormControl(this.userDetails.email, Validators.required),
-            // TODO: Fix active inputSwitch not turning on
-            isActive: new FormControl(this.userDetails.isActive),
-            roles: new FormControl(this.userDetails.roles)
-        })
-    }
-
-    onCancel() {
-        this.location.back();
+        super(activatedRoute, router)
     }
 
     onSubmit() {
-        return;
+        let id = this.userDetails.id;
+        console.log(this.editUserForm.value);
+        this.usersService.edit(id, this.editUserForm.value).subscribe(
+            response => {
+            }
+        );
     };
 }
 

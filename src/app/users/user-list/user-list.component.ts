@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {User} from "../../interaction/users/user.model";
-import {UsersService} from "../users.service";
+import { ActivatedRoute } from "@angular/router";
+import { User } from "../../interaction/users/user.model";
+import { UsersService } from "../users.service";
 
 @Component({
     selector: 'app-user-list',
@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.usersService.users.subscribe(users => {
+        this.usersService.getObservable.subscribe(users => {
                 this.users = users;
                 this.filtered = true;
             }

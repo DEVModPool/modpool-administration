@@ -1,15 +1,16 @@
-import {Role, User} from "./user.model";
+import { Role, User } from "./user.model";
 
 export class UserEdit extends User {
     constructor(
         id?: string,
         firstName?: string,
         lastName?: string,
-        email?: string,
+        emailAddress?: string,
         roles?: Role[],
-        public isActive?: boolean
+        public active?: boolean,
+        lastLoggedOn?: Date
     ) {
-        super(id,firstName,lastName, email,roles);
+        super(id, firstName, lastName, emailAddress, roles);
 
     }
 

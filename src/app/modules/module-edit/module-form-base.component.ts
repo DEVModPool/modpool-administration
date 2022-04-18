@@ -1,9 +1,10 @@
 import { Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModulesService } from "../modules.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
 import { ModuleEdit } from "../../interaction/modules/module-edit.model";
+import { environment } from "../../../environments/environment";
 
 
 @Injectable()
@@ -74,7 +75,7 @@ export abstract class ModuleFormBaseComponent implements OnInit {
 
     protected constructor(
         protected activatedRoute: ActivatedRoute,
-        protected location: Location) {
+        protected router: Router) {
     }
 
     ngOnInit(): void {
@@ -167,7 +168,7 @@ export abstract class ModuleFormBaseComponent implements OnInit {
     }
 
     onCancel() {
-        this.location.back();
+        this.router.navigate([environment.modulesUrl]);
     }
 
     abstract onSubmit();

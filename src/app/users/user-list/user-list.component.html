@@ -30,6 +30,8 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Roles</th>
+                <th>Is Active</th>
+                <th>Logged in</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -44,7 +46,7 @@
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Email</span>
-                    {{ user.email }}
+                    {{ user.emailAddress }}
                 </td>
                 <td style="width: 30%; min-width: 10rem;">
                     <span *ngFor="let role of user.roles" style="padding: 1px">
@@ -52,6 +54,14 @@
                             {{ role.name }}
                         </p-tag>
                     </span>
+                </td>
+                <td style="width: 20%; min-width: 10rem;">
+                    <span class="p-column-title">Email</span>
+                    {{ user.active }}
+                </td>
+                <td style="width: 20%; min-width: 10rem;">
+                    <span class="p-column-title">Email</span>
+                    {{ user.lastLoggedOn | date:'short' }}
                 </td>
                 <td>
                     <button [routerLink]="[user.id]" pButton pRipple type="button"

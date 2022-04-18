@@ -3,11 +3,12 @@ export class User {
         public id?: string,
         public firstName?: string,
         public lastName?: string,
-        public email?: string,
+        public emailAddress?: string,
         public roles?: Role[],
     ) {
     }
 }
+
 export class Role {
     constructor(
         public id?: string,

@@ -1,22 +1,24 @@
-import {Injectable} from "@angular/core";
-import {User} from "../interaction/users/user.model";
+import { Injectable } from "@angular/core";
+import { User } from "../interaction/users/user.model";
 
-import {Subject, tap} from "rxjs";
-import {Response} from "../interaction/response";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { BaseService } from "../interaction/base.service";
+import { environment } from "../../environments/environment";
 
 
 @Injectable()
-export class UsersService {
-    constructor(private http: HttpClient) {
+export class UsersService extends BaseService<User> {
+
+    initialUrl(): string {
+        return environment.usersUrl;
     }
-    users = new Subject<User[]>();
-    getUsers(userFilters: any) {
-        return this.http
-            .get<Response<User[]>>('http://localhost:3000/userList',{params: userFilters})
-            .pipe(tap(response => {
-                this.users.next(response.result);
-            }))
+
+    constructor(
+        http: HttpClient,
+        router: Router) {
+
+        super(http, router);
     }
 }
 

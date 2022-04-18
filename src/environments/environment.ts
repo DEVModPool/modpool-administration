@@ -16,6 +16,9 @@ export const environment = {
     modulesUrl: 'modules/',
     modulesNewUrl: 'modules/new/',
 
+    usersUrl: 'users/',
+    usersNewUrl: 'users/new/',
+
     resolverUrl: 'resolve-route/'
 };
 

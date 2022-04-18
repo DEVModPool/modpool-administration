@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
 import { UsersService } from "../users.service";
 import { Role } from "../../interaction/users/user.model";
+import { Response } from "../../interaction/response"
 
 @Component({
     selector: 'app-user-filter',
@@ -10,11 +11,14 @@ import { Role } from "../../interaction/users/user.model";
 })
 export class UserFilterComponent implements OnInit, OnDestroy {
     isLoading = false;
-    roles: Role[];
-    active: string[];
+    roles: { roleType: string, name: string }[];
+    active: { name: string, value: boolean }[] = [
+        {name: 'Active', value: true},
+        {name: 'Inactive', value: false}
+    ]
 
     userFilters: {
-        firstName: string, lastName: string, email: string, roles: string[], isActive: boolean
+        firstName?: string, lastName?: string, email?: string, roles?: string[], isActive?: boolean
     };
 
     userFilterForm = new FormGroup({
@@ -22,7 +26,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
         lastName: new FormControl(''),
         email: new FormControl(''),
         roles: new FormControl(null),
-        isActive: new FormControl(null),
+        isActive: new FormControl({name: 'All', value: null}),
     })
 
     constructor(
@@ -34,11 +38,27 @@ export class UserFilterComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(
-            (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: boolean }) => {
-                this.userFilters = params;
-                this.userFilterForm.patchValue(params);
+            (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: string }) => {
+
+                let parsed = {}
+                for (let key of Object.keys(params)) {
+                    if (key == 'isActive') {
+                        parsed[key] = params[key] == 'true'
+                        continue
+                    }
+                    parsed[key] = params[key];
+                }
+
+                this.userFilters = parsed;
+                this.userFilterForm.patchValue(parsed);
             }
         );
+
+        this.activatedRoute.data.subscribe(
+            response => {
+                this.roles = response.userData.viewModel.roles;
+            }
+        )
     }
 
     ngAfterViewInit(): void {
@@ -47,7 +67,8 @@ export class UserFilterComponent implements OnInit, OnDestroy {
             qp.firstName != undefined ||
             qp.lastName != undefined ||
             qp.email != undefined ||
-            qp.roles != null
+            qp.roles != null ||
+            qp.isActive != null
         ) {
             this.getUsers();
         }
@@ -67,7 +88,7 @@ export class UserFilterComponent implements OnInit, OnDestroy {
     }
 
     getUsers() {
-        this.userService.getUsers(this.userFilters).subscribe();
+        this.userService.getAll(this.userFilters).subscribe();
     }
 
     getQueryParams(): any {
@@ -96,5 +117,5 @@ interface qp {
     lastName?: string;
     email?: string;
     roles?: string[];
-    isActive?: boolean
+    isActive?: boolean[];
 }

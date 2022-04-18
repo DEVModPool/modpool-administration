@@ -11,10 +11,14 @@ export abstract class DepartmentFormBaseComponent implements OnInit {
     departmentForm: FormGroup;
 
     coordinators: { id: string, fullName: string }[];
-    selectedCoordinator: { id: string, fullName: string } = {id: '', fullName: ''};
+    selectedCoordinator: { id: string, fullName: string };
 
     get name() {
         return this.departmentForm.get('name');
+    }
+
+    get coordinator() {
+        return this.departmentForm.get('coordinator');
     }
 
     protected constructor(
