@@ -45,8 +45,8 @@ export class AuthService implements OnInit {
                 const userId = this.getUserId(decoded);
 
                 localStorage.setItem(environment['jwt-key'], token);
-                localStorage.setItem("userId", userId);
-                localStorage.setItem("user", response.result.user.emailAddress);
+                localStorage.setItem(environment['userId-key'], userId);
+                localStorage.setItem(environment['user-key'], response.result.user.emailAddress);
                 this.setAutoLogout(token);
 
                 this.router.navigate(["/"]);
@@ -59,15 +59,17 @@ export class AuthService implements OnInit {
     }
 
     logout() {
-        this.removeJwtToken();
+        this.clearLocalStorage();
         this.router.navigate(['/login']);
         if (this.autoLogoutTimer) {
             clearTimeout(this.autoLogoutTimer);
         }
     }
 
-    removeJwtToken() {
+    clearLocalStorage() {
         localStorage.removeItem(environment['jwt-key']);
+        localStorage.removeItem(environment['userId-key']);
+        localStorage.removeItem(environment['user-key']);
     }
 
     setJwtToken(token) {

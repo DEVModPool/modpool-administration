@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    "jwt-key": 'jwt-admin',
+    'jwt-key': 'jwt-admin',
+    'user-key': 'user-admin',
+    'userId-key': 'userId-admin',
+
     production: false,
     jwtAllowedDomain: 'administration-dev.modpool.uk',
     baseUrl: 'http://administration-dev.modpool.uk/api/',
