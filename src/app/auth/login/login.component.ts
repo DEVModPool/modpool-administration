@@ -5,13 +5,14 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { Message } from "primeng/api";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: [`./login.component.scss`]
 })
-export class LoginComponent {
+export class LoginComponent extends SubscriptionHandler {
     invalidMessages: Message[];
     subscription: Subscription;
 
@@ -25,6 +26,7 @@ export class LoginComponent {
         private authService: AuthService,
         private router: Router
     ) {
+        super()
     }
 
     ngOnInit(): void {
@@ -37,21 +39,9 @@ export class LoginComponent {
             password: this.authForm.controls.password.value
         }
 
-        this.authService.login(user).subscribe({
-            next: value => {
-                console.log(value);
-                const token = (<any>value).result.token;
-                this.authService.setJwtToken(token);
-                this.router.navigate(["/"]);
-            },
-            error: () => {
-                this.invalidMessages = [{
-                    severity: 'error',
-                    summary: 'Login failed!',
-                    detail: 'Wrong username or password.'
-                }]
-            }
-        });
+        this.storeSubscription(
+            this.authService.login(user)
+        )
     }
 
     ngOnDestroy(): void {

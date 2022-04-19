@@ -1,11 +1,12 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { tap } from "rxjs";
+import { tap, throwError } from "rxjs";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Message } from "primeng/api";
 import { environment } from "src/environments/environment";
 import jwt_decode from 'jwt-decode';
+import { catchError } from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
@@ -35,15 +36,26 @@ export class AuthService implements OnInit {
     }
 
     login(user: LoginRequest) {
-        return this.http.post<any>(environment.baseUrl + environment.loginUrl, user).pipe(
-            tap(response => {
-                const decoded = this.jwtHelper.decodeToken(response.result.token);
+        return this.http.post<any>(environment.baseUrl + environment.loginUrl, user)
+            .pipe(tap(response => {
+
+                const token = (<any>response).result.token;
+
+                const decoded = this.jwtHelper.decodeToken(token);
                 const userId = this.getUserId(decoded);
+
+                localStorage.setItem(environment['jwt-key'], token);
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("user", response.result.user.emailAddress);
-                this.setAutoLogout(response.result.token);
-            })
-        )
+                this.setAutoLogout(token);
+
+                this.router.navigate(["/"]);
+            }))
+            .pipe(catchError(error => {
+                console.log(error);
+                return throwError(error);
+            }))
+            .subscribe();
     }
 
     logout() {
