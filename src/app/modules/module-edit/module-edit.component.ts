@@ -17,7 +17,7 @@ export class ModuleEditComponent extends ModuleFormBaseComponent {
     }
 
     onSubmit() {
-
+        
         let body = this.formatForm();
         body['id'] = this.moduleDetails.id;
         console.log(body);
