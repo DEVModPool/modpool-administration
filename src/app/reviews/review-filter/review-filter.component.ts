@@ -4,6 +4,8 @@ import { FilterInterface } from "../../interaction/filter-interface";
 import { Review } from "../../interaction/reviews/review.model";
 import { ReviewsService } from "../reviews.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { PaginationModel } from "../../pagination/pagination.model";
+import { PaginationService } from "../../pagination/pagination.service";
 
 @Component({
     selector: 'app-review-filter',
@@ -14,9 +16,10 @@ export class ReviewFilterComponent extends FilterInterface<Review, qp> {
     constructor(
         reviewsService: ReviewsService,
         activatedRoute: ActivatedRoute,
-        router: Router
+        router: Router,
+        paginationService: PaginationService
     ) {
-        super(reviewsService, activatedRoute, router)
+        super(reviewsService, activatedRoute, router, paginationService);
     }
 
     getFilterForm(): FormGroup {
@@ -28,8 +31,8 @@ export class ReviewFilterComponent extends FilterInterface<Review, qp> {
     }
 }
 
-interface qp {
-    author: string,
-    module: string,
-    status: string
+interface qp extends PaginationModel {
+    author: string;
+    module: string;
+    status: string;
 }

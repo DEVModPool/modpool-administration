@@ -1,14 +1,18 @@
-import { AfterViewInit, Injectable, OnDestroy, OnInit, Query } from '@angular/core';
+import { AfterViewInit, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 import { BaseService } from "./base-service";
+import { PaginationModel } from "../pagination/pagination.model";
+import { PaginationService } from "../pagination/pagination.service";
+import { Subscription } from "rxjs";
 
 @Injectable()
-export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit, OnDestroy, AfterViewInit {
+export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationModel> implements OnInit, OnDestroy, AfterViewInit {
     isLoading = false;
     searchFilters: QueryParamsT;
     filterForm: FormGroup;
     private fields: string[];
+    private subscription: Subscription;
 
     abstract getFilterForm(): FormGroup;
 
@@ -20,7 +24,8 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
     protected constructor(
         private itemService: BaseService<ResolveT>,
         private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private paginationService: PaginationService
     ) {
     }
 
@@ -32,11 +37,17 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
                 this.filterForm.patchValue(params);
             }
         );
+
+        this.paginationService.pageData.subscribe(
+            data => {
+                this.searchFilters = {...this.searchFilters, ...data}
+                this.getItems();
+            }
+        )
     }
 
     getItems() {
-        console.log(this.searchFilters);
-        this.itemService.getAll(this.searchFilters).subscribe();
+        this.subscription = this.itemService.getAll(this.searchFilters).subscribe();
     }
 
     ngAfterViewInit(): void {
@@ -51,6 +62,7 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
     }
 
     ngOnDestroy(): void {
+        this.subscription ? this.subscription.unsubscribe() : null;
     }
 
     onSearch() {
@@ -77,3 +89,4 @@ export abstract class FilterInterface<ResolveT, QueryParamsT> implements OnInit,
         return qp;
     }
 }
+

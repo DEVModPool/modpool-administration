@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DepartmentsService } from "../departments.service";
 import { FilterInterface } from "../../interaction/filter-interface";
 import { Department } from "../department.model";
+import { PaginationModel } from "../../pagination/pagination.model";
+import { PaginationService } from "../../pagination/pagination.service";
 
 @Component({
     selector: 'app-department-filter',
@@ -20,12 +22,13 @@ export class DepartmentFilterComponent extends FilterInterface<Department, qp> {
     constructor(
         departmentService: DepartmentsService,
         activatedRoute: ActivatedRoute,
-        router: Router
+        router: Router,
+        paginationService: PaginationService
     ) {
-        super(departmentService, activatedRoute, router);
+        super(departmentService, activatedRoute, router, paginationService);
     }
 }
 
-interface qp {
+interface qp extends PaginationModel {
     name?: string;
 }

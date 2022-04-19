@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { UsersService } from "../users.service";
 import { Role, User } from "../../interaction/users/user.model";
 import { FilterInterface } from "../../interaction/filter-interface";
+import { PaginationService } from "../../pagination/pagination.service";
+import { PaginationModel } from "../../pagination/pagination.model";
 
 @Component({
     selector: 'app-user-filter',
@@ -20,9 +22,10 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
     constructor(
         userService: UsersService,
         private _activatedRoute: ActivatedRoute,
-        router: Router
+        router: Router,
+        paginationService: PaginationService
     ) {
-        super(userService, _activatedRoute, router);
+        super(userService, _activatedRoute, router, paginationService);
     }
 
     getFilterForm(): FormGroup {
@@ -31,7 +34,7 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
             lastName: new FormControl(''),
             emailAddress: new FormControl(''),
             roleTypes: new FormControl(null),
-            activityStatus: new FormControl(true),
+            // activityStatus: new FormControl(true),
         });
     }
 
@@ -46,10 +49,10 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
     }
 }
 
-interface qp {
+interface qp extends PaginationModel {
     firstName?: string;
     lastName?: string;
     email?: string;
     roles?: string[];
-    isActive?: boolean;
+    // isActive?: boolean;
 }

@@ -26,6 +26,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputSwitchModule } from "primeng/inputswitch";
 import { UserNewComponent } from "./user-edit/user-new.component";
+import { PaginationModule } from "../pagination/pagination.module";
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { UserNewComponent } from "./user-edit/user-new.component";
         ReactiveFormsModule,
         DropdownModule,
         InputNumberModule,
-        InputSwitchModule
+        InputSwitchModule,
+        PaginationModule
     ]
 })
 export class UsersModule {

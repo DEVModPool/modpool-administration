@@ -22,6 +22,7 @@ import { MessageModule } from "primeng/message";
 import { QueryParamModule } from "@ngqp/core";
 import { ModuleEditComponent } from "./module-edit/module-edit.component";
 import { ModuleNewComponent } from "./module-edit/module-new.component";
+import { PaginationModule } from "../pagination/pagination.module";
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { ModuleNewComponent } from "./module-edit/module-new.component";
         InputNumberModule,
         MessagesModule,
         MessageModule,
-        QueryParamModule
+        QueryParamModule,
+        PaginationModule
     ]
 })
 export class ModulesModule {

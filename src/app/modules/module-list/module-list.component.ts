@@ -11,13 +11,12 @@ export class ModuleListComponent implements OnInit {
     modules: Module[];
     filtered = false;
 
-    constructor(private modulesService: ModulesService, private activatedRoute: ActivatedRoute) {
+    constructor(private modulesService: ModulesService) {
     }
 
     ngOnInit(): void {
         this.modulesService.getObservable.subscribe(modules => {
                 this.modules = modules;
-                console.log(this.modules);
                 this.filtered = true;
             }
         );

@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ChipsModule } from "primeng/chips";
 import { ButtonModule } from "primeng/button";
-import { DepartmentsService } from "./departments.service";
 import { DepartmentListComponent } from "./department-list/department-list.component";
 import { RippleModule } from "primeng/ripple";
 import { TagModule } from "primeng/tag";

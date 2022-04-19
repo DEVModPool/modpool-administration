@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { tap, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { PaginationService } from "../pagination/pagination.service";
 
 @Injectable({
     providedIn: 'root'
@@ -15,9 +16,9 @@ export class ReviewsService extends BaseService<Review> {
 
     constructor(
         private _http: HttpClient,
-        router: Router
-    ) {
-        super(_http, router);
+        router: Router,
+        paginationService: PaginationService) {
+        super(_http, router, paginationService);
     }
 
     initialUrl(): string {

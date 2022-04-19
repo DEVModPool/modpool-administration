@@ -17,6 +17,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ConfirmPopupModule } from "primeng/confirmpopup";
 import { ReviewsRoutingModule } from "./reviews-routing.module";
+import { PaginationModule } from "../pagination/pagination.module";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReviewsRoutingModule } from "./reviews-routing.module";
         ReactiveFormsModule,
         InputTextModule,
         MultiSelectModule,
-        ConfirmPopupModule
+        ConfirmPopupModule,
+        PaginationModule
     ]
 })
 export class ReviewsModule {

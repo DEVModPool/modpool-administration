@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment";
 import { Router } from "@angular/router";
 import { BaseService } from "../interaction/base-service";
 import { Injectable } from "@angular/core";
+import { PaginationService } from "../pagination/pagination.service";
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +17,9 @@ export class DepartmentsService extends BaseService<Department> {
 
     constructor(
         http: HttpClient,
-        router: Router
-    ) {
-        super(http, router);
+        router: Router,
+        paginationService: PaginationService) {
+        super(http, router, paginationService);
     }
 
 }
