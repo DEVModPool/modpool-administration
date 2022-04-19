@@ -9,8 +9,13 @@ export interface ModuleEdit extends Module {
     selectedRequisites: RequisiteModule[];
     syllabus: string;
     learningOutcomes: string;
-    assessment: string;
+    assessments: Assessment[];
     studyHours: StudyHours;
+}
+
+interface Assessment {
+    name: string;
+    weight: string;
 }
 
 interface Department {

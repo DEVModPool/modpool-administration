@@ -1,12 +1,14 @@
-import { Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from "@angular/common";
 import { Department } from "../department.model";
 import { environment } from "../../../environments/environment";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 @Injectable()
-export abstract class DepartmentFormBaseComponent implements OnInit, OnChanges {
+export abstract class DepartmentFormBaseComponent
+    extends SubscriptionHandler
+    implements OnInit {
     departmentDetails: Department;
     departmentForm: FormGroup;
 
@@ -25,10 +27,11 @@ export abstract class DepartmentFormBaseComponent implements OnInit, OnChanges {
         protected activatedRoute: ActivatedRoute,
         protected router: Router
     ) {
+        super();
     }
 
     ngOnInit(): void {
-        this.activatedRoute.data.subscribe(
+        const subscription = this.activatedRoute.data.subscribe(
             response => {
 
                 let department = response.departmentData.department;
@@ -48,10 +51,8 @@ export abstract class DepartmentFormBaseComponent implements OnInit, OnChanges {
                 this.departmentForm = this.formGroupInit();
             }
         );
-    }
 
-    ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
+        this.storeSubscription(subscription);
     }
 
     formGroupInit() {

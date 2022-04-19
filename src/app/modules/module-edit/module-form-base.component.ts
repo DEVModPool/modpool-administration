@@ -1,14 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ModulesService } from "../modules.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from '@angular/common';
 import { ModuleEdit, StudyHours } from "../../interaction/modules/module-edit.model";
 import { environment } from "../../../environments/environment";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 
 @Injectable()
-export abstract class ModuleFormBaseComponent implements OnInit {
+export abstract class ModuleFormBaseComponent extends SubscriptionHandler implements OnInit {
 
     departments: { id: string, name: string }[];
     coordinators: { id: string, name: string }[];
@@ -20,7 +19,7 @@ export abstract class ModuleFormBaseComponent implements OnInit {
 
     academicYears = this.getAcademicYears();
 
-    assessments: any = new FormArray([this.newAssessment()]);
+    assessments: any;
 
     moduleDetails: ModuleEdit;
     moduleForm: FormGroup;
@@ -76,10 +75,11 @@ export abstract class ModuleFormBaseComponent implements OnInit {
     protected constructor(
         protected activatedRoute: ActivatedRoute,
         protected router: Router) {
+        super();
     }
 
     ngOnInit(): void {
-        this.activatedRoute.data.subscribe(
+        const subscription = this.activatedRoute.data.subscribe(
             response => {
                 // console.log(response);
 
@@ -89,7 +89,6 @@ export abstract class ModuleFormBaseComponent implements OnInit {
 
                 let module = response.moduleData.module;
 
-                // console.log(module);
                 if (module === undefined) {
                     module = {} as ModuleEdit;
 
@@ -105,20 +104,25 @@ export abstract class ModuleFormBaseComponent implements OnInit {
                         privateStudy: 0
                     }
 
+                    this.assessments = new FormArray([this.newAssessment()]);
                     module.coordinator = this.coordinators[0];
                     module.department = this.departments[0];
+                    module.selectedRequisites = [];
+                    module.academicYear = this.academicYears[1];
+                    module.semester = 1;
+                } else {
+                    this.assessments = new FormArray(module.assessments
+                        .map(assessment => this.newAssessment(assessment.name, assessment.weight)));
+                    module.academicYear = this.academicYears[0];
+                    module.selectedRequisites = module.selectedRequisites ? module.selectedRequisites : [];
                 }
 
-                module['selectedRequisites'] = [this.requisites[0]];
-                module.academicYear = this.academicYears[1];
-                module.semester = 2;
-
-
                 this.moduleDetails = module;
-
                 this.moduleForm = this.formGroupInit();
             }
         );
+
+        this.storeSubscription(subscription);
     }
 
     formGroupInit() {
@@ -181,10 +185,10 @@ export abstract class ModuleFormBaseComponent implements OnInit {
         return years;
     }
 
-    newAssessment() {
+    newAssessment(name = null, weight = null) {
         return new FormGroup({
-            name: new FormControl('Assessment 1', Validators.required),
-            weight: new FormControl('0', Validators.required)
+            name: new FormControl(name ? name : 'Assessment 1', Validators.required),
+            weight: new FormControl(weight ? weight : "0", Validators.required)
         })
     }
 

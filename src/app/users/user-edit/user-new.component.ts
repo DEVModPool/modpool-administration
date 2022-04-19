@@ -7,6 +7,7 @@ import { UserEdit } from "../../interaction/users/user-edit.model";
 import { Role } from "../../interaction/users/user.model";
 import { UserFormBaseComponent } from "./user-form-base.component";
 import { UsersService } from "../users.service";
+import { Subscription } from "rxjs";
 
 
 @Component({
@@ -14,6 +15,8 @@ import { UsersService } from "../users.service";
     templateUrl: './user-form-base.component.html'
 })
 export class UserNewComponent extends UserFormBaseComponent implements OnInit {
+
+    private subscription: Subscription;
 
     constructor(
         activatedRoute: ActivatedRoute,
@@ -38,13 +41,12 @@ export class UserNewComponent extends UserFormBaseComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.editUserForm.value);
-        this.usersService.addNew(this.editUserForm.value).subscribe(
-            response => {
-                console.log(response);
-            }
-        );
+        this.subscription = this.usersService.addNew(this.editUserForm.value);
     };
+
+    ngOnDestroy() {
+
+    }
 }
 
 

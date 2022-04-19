@@ -19,14 +19,8 @@ export class DepartmentNewComponent extends DepartmentFormBaseComponent {
     }
 
     onSubmit() {
-        this.departmentsService.addNew(this.formatForm()).subscribe(
-            response => {
-
-            },
-            error => {
-                // TODO: Display error notification
-                console.log(error);
-            }
+        this.storeSubscription(
+            this.departmentsService.addNew(this.formatForm())
         );
     }
 }

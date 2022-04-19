@@ -18,7 +18,7 @@ export class UserEditComponent extends UserFormBaseComponent {
         private usersService: UsersService,
         private roleService: RoleService
     ) {
-        super(activatedRoute, router)
+        super(activatedRoute, router);
     }
 
     ngOnInit(): void {
@@ -53,19 +53,22 @@ export class UserEditComponent extends UserFormBaseComponent {
     }
 
     addRole(role) {
-        this.roleService.add(this.userDetails.id, role.roleType).subscribe();
+        this.storeSubscription(
+            this.roleService.add(this.userDetails.id, role.roleType)
+        );
     }
 
     removeRole(role) {
-        this.roleService.remove(this.userDetails.id, role.roleType).subscribe();
+        this.storeSubscription(
+            this.roleService.remove(this.userDetails.id, role.roleType)
+        );
     }
 
     onSubmit() {
         let id = this.userDetails.id;
         console.log(this.editUserForm.value);
-        this.usersService.edit(id, this.editUserForm.value).subscribe(
-            response => {
-            }
+        this.storeSubscription(
+            this.usersService.edit(id, this.editUserForm.value)
         );
     };
 }

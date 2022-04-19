@@ -20,12 +20,9 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
     }
 
     onSubmit() {
-
-        this.departmentsService.edit(this.departmentDetails.id, this.formatForm()).subscribe(
-            response => {
-                // console.log('Hello?');
-            }
-        );
+        this.storeSubscription(
+            this.departmentsService.edit(this.departmentDetails.id, this.formatForm())
+        )
         return;
     }
 }

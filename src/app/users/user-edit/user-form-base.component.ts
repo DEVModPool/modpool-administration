@@ -4,10 +4,11 @@ import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserEdit } from "../../interaction/users/user-edit.model";
 import { environment } from "../../../environments/environment";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 
 @Injectable()
-export abstract class UserFormBaseComponent {
+export abstract class UserFormBaseComponent extends SubscriptionHandler {
     userDetails = {} as UserEdit;
     editUserForm: FormGroup;
     availableRoles: { roleType: string, name: string }[];
@@ -37,6 +38,7 @@ export abstract class UserFormBaseComponent {
         protected activatedRoute: ActivatedRoute,
         protected router: Router
     ) {
+        super();
     }
 
     onCancel() {

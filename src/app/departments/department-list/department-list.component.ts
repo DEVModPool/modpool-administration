@@ -12,7 +12,7 @@ export class DepartmentListComponent implements OnInit {
     departments: Department[];
     filtered = false;
 
-    constructor(private departmentsService: DepartmentsService, private activatedRoute: ActivatedRoute) {
+    constructor(private departmentsService: DepartmentsService) {
     }
 
     ngOnInit(): void {

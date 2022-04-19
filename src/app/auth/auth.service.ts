@@ -37,7 +37,6 @@ export class AuthService implements OnInit {
     login(user: LoginRequest) {
         return this.http.post<any>(environment.baseUrl + environment.loginUrl, user).pipe(
             tap(response => {
-                console.log(this.jwtHelper.decodeToken(response.result.token))
                 const decoded = this.jwtHelper.decodeToken(response.result.token);
                 const userId = this.getUserId(decoded);
                 localStorage.setItem("userId", userId);
@@ -52,14 +51,6 @@ export class AuthService implements OnInit {
         this.router.navigate(['/login']);
         if (this.autoLogoutTimer) {
             clearTimeout(this.autoLogoutTimer);
-        }
-    }
-
-    decodeJwtToken(token: string): any {
-        try {
-            return jwt_decode(token);
-        } catch (Error) {
-            return null;
         }
     }
 

@@ -1,9 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component } from '@angular/core';
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from '@angular/common';
-import { ModuleEdit } from "../../interaction/modules/module-edit.model";
 import { ModuleFormBaseComponent } from "./module-form-base.component";
 
 
@@ -23,15 +20,10 @@ export class ModuleEditComponent extends ModuleFormBaseComponent {
 
         let body = this.formatForm();
         body['id'] = this.moduleDetails.id;
-
         console.log(body);
-
-        this.modulesService.edit(this.moduleDetails.id, body)
-            .subscribe(
-                response => {
-                    console.log(response);
-                }
-            );
+        this.storeSubscription(
+            this.modulesService.edit(this.moduleDetails.id, body)
+        );
     };
 }
 

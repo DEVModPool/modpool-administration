@@ -28,7 +28,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Is Active</th>
+                <!--                <th>Is Active</th>-->
                 <th>Logged in</th>
                 <th></th>
             </tr>
@@ -44,7 +44,7 @@
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Email</span>
-                    {{ user.emailAddress }}
+                    {{ user.emailAddress | slice:0:30 }}
                 </td>
                 <td style="width: 30%; min-width: 10rem;">
                     <span *ngFor="let role of user.roles" style="padding: 1px">
@@ -53,12 +53,12 @@
                         </p-tag>
                     </span>
                 </td>
+                <!--                <td style="width: 20%; min-width: 10rem;">-->
+                <!--                    <span class="p-column-title">Email</span>-->
+                <!--                    {{ user.active }}-->
+                <!--                </td>-->
                 <td style="width: 20%; min-width: 10rem;">
-                    <span class="p-column-title">Email</span>
-                    {{ user.active }}
-                </td>
-                <td style="width: 20%; min-width: 10rem;">
-                    <span class="p-column-title">Email</span>
+                    <span class="p-column-title">Logged in</span>
                     {{ user.lastLoggedOn | date:'short' }}
                 </td>
                 <td>

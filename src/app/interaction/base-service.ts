@@ -27,7 +27,7 @@ export abstract class BaseService<T> {
                 const pageConfiguration = this.paginationService.parseConfiguration(response.result)
                 this.paginationService.paginationConfiguration.next(pageConfiguration);
                 this.getObservable.next(response.result.items);
-            }))
+            }));
     }
 
     addNew(object) {
@@ -43,7 +43,7 @@ export abstract class BaseService<T> {
                     console.log(error.errors);
                     return throwError(error);
                 })
-            );
+            ).subscribe();
     }
 
     edit(id, data) {
@@ -62,7 +62,7 @@ export abstract class BaseService<T> {
                     console.log(error);
                     return throwError(error);
                 })
-            );
+            ).subscribe();
     }
 }
 
