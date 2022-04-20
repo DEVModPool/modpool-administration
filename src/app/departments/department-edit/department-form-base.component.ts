@@ -12,6 +12,8 @@ export abstract class DepartmentFormBaseComponent
     departmentDetails: Department;
     departmentForm: FormGroup;
 
+    showNewButton = false;
+
     coordinators: { id: string, fullName: string }[];
     selectedCoordinator: { id: string, fullName: string };
 
@@ -21,6 +23,10 @@ export abstract class DepartmentFormBaseComponent
 
     get coordinator() {
         return this.departmentForm.get('coordinator');
+    }
+
+    get newDepartmentUrl() {
+        return `/${environment.departmentsNewUrl}`;
     }
 
     protected constructor(

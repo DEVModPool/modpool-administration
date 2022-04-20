@@ -57,8 +57,18 @@
             pButton
             pRipple
             label="Save"
-            icon="pi pi-plus"
+            icon="pi pi-check"
             class="p-button-success mr-2">
+        </button>
+        <button
+            *ngIf="showNewButton"
+            [routerLink]="newDepartmentUrl"
+            type="button"
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-primary mr-2">
         </button>
     </form>
 </div>

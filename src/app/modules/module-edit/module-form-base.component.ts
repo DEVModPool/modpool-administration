@@ -107,13 +107,13 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
                     this.assessments = new FormArray([this.newAssessment()]);
                     module.coordinator = this.coordinators[0];
                     module.department = this.departments[0];
-                    module.prerequisiteModuleIds = [];
+                    module.prerequisiteModules = [];
                     module.academicYear = this.academicYears[1];
                     module.semester = 1;
                 } else {
                     this.assessments = new FormArray(module.assessments
                         .map(assessment => this.newAssessment(assessment.name, assessment.weight)));
-                    module.prerequisiteModuleIds = module.prerequisiteModuleIds ? module.prerequisiteModuleIds : [];
+                    module.prerequisiteModules = module.prerequisiteModules ? module.prerequisiteModules : [];
                 }
 
                 this.moduleDetails = module;
@@ -136,7 +136,7 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
             level: new FormControl(100, Validators.required),
             credits: new FormControl(this.moduleDetails.credits, Validators.required),
             description: new FormControl(this.moduleDetails.description, Validators.required),
-            requisites: new FormControl(this.moduleDetails.prerequisiteModuleIds),
+            requisites: new FormControl(this.moduleDetails.prerequisiteModules),
             syllabus: new FormControl(this.moduleDetails.syllabus, Validators.required),
             learningOutcomes: new FormControl(this.moduleDetails.learningOutcomes, Validators.required),
             assessments: this.assessments,

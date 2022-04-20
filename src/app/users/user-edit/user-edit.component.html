@@ -119,5 +119,15 @@
             icon="pi pi-plus"
             class="p-button-success mr-2">
         </button>
+        <button
+            *ngIf="showNewButton"
+            [routerLink]="newUserUrl"
+            type="button"
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-primary mr-2">
+        </button>
     </form>
 </div>

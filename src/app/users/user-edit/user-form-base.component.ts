@@ -12,6 +12,7 @@ export abstract class UserFormBaseComponent extends SubscriptionHandler {
     userDetails = {} as UserEdit;
     editUserForm: FormGroup;
     availableRoles: { roleType: string, name: string }[];
+    showNewButton = false;
 
     active = [
         {name: 'Active', value: true},

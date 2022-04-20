@@ -5,12 +5,17 @@ import { UserFormBaseComponent } from "./user-form-base.component";
 import { UsersService } from "../users.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { RoleService } from "../role.service";
+import { environment } from "../../../environments/environment";
 
 @Component({
     selector: 'app-user-edit',
     templateUrl: './user-edit.component.html'
 })
 export class UserEditComponent extends UserFormBaseComponent {
+
+    get newUserUrl() {
+        return environment.usersNewUrl;
+    }
 
     constructor(
         activatedRoute: ActivatedRoute,
@@ -19,6 +24,7 @@ export class UserEditComponent extends UserFormBaseComponent {
         private roleService: RoleService
     ) {
         super(activatedRoute, router);
+        this.showNewButton = true;
     }
 
     ngOnInit(): void {

@@ -11,7 +11,7 @@ export interface ModuleEdit extends Module {
     learningOutcomes: string;
     assessments: Assessment[];
     studyHours: StudyHours;
-    prerequisiteModuleIds: RequisiteModule[];
+    prerequisiteModules: RequisiteModule[];
 }
 
 interface Assessment {

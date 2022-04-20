@@ -17,6 +17,7 @@ export class DepartmentEditComponent extends DepartmentFormBaseComponent {
         private departmentsService: DepartmentsService
     ) {
         super(activatedRoute, router);
+        this.showNewButton = true;
     }
 
     onSubmit() {
