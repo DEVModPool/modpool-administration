@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Message } from "primeng/api";
 import { environment } from "src/environments/environment";
-import jwt_decode from 'jwt-decode';
 import { catchError } from "rxjs/operators";
 
 @Injectable({

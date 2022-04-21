@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,6 +33,8 @@ import { AuthModule } from "./auth/auth.module";
 import { environment } from "../environments/environment";
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationModule } from "./pagination/pagination.module";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {Interceptor} from "./interaction/interceptor.service";
 
 export function tokenGetter() {
     return localStorage.getItem(environment["jwt-key"]);
@@ -47,6 +49,7 @@ export function tokenGetter() {
         ConfirmDialogModule,
         RippleModule,
         BrowserAnimationsModule,
+        NgxSpinnerModule,
         UsersModule,
         ReviewsModule,
         ModulesModule,
@@ -60,6 +63,7 @@ export function tokenGetter() {
             }
         })
     ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
         AppComponent,
         AppMainComponent,
@@ -73,6 +77,7 @@ export function tokenGetter() {
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},
+        { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
         ConfigService,
         MenuService,
         ConfirmationService,
