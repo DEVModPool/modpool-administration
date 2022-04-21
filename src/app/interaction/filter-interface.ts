@@ -1,7 +1,7 @@
 import { AfterViewInit, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup } from "@angular/forms";
-import { BaseService } from "./base-service";
+import { ServiceInterface } from "./service-interface";
 import { PaginationModel } from "../pagination/pagination.model";
 import { PaginationService } from "../pagination/pagination.service";
 import { SubscriptionHandler } from "./subscription-handler";
@@ -27,7 +27,7 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
     }
 
     protected constructor(
-        private itemService: BaseService<ResolveT>,
+        private itemService: ServiceInterface<ResolveT>,
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private paginationService: PaginationService

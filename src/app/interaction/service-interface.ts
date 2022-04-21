@@ -8,7 +8,7 @@ import { catchError } from "rxjs/operators";
 import { PaginationService } from "../pagination/pagination.service";
 
 
-export abstract class BaseService<T> {
+export abstract class ServiceInterface<T> {
     getObservable = new Subject<T[]>();
 
     protected constructor(

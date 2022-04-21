@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Review } from "../interaction/reviews/review.model";
 import { ModulesService } from "../modules/modules.service";
-import { BaseService } from "../interaction/base-service";
+import { ServiceInterface } from "../interaction/service-interface";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
@@ -12,7 +12,7 @@ import { PaginationService } from "../pagination/pagination.service";
 @Injectable({
     providedIn: 'root'
 })
-export class ReviewsService extends BaseService<Review> {
+export class ReviewsService extends ServiceInterface<Review> {
 
     constructor(
         private _http: HttpClient,
