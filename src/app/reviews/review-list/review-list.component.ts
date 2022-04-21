@@ -36,13 +36,15 @@ export class ReviewListComponent implements OnInit {
     ngOnInit(): void {
         this.reviewService.getObservable.subscribe(
             reviews => {
+                console.log(reviews);
                 this.reviews = reviews;
             }
         );
 
         this.activatedRoute.data.subscribe(
             response => {
-                // this.reviews = response.reviews;
+                console.log(response);
+                this.reviews = response.reviewData.reviews.items;
             }
         );
 

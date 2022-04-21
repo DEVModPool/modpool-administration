@@ -24,6 +24,7 @@ export abstract class BaseService<T> {
         return this.http
             .get<Response<any>>(environment.baseUrl + this.initialUrl(), {params: filters})
             .pipe(tap(response => {
+                console.log(response.result);
                 const pageConfiguration = this.paginationService.parseConfiguration(response.result)
                 this.paginationService.paginationConfiguration.next(pageConfiguration);
                 this.getObservable.next(response.result.items);
@@ -52,6 +53,12 @@ export abstract class BaseService<T> {
             .pipe(
                 tap(
                     response => {
+                        // this.http.get(environment.baseUrl + this.initialUrl() + response.result.id + '/resolve-route')
+                        //     .subscribe(
+                        //         (response: any) => {
+                        //             this.getObservable.next(response.result.items);
+                        //         }
+                        //     );
                         this.router.navigate([this.initialUrl()])
                             .then(() => {
                                 return this.router.navigate([this.initialUrl() + response.result.id]);

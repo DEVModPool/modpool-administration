@@ -24,9 +24,9 @@ export class ReviewFilterComponent extends FilterInterface<Review, qp> {
 
     getFilterForm(): FormGroup {
         return new FormGroup({
-            author: new FormControl(''),
-            module: new FormControl(''),
-            status: new FormControl(''),
+            authorName: new FormControl(''),
+            moduleName: new FormControl(''),
+            reviewStatus: new FormControl(''),
         });
     }
 }

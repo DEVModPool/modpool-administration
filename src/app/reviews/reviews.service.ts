@@ -5,7 +5,7 @@ import { BaseService } from "../interaction/base-service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
-import { tap, throwError } from "rxjs";
+import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PaginationService } from "../pagination/pagination.service";
 
@@ -26,14 +26,13 @@ export class ReviewsService extends BaseService<Review> {
     }
 
     setApprovedStatus(status, id) {
-
-        const moderatorId = localStorage.getItem('userId');
-
         const body = {
             status,
             id,
-            moderatorId,
         }
+
+        console.log(body);
+
         return this._http
             .post(environment.baseUrl + this.initialUrl() + 'statuses/', body)
             .pipe(

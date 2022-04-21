@@ -21,15 +21,15 @@
         <ng-template pTemplate="body" let-review>
             <tr>
                 <td style="width: 30%; min-width: 10rem;"><span class="p-column-title">Author</span>
-                    {{ review.author }}
+                    {{ review.authorName }}
                 </td>
                 <td style="width: 20%; min-width: 10rem;">
                     <span class="p-column-title">Module</span>
-                    {{ review.moduleName }}
+                    {{ review.moduleCode }}
                 </td>
                 <td style="width: 15%; min-width: 10rem;">
                     <span class="p-column-title">Last Updated</span>
-                    {{ review.lastUpdated }}
+                    {{ review.lastUpdatedOn | date:'medium' }}
                 </td>
                 <td style=" text-align:center; width: 20%; min-width: 10rem;">
                     <p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag>
