@@ -1,5 +1,5 @@
 <div class="card">
-    <h5>{{ userDetails.firstName ? userDetails.firstName : "New User" }}</h5>
+    <h5>{{ userDetails.firstName ? userDetails.firstName + ' ' + userDetails.lastName : "New User" }}</h5>
     <br>
     <form
         [formGroup]="editUserForm"
@@ -30,11 +30,12 @@
                 <label for="email">Email</label>&nbsp;<i class="fa-solid fa-star-of-life"
                                                          [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
+                    type="email"
                     formControlName="emailAddress"
                     pInputText
-                    id="email"
-                    type="text"/>
+                    id="email"/>
                 <small *ngIf="email.dirty && email.errors?.['required']" class="p-error">Email is required.</small>
+                <small *ngIf="email.dirty && email.errors?.['email']" class="p-error">Email address is invalid.</small>
             </div>
             <div class="field col-12 md:col-4">
                 <label for="email">Password</label>&nbsp;<i class="fa-solid fa-star-of-life"
@@ -44,7 +45,8 @@
                     pInputText
                     id="password"
                     type="text"/>
-                <small *ngIf="email.dirty && email.errors?.['required']" class="p-error">Password is required.</small>
+                <small *ngIf="password.dirty && password.errors?.['required']" class="p-error">Password is
+                    required.</small>
             </div>
             <div style="margin-top:23px" class="field col-12 md:col-2">
                 <p-dropdown

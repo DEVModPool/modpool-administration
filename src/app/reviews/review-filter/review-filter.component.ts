@@ -15,18 +15,35 @@ export class ReviewFilterComponent extends FilterInterface<Review, qp> {
 
     constructor(
         reviewsService: ReviewsService,
-        activatedRoute: ActivatedRoute,
+        private _activatedRoute: ActivatedRoute,
         router: Router,
         paginationService: PaginationService
     ) {
-        super(reviewsService, activatedRoute, router, paginationService);
+        super(reviewsService, _activatedRoute, router, paginationService);
+    }
+
+    statuses: { id: string, name: string }[];
+
+    ngOnInit() {
+        super.ngOnInit();
+
+        this._activatedRoute.data.subscribe(
+            response => {
+                this.statuses = response.reviewData.viewModel.statuses.map(
+                    item => {
+                        item.id = `${item.id}`;
+                        return item;
+                    }
+                );
+            }
+        )
     }
 
     getFilterForm(): FormGroup {
         return new FormGroup({
             authorName: new FormControl(''),
             moduleName: new FormControl(''),
-            reviewStatus: new FormControl(''),
+            reviewStatus: new FormControl(null),
         });
     }
 }
@@ -34,5 +51,5 @@ export class ReviewFilterComponent extends FilterInterface<Review, qp> {
 interface qp extends PaginationModel {
     author: string;
     module: string;
-    status: string;
+    reviewStatus: string;
 }

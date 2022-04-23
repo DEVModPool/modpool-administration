@@ -35,6 +35,10 @@ export abstract class UserFormBaseComponent extends SubscriptionHandler {
         return this.editUserForm.get('isActive');
     }
 
+    get password() {
+        return this.editUserForm.get('password');
+    }
+
     protected constructor(
         protected activatedRoute: ActivatedRoute,
         protected router: Router

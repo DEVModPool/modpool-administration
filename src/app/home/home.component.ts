@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../auth/auth.service";
+import { environment } from "../../environments/environment";
 
 @Component({
     selector: 'app-home',
@@ -7,9 +8,11 @@ import {AuthService} from "../auth/auth.service";
 })
 export class HomeComponent implements OnInit {
     userName: string;
-    constructor() {}
+
+    constructor() {
+    }
 
     ngOnInit(): void {
-        this.userName = localStorage.getItem("user");
+        this.userName = localStorage.getItem(environment["user-key"]);
     }
 }

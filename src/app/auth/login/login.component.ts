@@ -30,6 +30,13 @@ export class LoginComponent extends SubscriptionHandler {
     }
 
     ngOnInit(): void {
+
+        this.authService.errorMessages.subscribe(
+            messages => {
+                this.invalidMessages = messages;
+            }
+        )
+
         this.invalidMessages = this.authService.autoLogoutMessage;
     }
 

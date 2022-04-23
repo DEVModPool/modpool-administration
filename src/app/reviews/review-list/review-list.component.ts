@@ -2,35 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from "../../interaction/reviews/review.model";
 import { ReviewsService } from "../reviews.service";
 import { ActivatedRoute } from "@angular/router";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 @Component({
     selector: 'app-review-list',
     templateUrl: './review-list.component.html'
 })
-export class ReviewListComponent implements OnInit {
-    reviews: Review[] = [
-        {
-            id: '13123-1231231-23-123123',
-            author: 'Kristian',
-            moduleName: 'module',
-            status: 'Flagged',
-            lastUpdated: null,
-            reviewContent: 'Helloooo'
-        },
-        {
-            id: '13123-1231231-23-123123',
-            author: 'Kristian',
-            moduleName: 'module',
-            status: 'Approved',
-            lastUpdated: null,
-            reviewContent: 'Helloooo'
-        },
-    ];
+export class ReviewListComponent extends SubscriptionHandler implements OnInit {
+    reviews: Review[];
+    statuses: { id: number, name: string }[];
 
     constructor(
         private reviewService: ReviewsService,
         private activatedRoute: ActivatedRoute
     ) {
+        super();
     }
 
     ngOnInit(): void {
@@ -44,7 +30,10 @@ export class ReviewListComponent implements OnInit {
         this.activatedRoute.data.subscribe(
             response => {
                 console.log(response);
-                this.reviews = response.reviewData.reviews.items;
+                this.statuses = response.reviewData.viewModel.statuses;
+                this.storeSubscription(
+                    this.reviewService.getAll().subscribe()
+                );
             }
         );
 

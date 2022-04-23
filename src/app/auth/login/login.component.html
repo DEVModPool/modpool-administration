@@ -25,24 +25,11 @@
                                         formControlName="password"></p-password>
                         </div>
 
-                        <div class="flex flex-row-reverse align-items-center justify-content-between mb-5">
-                            <a class="font-medium no-underline ml-2 text-right cursor-pointer"
-                               style="color: var(--primary-color)">Forgot password?</a>
-                        </div>
-
                         <p-messages [(value)]="invalidMessages" [enableService]="false"></p-messages>
 
                         <button type="submit" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
-                        <div class="text-center mt-5">
-                        <span class="text-600 font-medium">
-                            You don't have an account yet?
-                            <a class="font-medium no-underline ml-2 text-right cursor-pointer"
-                               style="color: var(--primary-color)">Sign up!</a>
-                        </span>
-                        </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

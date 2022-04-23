@@ -33,8 +33,8 @@ import { AuthModule } from "./auth/auth.module";
 import { environment } from "../environments/environment";
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationModule } from "./pagination/pagination.module";
-import {NgxSpinnerModule} from "ngx-spinner";
-import {Interceptor} from "./interaction/interceptor.service";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { Interceptor } from "./interaction/interceptor.service";
 
 export function tokenGetter() {
     return localStorage.getItem(environment["jwt-key"]);
@@ -77,7 +77,7 @@ export function tokenGetter() {
     ],
     providers: [
         // {provide: LocationStrategy, useClass: HashLocationStrategy},
-        { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+        {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         ConfigService,
         MenuService,
         ConfirmationService,

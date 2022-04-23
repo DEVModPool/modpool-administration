@@ -14,8 +14,8 @@ export class ReviewDialogComponent implements OnInit {
     displayMaximizable: boolean;
 
     statuses = {
-        1: 'Approved',
-        2: 'Pending',
+        1: 'Pending',
+        2: 'Approved',
         3: 'Flagged'
     }
 

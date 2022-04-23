@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { tap, throwError } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Subject, tap, throwError } from "rxjs";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Message } from "primeng/api";
@@ -13,6 +13,8 @@ import { catchError } from "rxjs/operators";
 export class AuthService implements OnInit {
     private autoLogoutTimer;
     autoLogoutMessage: Message[] = [];
+
+    errorMessages: Subject<any> = new Subject();
 
     constructor(
         private http: HttpClient,
@@ -35,7 +37,13 @@ export class AuthService implements OnInit {
     }
 
     login(user: LoginRequest) {
-        return this.http.post<any>(environment.baseUrl + environment.loginUrl, user)
+
+        const headers: HttpHeaders = new HttpHeaders();
+
+        return this.http.post<any>(
+            environment.baseUrl + environment.loginUrl,
+            user,
+            {headers: headers.append('bypassInterceptor', 'true')})
             .pipe(tap(response => {
 
                 const token = (<any>response).result.token;
@@ -51,7 +59,12 @@ export class AuthService implements OnInit {
                 this.router.navigate(["/"]);
             }))
             .pipe(catchError(error => {
-                console.log(error);
+                this.errorMessages.next([{
+                    severity: 'error',
+                    summary: 'Login failed!',
+                    detail: 'Wrong username or password.'
+                }]);
+
                 return throwError(error);
             }))
             .subscribe();

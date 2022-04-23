@@ -14,7 +14,7 @@ import { environment } from "../../../environments/environment";
 export class UserEditComponent extends UserFormBaseComponent {
 
     get newUserUrl() {
-        return environment.usersNewUrl;
+        return `/${environment.usersNewUrl}`;
     }
 
     constructor(
@@ -30,7 +30,6 @@ export class UserEditComponent extends UserFormBaseComponent {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                console.log(response);
                 this.userDetails = response.userData.user;
                 this.availableRoles = response.userData.viewModel.roles;
                 this.editUserForm = this.formGroupInit();
@@ -42,7 +41,7 @@ export class UserEditComponent extends UserFormBaseComponent {
         return new FormGroup({
             firstName: new FormControl(this.userDetails.firstName, Validators.required),
             lastName: new FormControl(this.userDetails.lastName, Validators.required),
-            emailAddress: new FormControl(this.userDetails.emailAddress, Validators.required),
+            emailAddress: new FormControl(this.userDetails.emailAddress, [Validators.required, Validators.email]),
             password: new FormControl(''),
             active: new FormControl(this.userDetails.active),
             roles: new FormControl(this.userDetails.roles)

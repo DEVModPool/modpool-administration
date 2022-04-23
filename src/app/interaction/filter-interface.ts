@@ -114,10 +114,8 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
             return qp;
         }
 
-        console.log(this.paginationData);
 
         for (let key of Object.keys(this.paginationData)) {
-            console.log(`${key} - ${this.paginationData[key]}`);
             qp[key] = this.paginationData[key];
         }
 
