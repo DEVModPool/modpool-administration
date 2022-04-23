@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppMainComponent } from "../app.main.component";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-menu',
@@ -21,27 +22,30 @@ export class MenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(public appMain: AppMainComponent) {
+    constructor(private authService: AuthService) {
     }
 
     ngOnInit() {
-        this.model = [
-            {
-                // label: 'Home',
-                items: [
-                    {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/']},
-                    {label: 'Users', icon: 'pi pi-fw pi-users', routerLink: ['/users'], preventExact: true},
-                    {label: 'Modules', icon: 'pi pi-fw pi-book', routerLink: ['/modules'], preventExact: true},
-                    {label: 'Reviews', icon: 'pi pi-fw pi-thumbs-up', routerLink: ['/reviews'], preventExact: true},
-                    {
-                        label: 'Departments',
-                        icon: 'pi pi-fw pi-sitemap',
-                        routerLink: ['/departments'],
-                        preventExact: true
-                    }
-                ]
-            }
-        ];
+
+        let items;
+
+        if (this.authService.isAdministrator()) {
+            items = [
+                {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+                {label: 'Users', icon: 'pi pi-fw pi-users', routerLink: ['/users'], preventExact: true},
+                {label: 'Modules', icon: 'pi pi-fw pi-book', routerLink: ['/modules'], preventExact: true},
+                {label: 'Reviews', icon: 'pi pi-fw pi-thumbs-up', routerLink: ['/reviews'], preventExact: true},
+                {
+                    label: 'Departments',
+                    icon: 'pi pi-fw pi-sitemap',
+                    routerLink: ['/departments'],
+                    preventExact: true
+                }
+            ];
+        } else {
+            items = [{label: 'Reviews', icon: 'pi pi-fw pi-thumbs-up', routerLink: ['/reviews'], preventExact: true}]
+        }
+        this.model = [{items}];
     }
 
     onKeydown(event: KeyboardEvent) {

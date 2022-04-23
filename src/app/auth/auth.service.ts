@@ -36,6 +36,29 @@ export class AuthService implements OnInit {
         return null;
     }
 
+    private getRoles() {
+        const regex = /\/role$/;
+        const token = localStorage[environment["jwt-key"]];
+        const decodedToken = this.jwtHelper.decodeToken(token);
+
+        for (let key of Object.keys(decodedToken)) {
+            if (regex.test(key)) {
+                return decodedToken[key];
+            }
+        }
+        return null;
+    }
+
+    isAdministrator() {
+        const roles = this.getRoles();
+
+        for (let role of roles) {
+            if (role == 'Administrator') return true;
+        }
+
+        return false;
+    }
+
     login(user: LoginRequest) {
 
         const headers: HttpHeaders = new HttpHeaders();
