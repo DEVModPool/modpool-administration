@@ -110,8 +110,6 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
             }
         }
 
-        console.log(qp);
-
         if (!this.paginationData) {
             return qp;
         }
