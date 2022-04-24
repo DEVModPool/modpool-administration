@@ -23,7 +23,6 @@ export abstract class ServiceInterface<T> {
         return this.http
             .get<Response<any>>(environment.baseUrl + this.initialUrl(), {params: filters})
             .pipe(tap(response => {
-                console.log(response.result);
                 const pageConfiguration = this.paginationService.parseConfiguration(response.result)
                 this.paginationService.paginationConfiguration.next(pageConfiguration);
                 this.getObservable.next(response.result.items);
@@ -55,7 +54,6 @@ export abstract class ServiceInterface<T> {
                     },
                 ),
                 catchError(error => {
-                    console.log(error);
                     return throwError(error);
                 })
             ).subscribe();

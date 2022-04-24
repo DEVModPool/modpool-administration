@@ -55,7 +55,7 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
                 (data: PaginationModel) => {
                     this.searchFilters = {...this.searchFilters, ...data}
                     this.paginationData = data;
-                    this.onSearch();
+                    this.fetchData();
                 }
             )
         );
@@ -84,6 +84,11 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
     }
 
     onSearch() {
+        this.paginationData = null;
+        this.fetchData();
+    }
+
+    fetchData() {
         this.router.navigate(
             ['./'],
             {
@@ -105,10 +110,11 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
             }
         }
 
+        console.log(qp);
+
         if (!this.paginationData) {
             return qp;
         }
-
 
         for (let key of Object.keys(this.paginationData)) {
             qp[key] = this.paginationData[key];
