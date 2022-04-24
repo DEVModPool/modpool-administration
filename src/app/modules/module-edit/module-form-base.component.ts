@@ -108,8 +108,8 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
                     module.coordinator = this.coordinators[0];
                     module.department = this.departments[0];
                     module.prerequisiteModules = [];
-                    module.academicYear = this.academicYears[1];
                     module.semester = 1;
+                    module.academicYear = '2021/2022';
                 } else {
                     this.assessments = new FormArray(module.assessments
                         .map(assessment => this.newAssessment(assessment.name, assessment.weight)));

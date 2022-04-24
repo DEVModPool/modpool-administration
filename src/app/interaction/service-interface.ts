@@ -1,7 +1,7 @@
 import { Subject, tap, throwError } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "./response"
-import { Router } from "@angular/router";
+import { ActivatedRouteSnapshot, Router } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
@@ -37,7 +37,8 @@ export abstract class ServiceInterface<T> {
             .pipe(
                 tap(
                     response => {
-                        this.router.navigate([this.initialUrl() + response.result.id])
+                        this.router.navigate([this.initialUrl(), response.result.id]);
+                        // window.location.reload();
                     }
                 ),
                 catchError(error => {
@@ -52,17 +53,8 @@ export abstract class ServiceInterface<T> {
             .put<Response<any>>(environment.baseUrl + this.initialUrl() + id, data)
             .pipe(
                 tap(
-                    response => {
-                        // this.http.get(environment.baseUrl + this.initialUrl() + response.result.id + '/resolve-route')
-                        //     .subscribe(
-                        //         (response: any) => {
-                        //             this.getObservable.next(response.result.items);
-                        //         }
-                        //     );
-                        this.router.navigate([this.initialUrl()])
-                            .then(() => {
-                                return this.router.navigate([this.initialUrl() + response.result.id]);
-                            })
+                    _ => {
+                        window.location.reload();
                     },
                 ),
                 catchError(error => {

@@ -14,9 +14,9 @@ import { PaginationModel } from "../../pagination/pagination.model";
 export class UserFilterComponent extends FilterInterface<User, qp> implements OnInit {
     isLoading = false;
     roles: Role[];
-    active: { name: string, value: boolean }[] = [
-        {name: 'Active', value: true},
-        {name: 'Inactive', value: false}
+    active: { name: string, value: string }[] = [
+        {name: 'Active', value: 'true'},
+        {name: 'Inactive', value: 'false'}
     ]
 
     constructor(
@@ -34,7 +34,7 @@ export class UserFilterComponent extends FilterInterface<User, qp> implements On
             lastName: new FormControl(''),
             emailAddress: new FormControl(''),
             roleTypes: new FormControl(null),
-            // activityStatus: new FormControl(true),
+            activityStatus: new FormControl(null),
         });
     }
 
@@ -54,5 +54,5 @@ interface qp extends PaginationModel {
     lastName?: string;
     email?: string;
     roles?: string[];
-    // isActive?: boolean;
+    isActive?: string;
 }

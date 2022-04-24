@@ -6,25 +6,19 @@
         (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid grid">
             <div class="field col-12 md:col-4">
-                <label for="firstName">First Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
-                                                                  [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="firstName">First Name</label>
                 <input
                     formControlName="firstName"
                     pInputText
                     id="firstName"
                     type="text"/>
-                <small *ngIf="firstName.dirty && firstName.errors?.['required']" class="p-error">First name is
-                    required.</small>
             </div>
             <div class="field col-12 md:col-4">
-                <label for="lastName">Last Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
-                                                                [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="lastName">Last Name</label>
                 <input
                     formControlName="lastName"
                     pInputText id="lastName"
                     type="text"/>
-                <small *ngIf="lastName.dirty && lastName.errors?.['required']" class="p-error">Last name is
-                    required.</small>
             </div>
             <div class="field col-12 md:col-4">
                 <label for="email">Email</label>&nbsp;<i class="fa-solid fa-star-of-life"

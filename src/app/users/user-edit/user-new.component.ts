@@ -29,11 +29,11 @@ export class UserNewComponent extends UserFormBaseComponent implements OnInit {
 
     formGroupInit() {
         return new FormGroup({
-            firstName: new FormControl('', Validators.required),
-            lastName: new FormControl('', Validators.required),
-            emailAddress: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('', Validators.required),
-            active: new FormControl(false)
+            firstName: new FormControl(''),
+            lastName: new FormControl(''),
+            emailAddress: new FormControl(null, [Validators.required, Validators.email]),
+            password: new FormControl(null, Validators.required),
+            active: new FormControl(true)
         })
     }
 
