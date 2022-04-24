@@ -17,22 +17,15 @@ export abstract class RoleService {
     }
 
     add(userId, roleType) {
-
         const body = {
             userId
         }
 
         return this.http
             .post<Response<any>>(environment.baseUrl + environment.usersUrl + roleType, body)
-            .pipe(tap(
-                () => this.router.navigateByUrl('/', {skipLocationChange: true})
-                    .then(() => this.router.navigate(['users', userId])),
-                err => {
-                    console.error(err);
-                }
-            ))
-            .subscribe();
-
+            .subscribe(
+                () => window.location.reload()
+            );
     }
 
     remove(userId, roleType) {
@@ -47,14 +40,7 @@ export abstract class RoleService {
                 'DELETE',
                 environment.baseUrl + environment.usersUrl + 'remove-role/',
                 {body})
-            .pipe(tap(
-                () => this.router.navigateByUrl('/', {skipLocationChange: true})
-                    .then(() => this.router.navigate(['users', userId])),
-                err => {
-                    console.error(err);
-                }
-            ))
-            .subscribe();
+            .subscribe(() => window.location.reload());
     }
 }
 
