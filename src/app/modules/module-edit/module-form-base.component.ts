@@ -132,7 +132,7 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
             department: new FormControl(this.moduleDetails.department),
             semester: new FormControl(this.moduleDetails.semester),
             academicYear: new FormControl(this.moduleDetails.academicYear, Validators.required),
-            level: new FormControl(100, Validators.required),
+            level: new FormControl(this.moduleDetails.level, Validators.required),
             credits: new FormControl(this.moduleDetails.credits, Validators.required),
             description: new FormControl(this.moduleDetails.description, Validators.required),
             requisites: new FormControl(this.moduleDetails.prerequisiteModules),

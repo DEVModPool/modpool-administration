@@ -12,6 +12,7 @@ export interface ModuleEdit extends Module {
     assessments: Assessment[];
     studyHours: StudyHours;
     prerequisiteModules: RequisiteModule[];
+    level: number;
 }
 
 interface Assessment {
