@@ -39,10 +39,10 @@ export class UserEditComponent extends UserFormBaseComponent {
 
     formGroupInit() {
         return new FormGroup({
-            firstName: new FormControl(this.userDetails.firstName, Validators.required),
-            lastName: new FormControl(this.userDetails.lastName, Validators.required),
+            firstName: new FormControl(this.userDetails.firstName),
+            lastName: new FormControl(this.userDetails.lastName),
             emailAddress: new FormControl(this.userDetails.emailAddress, [Validators.required, Validators.email]),
-            password: new FormControl(''),
+            password: new FormControl(),
             active: new FormControl(this.userDetails.active),
             roles: new FormControl(this.userDetails.roles)
         })
