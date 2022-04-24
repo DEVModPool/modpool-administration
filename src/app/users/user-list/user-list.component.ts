@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 import { User } from "../../interaction/users/user.model";
 import { UsersService } from "../users.service";
 

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { DepartmentsService } from "../departments.service";
 import { DepartmentFormBaseComponent } from "./department-form-base.component";
-import { environment } from "../../../environments/environment";
 
 @Component({
     selector: 'app-department-new',

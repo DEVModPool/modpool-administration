@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from "@angular/router";
-
 import { NgModule } from "@angular/core";
 import { BaseResolver } from "../interaction/base-resolver";
 import { UsersComponent } from "./users.component";

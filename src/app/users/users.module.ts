@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { UsersComponent } from "./users.component";
 import { CommonModule } from "@angular/common";
 import { ToolbarModule } from "primeng/toolbar";
@@ -17,7 +16,6 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { TagModule } from "primeng/tag";
 import { CheckboxModule } from "primeng/checkbox";
 import { UserListComponent } from './user-list/user-list.component';
-
 import { MultiSelectModule } from "primeng/multiselect";
 import { UserFilterComponent } from "./user-filter/user-filter.component";
 import { UsersRoutingModule } from "./users-routing.module";

@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Review } from "../interaction/reviews/review.model";
-import { ModulesService } from "../modules/modules.service";
 import { ServiceInterface } from "../interaction/service-interface";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -31,13 +30,10 @@ export class ReviewsService extends ServiceInterface<Review> {
             id,
         }
 
-        console.log(body);
-
         return this._http
             .post(environment.baseUrl + this.initialUrl() + 'statuses/', body)
             .pipe(
                 catchError(error => {
-                    console.log(error.errors);
                     return throwError(error);
                 })
             );

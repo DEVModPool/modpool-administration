@@ -82,8 +82,6 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
     ngOnInit(): void {
         const subscription = this.activatedRoute.data.subscribe(
             response => {
-                console.log(response);
-
                 this.departments = response.moduleData.viewModel.departments;
                 this.coordinators = response.moduleData.viewModel.coordinators;
                 this.requisites = response.moduleData.viewModel.requisites;

@@ -23,7 +23,7 @@ import { QueryParamModule } from "@ngqp/core";
 import { ModuleEditComponent } from "./module-edit/module-edit.component";
 import { ModuleNewComponent } from "./module-edit/module-new.component";
 import { PaginationModule } from "../pagination/pagination.module";
-import {NgxSpinnerModule} from "ngx-spinner";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
     declarations: [

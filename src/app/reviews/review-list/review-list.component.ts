@@ -22,22 +22,18 @@ export class ReviewListComponent extends SubscriptionHandler implements OnInit {
     ngOnInit(): void {
         this.reviewService.getObservable.subscribe(
             reviews => {
-                console.log(reviews);
                 this.reviews = reviews;
             }
         );
 
         this.activatedRoute.data.subscribe(
             response => {
-                console.log(response);
                 this.statuses = response.reviewData.viewModel.statuses;
                 this.storeSubscription(
                     this.reviewService.getAll().subscribe()
                 );
             }
         );
-
-        // this.reviewService.getAll([]).subscribe();
     }
 
     getTagStatus(review: Review) {

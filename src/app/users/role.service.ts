@@ -1,7 +1,5 @@
-import { tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../interaction/response"
-import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { Injectable } from "@angular/core";
 
@@ -10,10 +8,7 @@ import { Injectable } from "@angular/core";
 })
 export abstract class RoleService {
 
-    protected constructor(
-        private http: HttpClient,
-        private router: Router
-    ) {
+    protected constructor(private http: HttpClient) {
     }
 
     add(userId, roleType) {

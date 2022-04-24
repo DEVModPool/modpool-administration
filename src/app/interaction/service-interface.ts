@@ -1,9 +1,8 @@
 import { Subject, tap, throwError } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "./response"
-import { ActivatedRouteSnapshot, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
-import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
 import { PaginationService } from "../pagination/pagination.service";
 
@@ -38,11 +37,9 @@ export abstract class ServiceInterface<T> {
                 tap(
                     response => {
                         this.router.navigate([this.initialUrl(), response.result.id]);
-                        // window.location.reload();
                     }
                 ),
                 catchError(error => {
-                    console.log(error.errors);
                     return throwError(error);
                 })
             ).subscribe();

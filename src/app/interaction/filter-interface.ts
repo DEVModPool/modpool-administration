@@ -1,4 +1,4 @@
-import { AfterViewInit, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 import { ServiceInterface } from "./service-interface";
@@ -62,12 +62,9 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
     }
 
     getItems() {
-        this.itemService.getAll(this.searchFilters).subscribe(
-            response => {
-                // console.log(response);
-            }
+        this.storeSubscription(
+            this.itemService.getAll(this.searchFilters).subscribe()
         );
-
     }
 
     ngAfterViewInit(): void {
@@ -101,8 +98,6 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
     getQueryParams(): any {
         let qp: QueryParamsT = {} as QueryParamsT;
 
-        // console.log(this.filterForm.controls.name.value);
-
         for (let key of this.filterFields) {
             let formValue = this.filterForm.controls[key].value;
             if (formValue) {
@@ -118,8 +113,6 @@ export abstract class FilterInterface<ResolveT, QueryParamsT extends PaginationM
         for (let key of Object.keys(this.paginationData)) {
             qp[key] = this.paginationData[key];
         }
-
-        // console.log(qp);
 
         return qp;
     }

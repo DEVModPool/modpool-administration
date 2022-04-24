@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
-import {AppMainComponent} from '../app.main.component';
-import {ConfirmationService, MenuItem} from 'primeng/api';
-import {AuthService} from "../auth/auth.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { AppMainComponent } from '../app.main.component';
+import { ConfirmationService, MenuItem } from 'primeng/api';
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-topbar',
@@ -16,7 +15,8 @@ export class TopbarComponent {
         public appMain: AppMainComponent,
         private authService: AuthService,
         private confirmationService: ConfirmationService,
-    ) {}
+    ) {
+    }
 
     logout() {
         this.confirmationService.confirm({
@@ -25,7 +25,5 @@ export class TopbarComponent {
                 this.authService.logout();
             }
         });
-
     }
-
 }

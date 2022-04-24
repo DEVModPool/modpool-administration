@@ -52,8 +52,6 @@ export abstract class DepartmentFormBaseComponent
                 this.departmentDetails = department;
                 this.coordinators = response.departmentData.viewModel.coordinators;
 
-                console.log(this.departmentDetails);
-
                 this.departmentForm = this.formGroupInit();
             }
         );

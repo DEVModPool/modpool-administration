@@ -2,14 +2,12 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ConfigComponent } from './config/config.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
-
 import { ConfigService } from './config/config.service';
 import { MenuService } from "./menu/menu.service";
 import { RippleModule } from "primeng/ripple";
@@ -20,11 +18,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UsersModule } from "./users/users.module";
 import { HomeComponent } from './home/home.component';
 import { ReviewsModule } from "./reviews/reviews.module";
-
 import { ModulesModule } from "./modules/modules.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DepartmentsModule } from "./departments/departments.module";
-
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthModule } from "./auth/auth.module";
 import { environment } from "../environments/environment";
@@ -72,7 +68,6 @@ export function tokenGetter() {
         PageNotFoundComponent
     ],
     providers: [
-        // {provide: LocationStrategy, useClass: HashLocationStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         ConfigService,
         MenuService,

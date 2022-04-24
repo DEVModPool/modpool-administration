@@ -1,8 +1,7 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {AuthService} from "./auth.service";
-import {tokenGetter} from "../app.module";
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { tokenGetter } from "../app.module";
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +16,7 @@ export class LoginGuard implements CanActivate {
     canActivate() {
         const token = tokenGetter();
 
-        if(!token || this.jwtHelper.isTokenExpired(token)) {
+        if (!token || this.jwtHelper.isTokenExpired(token)) {
             return true;
         }
 

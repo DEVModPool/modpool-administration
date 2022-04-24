@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReviewsComponent } from "./reviews.component";
 import { ReviewListComponent } from "./review-list/review-list.component";

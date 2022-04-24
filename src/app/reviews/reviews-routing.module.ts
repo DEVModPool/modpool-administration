@@ -14,22 +14,6 @@ const routes: Routes = [
         },
         data: {url: environment.baseUrl + environment.reviewsUrl}
     },
-    // {
-    //     path: 'new',
-    //     component: DepartmentNewComponent,
-    //     resolve: {
-    //         departmentData: BaseResolver,
-    //     },
-    //     data: {url: environment.baseUrl + environment.departmentsNewUrl}
-    // },
-    // {
-    //     path: ':id',
-    //     component: DepartmentEditComponent,
-    //     resolve: {
-    //         departmentData: BaseResolver
-    //     },
-    //     data: {url: environment.baseUrl + environment.reviewsUrl}
-    // }
 ];
 
 @NgModule({

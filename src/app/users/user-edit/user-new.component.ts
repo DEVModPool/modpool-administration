@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserFormBaseComponent } from "./user-form-base.component";
 import { UsersService } from "../users.service";
 import { Subscription } from "rxjs";
-
 
 @Component({
     selector: 'app-user-new',

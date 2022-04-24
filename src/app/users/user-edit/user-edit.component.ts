@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserFormBaseComponent } from "./user-form-base.component";
 import { UsersService } from "../users.service";
@@ -71,7 +70,6 @@ export class UserEditComponent extends UserFormBaseComponent {
 
     onSubmit() {
         let id = this.userDetails.id;
-        console.log(this.editUserForm.value);
         this.storeSubscription(
             this.usersService.edit(id, this.editUserForm.value)
         );
