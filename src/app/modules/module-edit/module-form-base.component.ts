@@ -15,6 +15,7 @@ export abstract class ModuleFormBaseComponent extends SubscriptionHandler implem
     semesters: { value: number, semester: string }[] = [
         {value: 1, semester: 'Semester 1'},
         {value: 2, semester: 'Semester 2'},
+        {value: 3, semester: 'Full year'},
     ];
 
     academicYears = this.getAcademicYears();
