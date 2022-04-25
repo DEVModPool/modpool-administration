@@ -52,9 +52,12 @@ export class AuthService implements OnInit {
     isAdministrator() {
         const roles = this.getRoles();
 
-        for (let role of roles) {
-            if (role == 'Administrator') return true;
-        }
+        if (typeof roles === 'string')
+            if (roles === 'Administrator') return true;
+
+
+        for (let role of roles)
+            if (role === 'Administrator') return true;
 
         return false;
     }
