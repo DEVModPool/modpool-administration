@@ -14,7 +14,7 @@
                     type="text"/>
                 <small *ngIf="name.dirty && name.errors?.['required']" class="p-error">Name is required.</small>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-6">
                 <label for="code">Code</label>&nbsp;<i class="fa-solid fa-star-of-life"
                                                        [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <input
@@ -23,7 +23,7 @@
                     type="text"/>
                 <small *ngIf="code.dirty && code.errors?.['required']" class="p-error">Code is required.</small>
             </div>
-            <div class="field col-12 md:col-2">
+            <div class="field col-12 md:col-3">
                 <label for="semester">Semester</label>&nbsp;<i class="fa-solid fa-star-of-life"
                                                                [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <p-dropdown
@@ -31,9 +31,44 @@
                     id=semester
                     [options]="semesters"
                     optionLabel="semester"
-                >
+                    optionValue="value">
                 </p-dropdown>
                 <small *ngIf="semester.dirty && semester.errors?.['required']" class="p-error">Semester is
+                    required.</small>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label for="semester">Academic Year</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                    [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <p-dropdown
+                    formControlName="academicYear"
+                    id=academicYear
+                    [options]="academicYears">
+                </p-dropdown>
+                <small *ngIf="academicYear.dirty && academicYear.errors?.['required']" class="p-error">Academic year is
+                    required.</small>
+            </div>
+
+            <div class="field col-12 md:col-3">
+                <label for="level">Level</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                         [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <p-inputNumber
+                    formControlName="level"
+                    id="level"
+                    inputId="level">
+                </p-inputNumber>
+                <small *ngIf="level.dirty && level.errors?.['required']" class="p-error">Level is
+                    required.</small>
+            </div>
+
+            <div class="field col-12 md:col-3">
+                <label for="name">Credits</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                          [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <input
+                    formControlName="credits"
+                    pInputText
+                    id="credits"
+                    type="text"/>
+                <small *ngIf="credits.dirty && credits.errors?.['required']" class="p-error">Credits are
                     required.</small>
             </div>
             <div class="field col-12 md:col-6">
@@ -58,9 +93,9 @@
                     formControlName="coordinator"
                     id=coordinator
                     [options]="coordinators"
-                    optionLabel="name"
+                    optionLabel="fullName"
                     [filter]="true"
-                    filterBy="name"
+                    filterBy="fullName"
                 >
                 </p-dropdown>
                 <small *ngIf="coordinator.dirty && coordinator.errors?.['required']" class="p-error">Coordinator is
@@ -94,42 +129,35 @@
                 <small *ngIf="syllabus.dirty && syllabus.errors?.['required']" class="p-error">Syllabus is
                     required.</small>
             </div>
+
             <div class="field col-12">
-                <label for="assessment">Assessment</label>&nbsp;<i class="fa-solid fa-star-of-life"
-                                                                   [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <label for="syllabus">Learning Outcomes</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                        [ngStyle]="{color:'var(--pink-500)'}"></i>
                 <textarea
-                    formControlName="assessment"
-                    id="assessment"
+                    formControlName="learningOutcomes"
+                    id="learningOutcomes"
                     rows="5"
                     cols="30"
                     pInputTextarea
                     autoResize="autoResize">
                 </textarea>
-                <small *ngIf="assessment.dirty && assessment.errors?.['required']" class="p-error">Assessment is
+                <small *ngIf="learningOutcomes.dirty && learningOutcomes.errors?.['required']" class="p-error">Learning
+                    Outcomes
+                    are
                     required.</small>
             </div>
-            <div class="field col-12">
-                <label for="assessment">Module Prerequisites</label>
-                <p-multiSelect
-                    formControlName="prerequisites"
-                    [options]="modules"
-                    defaultLabel="Select prerequisites..."
-                    optionLabel="name"
-                    display="chip">
-                </p-multiSelect>
-            </div>
-            <div class="field col-12">
-                <label for="assessment">Module Corequisites</label>
-                <p-multiSelect
-                    formControlName="prerequisites"
-                    [options]="modules"
-                    defaultLabel="Select prerequisites..."
-                    optionLabel="name"
-                    display="chip">
-                </p-multiSelect>
-                <hr>
-            </div>
 
+            <div class="field col-12">
+                <label for="requisites">Module Requisites</label>
+                <p-multiSelect
+                    id="requisites"
+                    formControlName="requisites"
+                    [options]="requisites"
+                    defaultLabel="Select requisites..."
+                    optionLabel="name"
+                    display="chip">
+                </p-multiSelect>
+            </div>
 
             <div class="grid p-fluid" formGroupName="studyHours">
                 <div class="col-12">
@@ -161,12 +189,12 @@
                 <div class="col-12 md:col-2">
                     <br>
                     <span class="p-float-label">
-                    <p-inputNumber
-                        formControlName="tutorials"
-                        id="tutorials"
-                        inputId="tutorials"></p-inputNumber>
-                    <label for="tutorials">Tutorials</label>
-                </span>
+                        <p-inputNumber
+                            formControlName="tutorials"
+                            id="tutorials"
+                            inputId="tutorials"></p-inputNumber>
+                        <label for="tutorials">Tutorials</label>
+                    </span>
                 </div>
                 <div class="col-12 md:col-2">
                     <br>
@@ -182,15 +210,25 @@
                 <div class="col-12 md:col-2">
                     <br>
                     <span class="p-float-label">
-                    <p-inputNumber
-                        formControlName="fieldwork"
-                        id="fieldwork"
-                        inputId="fieldwork">
-                    </p-inputNumber>
-                    <label for="fieldwork">Fieldwork</label>
-                </span>
+                        <p-inputNumber
+                            formControlName="fieldworkPlacement"
+                            id="fieldwork"
+                            inputId="fieldwork">
+                        </p-inputNumber>
+                        <label for="fieldwork">Fieldwork</label>
+                    </span>
                 </div>
-
+                <div class="col-12 md:col-2">
+                    <br>
+                    <span class="p-float-label">
+                        <p-inputNumber
+                            formControlName="privateStudy"
+                            id="privateStudy"
+                            inputId="privateStudy">
+                        </p-inputNumber>
+                        <label for="privateStudy">Private Study</label>
+                    </span>
+                </div>
                 <div class="col-12 md:col-2">
                     <br>
                     <span class="p-float-label">
@@ -205,6 +243,65 @@
             </div>
         </div>
         <hr>
+        <div class="grid p-fluid" formArrayName="assessments">
+            <div class="col-12">
+                <h6 style="padding-bottom: 0;margin-bottom: 0;">Assessment</h6>
+            </div>
+            <div class="col-12 md:col-12 grid"
+                 *ngFor="let assessment of assessments.controls;
+                            last as isLast;
+                            index as index"
+                 [formGroupName]="index">
+                <br>
+                <div class="field col-12 md:col-7">
+                    <label for="name">Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                           [ngStyle]="{color:'var(--pink-500)'}"></i>
+                    <input
+                        formControlName="name"
+                        pInputText
+                        id="assessmentName"
+                        type="text"/>
+                    <small *ngIf="name.dirty && name.errors?.['required']" class="p-error">Name is
+                        required.</small>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label for="name">Weight</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                             [ngStyle]="{color:'var(--pink-500)'}"></i>
+                    <input
+                        formControlName="weight"
+                        pInputText
+                        id="assessmentWeight"
+                        type="text"/>
+                    <small *ngIf="name.dirty && name.errors?.['required']" class="p-error">Weight is
+                        required.</small>
+                </div>
+                <div class="field col-12 md:col-1">
+                    <button
+                        *ngIf="isLast"
+                        pButton
+                        type="button"
+                        label="Primary"
+                        class="p-button-outlined p-button-rounded p-button-icon-only"
+                        icon="pi pi-plus"
+                        style="margin-top:20px"
+                        (click)="addAssessment()"
+                    ></button>
+                </div>
+                <div class="field col-12 md:col-1">
+                    <button
+                        *ngIf="this.assessments.length > 1"
+                        pButton
+                        type="button"
+                        label="Danger"
+                        class="p-button-outlined p-button-rounded p-button-icon-only p-button-danger"
+                        icon="pi pi-times"
+                        style="margin-top:20px"
+                        (click)="removeAssessment(index)"
+                    ></button>
+                </div>
+            </div>
+        </div>
+        <hr>
         <p-messages severity="warn" *ngIf="moduleForm.invalid">
             <ng-template pTemplate>
                 <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>
@@ -212,6 +309,7 @@
             </ng-template>
         </p-messages>
         <button
+            type="button"
             pButton
             pRipple
             label="Cancel"

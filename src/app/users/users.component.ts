@@ -7,7 +7,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class UsersComponent implements OnInit {
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit(): void {
     }

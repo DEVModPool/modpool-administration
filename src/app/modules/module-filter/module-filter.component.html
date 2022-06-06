@@ -1,7 +1,7 @@
 <div class="card">
     <h5 [ngStyle]="{color:'var(--primary-color)'}">Filter Modules</h5>
     <br>
-    <form [formGroup]="moduleFilterForm" (ngSubmit)="onSearch()">
+    <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
         <div class="p-fluid grid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
@@ -17,8 +17,8 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="email" formControlName="coordinator">
-                    <label for="email">Coordinator</label>
+                    <input pInputText type="text" id="coordinator" formControlName="coordinatorName">
+                    <label for="coordinator">Coordinator</label>
                 </span>
             </div>
             <div class="field col-2">

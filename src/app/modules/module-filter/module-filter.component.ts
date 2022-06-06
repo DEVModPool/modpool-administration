@@ -1,93 +1,40 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModulesService } from "../modules.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
+import { FilterInterface } from "../../interaction/filter-interface";
+import { Module } from "../../interaction/modules/module.model";
+import { PaginationModel } from "../../pagination/pagination.model";
+import { PaginationService } from "../../pagination/pagination.service";
 
 @Component({
     selector: 'app-module-filter',
     templateUrl: './module-filter.component.html'
 })
-export class ModuleFilterComponent implements OnInit, OnDestroy, AfterViewInit {
-    isLoading = false;
-    moduleFilters: { code: string, name: string, coordinator: string };
-
-    moduleFilterForm = new FormGroup({
-        code: new FormControl(''),
-        name: new FormControl(''),
-        coordinator: new FormControl('')
-    })
+export class ModuleFilterComponent extends FilterInterface<Module, qp> {
 
     constructor(
-        private moduleService: ModulesService,
-        private activatedRoute: ActivatedRoute,
-        private router: Router
+        moduleService: ModulesService,
+        activatedRoute: ActivatedRoute,
+        router: Router,
+        paginationService: PaginationService
     ) {
+        super(moduleService, activatedRoute, router, paginationService);
     }
 
-    ngOnInit(): void {
-        this.activatedRoute.queryParams.subscribe(
-            (params: { code: string, name: string, coordinator: string }) => {
-                this.moduleFilters = params;
-                this.moduleFilterForm.patchValue(params);
-            }
-        );
-
+    getFilterForm(): FormGroup {
+        return new FormGroup({
+            code: new FormControl(''),
+            name: new FormControl(''),
+            coordinatorName: new FormControl('')
+        });
     }
 
-    ngAfterViewInit(): void {
-        let qp = this.getQueryParams();
-        if (
-            qp.code != undefined ||
-            qp.name != undefined ||
-            qp.coordinator != undefined
-        ) {
-            this.getModules();
-        }
-    }
-
-    public ngOnDestroy(): void {
-    }
-
-    onSearch() {
-        this.router.navigate(
-            ['./'],
-            {
-                relativeTo: this.activatedRoute,
-                queryParams: this.getQueryParams()
-            }
-        ).then(() => this.getModules());
-    }
-
-    getModules() {
-        console.log(this.moduleFilterForm.controls['code'].value)
-        this.moduleService.getModules(this.moduleFilters).subscribe(response => {
-                this.moduleService.modules.next(response.result);
-            }
-        );
-    }
-
-    getQueryParams(): any {
-        let qp: qp = {
-            code: null,
-            name: null,
-            coordinator: null
-        } as qp;
-        console.log(Object.keys(qp));
-        if (this.moduleFilterForm.controls['code'].value) {
-            qp.code = this.moduleFilterForm.controls['code'].value;
-        }
-        if (this.moduleFilterForm.controls['name'].value) {
-            qp.name = this.moduleFilterForm.controls['name'].value;
-        }
-        if (this.moduleFilterForm.controls['coordinator'].value) {
-            qp.coordinator = this.moduleFilterForm.controls['coordinator'].value;
-        }
-        return qp;
-    }
 }
 
-interface qp {
+
+interface qp extends PaginationModel {
     code?: string,
     name?: string,
-    coordinator?: string
+    coordinatorName?: string
 }

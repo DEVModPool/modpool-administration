@@ -1,55 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { UserEdit } from "../../interaction/users/user-edit.model";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Role } from "../../interaction/users/user.model";
-import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
-import { Department } from "../department.model";
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { DepartmentFormBaseComponent } from "./department-form-base.component";
+import { DepartmentsService } from "../departments.service";
 
 @Component({
     selector: 'app-department-edit',
-    templateUrl: './department-edit.component.html'
+    templateUrl: './department-form-base.component.html'
 })
-export class DepartmentEditComponent implements OnInit {
-    departmentDetails: Department;
-    editDepartmentForm: FormGroup;
-
-    get name() {
-        return this.editDepartmentForm.get('name');
-    }
+export class DepartmentEditComponent extends DepartmentFormBaseComponent {
 
     constructor(
-        protected activatedRoute: ActivatedRoute,
-        protected location: Location
+        activatedRoute: ActivatedRoute,
+        router: Router,
+        private departmentsService: DepartmentsService
     ) {
-    }
-
-    ngOnInit(): void {
-        this.activatedRoute.data.subscribe(
-            response => {
-                let department = response.departmentData.departmentDetails;
-                if (department === undefined || department === null) {
-                    department = {} as Department;
-                }
-                this.departmentDetails = department;
-                this.editDepartmentForm = this.formGroupInit();
-            }
-        );
-
-    }
-
-    formGroupInit() {
-        return new FormGroup({
-            id: new FormControl(this.departmentDetails.id),
-            name: new FormControl(this.departmentDetails.name, Validators.required)
-        });
-    }
-
-    onCancel() {
-        this.location.back();
+        super(activatedRoute, router);
+        this.showNewButton = true;
     }
 
     onSubmit() {
+        this.storeSubscription(
+            this.departmentsService.edit(this.departmentDetails.id, this.formatForm())
+        )
         return;
-    };
+    }
 }

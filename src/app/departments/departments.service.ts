@@ -1,19 +1,27 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { Response } from "../interaction/response";
 import { Department } from "./department.model";
+import { environment } from "../../environments/environment";
+import { Router } from "@angular/router";
+import { ServiceInterface } from "../interaction/service-interface";
+import { Injectable } from "@angular/core";
+import { PaginationService } from "../pagination/pagination.service";
 
-@Injectable()
-export class DepartmentsService {
-    departments = new Subject<Department[]>();
+@Injectable({
+    providedIn: 'root'
+})
+export class DepartmentsService extends ServiceInterface<Department> {
 
-    constructor(private http: HttpClient) {
+    initialUrl(): string {
+        return environment.departmentsUrl;
     }
 
-    getDepartments(departmentFilters: any) {
-        return this.http.get<Response<Department[]>>('http://localhost:3000/departmentList', {params: departmentFilters})
+    constructor(
+        http: HttpClient,
+        router: Router,
+        paginationService: PaginationService) {
+        super(http, router, paginationService);
     }
+
 }
 
 

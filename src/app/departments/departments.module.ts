@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ChipsModule } from "primeng/chips";
 import { ButtonModule } from "primeng/button";
-import { DepartmentsService } from "./departments.service";
 import { DepartmentListComponent } from "./department-list/department-list.component";
 import { RippleModule } from "primeng/ripple";
 import { TagModule } from "primeng/tag";
@@ -15,6 +14,11 @@ import { MessagesModule } from "primeng/messages";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { DepartmentEditComponent } from "./department-edit/department-edit.component";
+import { MultiSelectModule } from "primeng/multiselect";
+import { DropdownModule } from "primeng/dropdown";
+import { DepartmentNewComponent } from "./department-edit/department-new.component";
+import { PaginatorModule } from "primeng/paginator";
+import { PaginationModule } from "../pagination/pagination.module";
 
 
 @NgModule({
@@ -22,7 +26,8 @@ import { DepartmentEditComponent } from "./department-edit/department-edit.compo
         DepartmentsComponent,
         DepartmentFilterComponent,
         DepartmentListComponent,
-        DepartmentEditComponent
+        DepartmentEditComponent,
+        DepartmentNewComponent
     ],
     imports: [
         DepartmentsRoutingModule,
@@ -36,10 +41,11 @@ import { DepartmentEditComponent } from "./department-edit/department-edit.compo
         MessagesModule,
         ToastModule,
         ToolbarModule,
-        FormsModule
-    ],
-    providers: [
-        DepartmentsService
+        FormsModule,
+        MultiSelectModule,
+        DropdownModule,
+        PaginatorModule,
+        PaginationModule
     ]
 })
 export class DepartmentsModule {

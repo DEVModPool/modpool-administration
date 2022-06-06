@@ -1,7 +1,7 @@
 <div class="card">
     <h5 [ngStyle]="{color:'var(--primary-color)'}">Filter Users</h5>
     <br>
-    <form [formGroup]="userFilterForm" (ngSubmit)="onSearch()">
+    <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
         <div class="p-fluid grid">
             <div class="field col-12 md:col-6">
                 <span class="p-float-label">
@@ -15,34 +15,40 @@
                     <label for="lastName">Last Name</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-6">
+            <div class="field col-12 md:col-5">
                 <span class="p-float-label">
-                    <input pInputText type="text" id="email" formControlName="email">
+                    <input pInputText type="text" id="email" formControlName="emailAddress">
                     <label for="email">Email</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-5">
                 <span class="p-float-label">
                     <p-multiSelect
                         id="roles"
                         inputId="roles"
                         [options]="roles"
                         optionLabel="name"
+                        optionValue="roleType"
                         [filter]="false"
-                        formControlName="roles"
-                    >
+                        formControlName="roleTypes">
                     </p-multiSelect>
                     <label for="roles">Roles</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-2" style="text-align:center">
 
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <p>Active</p>
-                    <p-inputSwitch
-                        id="isActive"
-                        formControlName="isActive"
-                    ></p-inputSwitch>
+                    <p-dropdown
+                        id="active"
+                        inputId="active"
+                        [options]="active"
+                        optionLabel="name"
+                        optionValue="value"
+                        placeholder="Activity"
+                        [filter]="false"
+                        [showClear]="true"
+                        formControlName="activityStatus">
+                    </p-dropdown>
                 </span>
             </div>
             <br>
@@ -50,7 +56,6 @@
             <div class="field col-2">
                 <p-button label="Search" type="submit" icon="pi pi-search" [loading]="isLoading"></p-button>
             </div>
-
         </div>
     </form>
 </div>

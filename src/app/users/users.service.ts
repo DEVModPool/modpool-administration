@@ -1,18 +1,25 @@
-import {Injectable} from "@angular/core";
-import {User} from "../interaction/users/user.model";
+import { User } from "../interaction/users/user.model";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { ServiceInterface } from "../interaction/service-interface";
+import { environment } from "../../environments/environment";
+import { Injectable } from "@angular/core";
+import { PaginationService } from "../pagination/pagination.service";
 
-import {Subject} from "rxjs";
-import {Response} from "../interaction/response";
-import {HttpClient} from "@angular/common/http";
+@Injectable({
+    providedIn: 'root'
+})
+export class UsersService extends ServiceInterface<User> {
 
-
-@Injectable()
-export class UsersService {
-    constructor(private http: HttpClient) {
+    initialUrl(): string {
+        return environment.usersUrl;
     }
-    users = new Subject<User[]>();
-    getUsers(userFilters: any) {
-        return this.http.get<Response<User[]>>('http://localhost:3000/userList',{params: userFilters})
+
+    constructor(
+        http: HttpClient,
+        router: Router,
+        paginationService: PaginationService) {
+        super(http, router, paginationService);
     }
 }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 import { Department } from "../department.model";
 import { DepartmentsService } from "../departments.service";
 
@@ -12,11 +11,11 @@ export class DepartmentListComponent implements OnInit {
     departments: Department[];
     filtered = false;
 
-    constructor(private departmentsService: DepartmentsService, private activatedRoute: ActivatedRoute) {
+    constructor(private departmentsService: DepartmentsService) {
     }
 
     ngOnInit(): void {
-        this.departmentsService.departments.subscribe(departments => {
+        this.departmentsService.getObservable.subscribe(departments => {
                 this.departments = departments;
                 this.filtered = true;
             }

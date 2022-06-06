@@ -1,22 +1,23 @@
 import { RouterModule, Routes } from "@angular/router";
-
 import { NgModule } from "@angular/core";
 import { BaseResolver } from "../interaction/base-resolver";
 import { UsersComponent } from "./users.component";
 import { UserEditComponent } from "./user-edit/user-edit.component";
+import { environment } from "../../environments/environment";
+import { UserNewComponent } from "./user-edit/user-new.component";
 
 const routes: Routes = [
     {
         path: '',
         component: UsersComponent,
-    },
-    {
-        path: 'new',
-        component: UserEditComponent,
         resolve: {
             userData: BaseResolver,
         },
-        data: {url: 'http://localhost:3000/newUser'}
+        data: {url: environment.baseUrl + environment.usersUrl}
+    },
+    {
+        path: 'new',
+        component: UserNewComponent
     },
     {
         path: ':id',
@@ -24,10 +25,8 @@ const routes: Routes = [
         resolve: {
             userData: BaseResolver
         },
-        data: {url: 'http://localhost:3000/editUser'}
+        data: {url: environment.baseUrl + environment.usersUrl}
     }
-
-
 ];
 
 @NgModule({

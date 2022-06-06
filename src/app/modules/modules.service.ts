@@ -1,28 +1,25 @@
 import { Injectable } from "@angular/core";
 import { Module } from "../interaction/modules/module.model";
-import {Subject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {Response} from "../interaction/response";
-import {ModuleData} from "../interaction/modules/module-data";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
+import { ServiceInterface } from "../interaction/service-interface";
+import { Router } from "@angular/router";
+import { PaginationService } from "../pagination/pagination.service";
 
-@Injectable()
-export class ModulesService {
-    modules = new Subject<Module[]>();
+@Injectable({
+    providedIn: 'root'
+})
+export class ModulesService extends ServiceInterface<Module> {
 
-    constructor(private http: HttpClient) {
+    initialUrl() {
+        return environment.modulesUrl;
     }
 
-    getModules(moduleFilters: any) {
-        console.log(moduleFilters);
-        return this.http.get<Response<Module[]>>('http://localhost:3000/moduleList',{params: moduleFilters})
-    }
-
-    getNewModuleTest() {
-        return this.http.get<Response<ModuleData>>('http://localhost:3000/newModule')
-    }
-
-    getEditModuleTest() {
-        return this.http.get<Response<ModuleData>>('http://localhost:3000/editModule')
+    constructor(
+        http: HttpClient,
+        router: Router,
+        paginationService: PaginationService) {
+        super(http, router, paginationService);
     }
 }
 

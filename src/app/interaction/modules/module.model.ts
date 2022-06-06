@@ -1,16 +1,13 @@
-export class Module {
-    constructor(
-        public id?: number,
-        public code?: string,
-        public name?: string,
-        public coordinator?: ModuleCoordinator,
-        public lastUpdated?: string
-    ) {
-    }
+export interface Module {
+    id?: number;
+    code?: string;
+    name?: string;
+    coordinator?: ModuleCoordinator;
+    lastUpdated?: string;
 }
 
 export interface ModuleCoordinator {
-    name: string,
+    fullName: string,
     id: string
 }
 

@@ -1,101 +1,58 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
 import { UsersService } from "../users.service";
-import { Role } from "../../interaction/users/user.model";
+import { Role, User } from "../../interaction/users/user.model";
+import { FilterInterface } from "../../interaction/filter-interface";
+import { PaginationService } from "../../pagination/pagination.service";
+import { PaginationModel } from "../../pagination/pagination.model";
 
 @Component({
     selector: 'app-user-filter',
     templateUrl: './user-filter.component.html'
 })
-export class UserFilterComponent implements OnInit, OnDestroy {
+export class UserFilterComponent extends FilterInterface<User, qp> implements OnInit {
     isLoading = false;
     roles: Role[];
-    userFilters: {
-        firstName: string, lastName: string, email: string, roles: string[], isActive: boolean
-    };
-
-    userFilterForm = new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        email: new FormControl(''),
-        roles: new FormControl(null),
-        isActive: new FormControl(null),
-    })
+    active: { name: string, value: string }[] = [
+        {name: 'Active', value: 'true'},
+        {name: 'Inactive', value: 'false'}
+    ]
 
     constructor(
-        private userService: UsersService,
-        private activatedRoute: ActivatedRoute,
-        private router: Router
+        userService: UsersService,
+        private _activatedRoute: ActivatedRoute,
+        router: Router,
+        paginationService: PaginationService
     ) {
+        super(userService, _activatedRoute, router, paginationService);
     }
 
-    ngOnInit(): void {
-        this.activatedRoute.queryParams.subscribe(
-            (params: { firstName: string, lastName: string, email: string, roles: string[], isActive: boolean }) => {
-                this.userFilters = params;
-                // TODO: Fix inputSwitch not being set to default value in the html
-                this.userFilterForm.patchValue(params);
-            }
-        );
-    }
-
-    ngAfterViewInit(): void {
-        let qp = this.getQueryParams();
-        if (
-            qp.firstName != undefined ||
-            qp.lastName != undefined ||
-            qp.email != undefined ||
-            qp.roles != null
-        ) {
-            this.getUsers();
-        }
-    }
-
-    public ngOnDestroy(): void {
-    }
-
-    onSearch() {
-        this.router.navigate(
-            ['./'],
-            {
-                relativeTo: this.activatedRoute,
-                queryParams: this.getQueryParams()
-            }
-        ).then(() => this.getUsers());
-    }
-
-    getUsers() {
-        this.userService.getUsers(this.userFilters).subscribe(response => {
-            this.userService.users.next(response.result);
+    getFilterForm(): FormGroup {
+        return new FormGroup({
+            firstName: new FormControl(''),
+            lastName: new FormControl(''),
+            emailAddress: new FormControl(''),
+            roleTypes: new FormControl(null),
+            activityStatus: new FormControl(null),
         });
     }
 
-    getQueryParams(): any {
-        let qp: qp = {} as qp;
-        if (this.userFilterForm.controls['firstName'].value) {
-            qp.firstName = this.userFilterForm.controls['firstName'].value;
-        }
-        if (this.userFilterForm.controls['lastName'].value) {
-            qp.lastName = this.userFilterForm.controls['lastName'].value;
-        }
-        if (this.userFilterForm.controls['email'].value) {
-            qp.email = this.userFilterForm.controls['email'].value;
-        }
-        if (this.userFilterForm.controls['roles'].value) {
-            qp.roles = this.userFilterForm.controls['roles'].value;
-        }
-        if (this.userFilterForm.controls['isActive'].value) {
-            qp.isActive = this.userFilterForm.controls['isActive'].value;
-        }
-        return qp;
+    ngOnInit(): void {
+        super.ngOnInit();
+
+        this._activatedRoute.data.subscribe(
+            response => {
+                this.roles = response.userData.viewModel.roles;
+            }
+        )
     }
 }
 
-interface qp {
+interface qp extends PaginationModel {
     firstName?: string;
     lastName?: string;
     email?: string;
     roles?: string[];
-    isActive?: boolean
+    isActive?: string;
 }

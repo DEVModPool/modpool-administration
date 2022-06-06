@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import { DepartmentsComponent } from "./departments.component";
 import { BaseResolver } from "../interaction/base-resolver";
 import { DepartmentEditComponent } from "./department-edit/department-edit.component";
+import { environment } from "../../environments/environment";
+import { DepartmentNewComponent } from "./department-edit/department-new.component";
 
 
 const routes: Routes = [
@@ -12,11 +14,11 @@ const routes: Routes = [
     },
     {
         path: 'new',
-        component: DepartmentEditComponent,
+        component: DepartmentNewComponent,
         resolve: {
             departmentData: BaseResolver,
         },
-        data: {url: 'http://localhost:3000/newDepartment'}
+        data: {url: environment.baseUrl + environment.departmentsNewUrl}
     },
     {
         path: ':id',
@@ -24,7 +26,7 @@ const routes: Routes = [
         resolve: {
             departmentData: BaseResolver
         },
-        data: {url: 'http://localhost:3000/editDepartment'}
+        data: {url: environment.baseUrl + environment.departmentsUrl}
     }
 
 

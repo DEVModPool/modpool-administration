@@ -1,22 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from "../review.model";
+import { Review } from "../../interaction/reviews/review.model";
 import { ReviewsService } from "../reviews.service";
+import { ActivatedRoute } from "@angular/router";
+import { SubscriptionHandler } from "../../interaction/subscription-handler";
 
 @Component({
     selector: 'app-review-list',
     templateUrl: './review-list.component.html'
 })
-export class ReviewListComponent implements OnInit {
+export class ReviewListComponent extends SubscriptionHandler implements OnInit {
     reviews: Review[];
+    statuses: { id: number, name: string }[];
 
     constructor(
-        private reviewService: ReviewsService
+        private reviewService: ReviewsService,
+        private activatedRoute: ActivatedRoute
     ) {
+        super();
     }
 
     ngOnInit(): void {
-        this.reviews = this.reviewService.reviews;
-        console.log(this.reviews);
+        this.reviewService.getObservable.subscribe(
+            reviews => {
+                this.reviews = reviews;
+            }
+        );
+
+        this.activatedRoute.data.subscribe(
+            response => {
+                this.statuses = response.reviewData.viewModel.statuses;
+                this.storeSubscription(
+                    this.reviewService.getAll().subscribe()
+                );
+            }
+        );
     }
 
     getTagStatus(review: Review) {

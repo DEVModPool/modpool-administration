@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Module } from "../../interaction/modules/module.model";
 import { ModulesService } from "../modules.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-module-list',
@@ -11,11 +10,11 @@ export class ModuleListComponent implements OnInit {
     modules: Module[];
     filtered = false;
 
-    constructor(private modulesService: ModulesService, private activatedRoute: ActivatedRoute) {
+    constructor(private modulesService: ModulesService) {
     }
 
     ngOnInit(): void {
-        this.modulesService.modules.subscribe(modules => {
+        this.modulesService.getObservable.subscribe(modules => {
                 this.modules = modules;
                 this.filtered = true;
             }

@@ -1,19 +1,44 @@
-<button pButton pRipple type="button" class="p-button-raised p-button-rounded" (click)="showMaximizableDialog()">Review</button>
+<button pButton pRipple type="button" class="p-button-raised p-button-rounded" (click)="showMaximizableDialog()">
+    Review
+</button>
+
 <p-dialog
     [(visible)]="displayMaximizable"
     [modal]="true" [style]="{width: '50vw'}"
     [maximizable]="true"
     [draggable]="false"
-    [resizable]="false"
->
+    [resizable]="false">
+
     <ng-template pTemplate="header">
         <div class="grid">
-            <h4 class="col-12" style="font-weight: bold">{{ review.moduleName }}</h4>
+            <h4 class="col-12" style="font-weight: bold">{{ review.moduleCode }}</h4>
         </div>
     </ng-template>
-    <h5 [ngStyle]="{color:'var(--blue-600)'}">Current status: <span><p-tag [severity]="getTagStatus(review)" [value]="review.status"></p-tag></span></h5>
+    <h5 [ngStyle]="{color:'var(--blue-600)'}">
+        Current status:
+        <span>
+            <p-tag [severity]="getTagStatus(review)"
+                   [value]="review.status">
+            </p-tag>
+        </span>
+    </h5>
     <br>
-    <p>{{ review.reviewContent }}</p>
+    <hr>
+    <div class="grid">
+        <div class="col-6">
+            <p class="flex text-xl font-medium">
+                Quality: &nbsp;
+                <p-rating [ngModel]="review.quality" readonly="true" stars="5" [cancel]="false"></p-rating>
+            </p>
+        </div>
+        <div class="col-6">
+            <p class="flex text-xl font-medium">
+                Difficulty: &nbsp;
+                <p-rating [ngModel]="review.difficulty" readonly="true" stars="5" [cancel]="false"></p-rating>
+            </p>
+        </div>
+    </div>
+    <p>{{ review.content }}</p>
 
     <ng-template pTemplate="footer">
         <hr>
@@ -25,7 +50,7 @@
                 label="Pending"
                 icon="pi pi pi-question-circle"
                 class="p-button p-button-warning"
-                (click)=onPending()>
+                (click)=setStatus(1)>
             </button>
             <button
                 style="width: 130px"
@@ -34,7 +59,7 @@
                 label="Flag"
                 icon="pi pi pi-flag"
                 class="p-button p-button-danger"
-                (click)=onFlag()>
+                (click)=setStatus(3)>
             </button>
             <button
                 style="width: 130px"
@@ -43,7 +68,7 @@
                 label="Approve"
                 icon="pi pi pi-heart"
                 class="p-button p-button-success"
-                (click)=onApprove()>
+                (click)=setStatus(2)>
             </button>
         </div>
     </ng-template>

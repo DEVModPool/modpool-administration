@@ -1,77 +1,78 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserFormBaseComponent } from "./user-form-base.component";
+import { UsersService } from "../users.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-
-import { ActivatedRoute } from "@angular/router";
-import { Location } from '@angular/common';
-import { UserEdit } from "../../interaction/users/user-edit.model";
-import { Role } from "../../interaction/users/user.model";
-
+import { RoleService } from "../role.service";
+import { environment } from "../../../environments/environment";
 
 @Component({
-    selector: 'app-module-edit',
+    selector: 'app-user-edit',
     templateUrl: './user-edit.component.html'
 })
-export class UserEditComponent implements OnInit {
-    userDetails: UserEdit;
-    editUserForm: FormGroup;
-    availableRoles: Role[];
+export class UserEditComponent extends UserFormBaseComponent {
 
-    get firstName() {
-        return this.editUserForm.get('firstName');
-    }
-
-    get lastName() {
-        return this.editUserForm.get('lastName');
-    }
-
-    get email() {
-        return this.editUserForm.get('email');
-    }
-
-    get isActive() {
-        return this.editUserForm.get('isActive');
+    get newUserUrl() {
+        return `/${environment.usersNewUrl}`;
     }
 
     constructor(
-        protected activatedRoute: ActivatedRoute,
-        protected location: Location
+        activatedRoute: ActivatedRoute,
+        router: Router,
+        private usersService: UsersService,
+        private roleService: RoleService
     ) {
+        super(activatedRoute, router);
+        this.showNewButton = true;
     }
 
     ngOnInit(): void {
         this.activatedRoute.data.subscribe(
             response => {
-                console.log(response)
-                let user = response.userData.userDetails;
-                if (user === undefined || user === null) {
-                    user = {} as UserEdit;
-                }
-                this.userDetails = user;
-                this.availableRoles = response.userData.viewmodel.roles;
+                this.userDetails = response.userData.user;
+                this.availableRoles = response.userData.viewModel.roles;
                 this.editUserForm = this.formGroupInit();
             }
         );
-
     }
 
     formGroupInit() {
         return new FormGroup({
-            id: new FormControl(this.userDetails.id),
-            firstName: new FormControl(this.userDetails.firstName, Validators.required),
-            lastName: new FormControl(this.userDetails.lastName, Validators.required),
-            email: new FormControl(this.userDetails.email, Validators.required),
-            // TODO: Fix active inputSwitch not turning on
-            isActive: new FormControl(this.userDetails.isActive),
+            firstName: new FormControl(this.userDetails.firstName),
+            lastName: new FormControl(this.userDetails.lastName),
+            emailAddress: new FormControl(this.userDetails.emailAddress, [Validators.required, Validators.email]),
+            password: new FormControl(),
+            active: new FormControl(this.userDetails.active),
             roles: new FormControl(this.userDetails.roles)
         })
     }
 
-    onCancel() {
-        this.location.back();
+    hasRole(role): boolean {
+        for (let userRole of this.userDetails.roles) {
+            if (role.name == userRole.name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    addRole(role) {
+        this.storeSubscription(
+            this.roleService.add(this.userDetails.id, role.roleType)
+        );
+    }
+
+    removeRole(role) {
+        this.storeSubscription(
+            this.roleService.remove(this.userDetails.id, role.roleType)
+        );
     }
 
     onSubmit() {
-        return;
+        let id = this.userDetails.id;
+        this.storeSubscription(
+            this.usersService.edit(id, this.editUserForm.value)
+        );
     };
 }
 

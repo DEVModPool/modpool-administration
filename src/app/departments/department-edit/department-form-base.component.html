@@ -1,0 +1,74 @@
+<div class="card">
+    <h5>{{ departmentDetails ? departmentDetails.name : "New Department" }}</h5>
+    <br>
+    <form
+        [formGroup]="departmentForm"
+        (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-6">
+                <label for="name">Name</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                       [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <input
+                    formControlName="name"
+                    pInputText id="name"
+                    type="text"/>
+                <small *ngIf="name.dirty && name.errors?.['required']" class="p-error">Name is
+                    required.</small>
+            </div>
+
+            <div class="field col-6">
+                <label for="coordinator">Coordinator</label>&nbsp;<i class="fa-solid fa-star-of-life"
+                                                                     [ngStyle]="{color:'var(--pink-500)'}"></i>
+                <span class="p-float-label">
+                    <p-dropdown
+                        id="coordinator"
+                        placeholder="Select Coordinator"
+                        [options]="coordinators"
+                        optionLabel="fullName"
+                        [filter]="true"
+                        formControlName="coordinator">
+                    </p-dropdown>
+                    <small *ngIf="coordinator.dirty && coordinator.errors?.['required']" class="p-error">Coordinator is
+                    required.</small>
+                </span>
+            </div>
+        </div>
+        <hr>
+
+        <p-messages severity="warn" *ngIf="departmentForm.invalid">
+            <ng-template pTemplate>
+                <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>
+                <div class="ml-2">Please fill in all the required fields.</div>
+            </ng-template>
+        </p-messages>
+        <button
+            type="button"
+            pButton
+            pRipple
+            label="Cancel"
+            icon="pi pi-list"
+            class="p-button-secondary mr-2"
+            (click)="onCancel()"
+        >
+        </button>
+        <button
+            type="submit"
+            [disabled]="departmentForm.invalid"
+            pButton
+            pRipple
+            label="Save"
+            icon="pi pi-check"
+            class="p-button-success mr-2">
+        </button>
+        <button
+            *ngIf="showNewButton"
+            [routerLink]="newDepartmentUrl"
+            type="button"
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-primary mr-2">
+        </button>
+    </form>
+</div>
